@@ -1,0 +1,562 @@
+:root {
+    --primary-color: #C59B42;
+    --primary-color-hover: #996600;
+    --text-dark: #000000;
+    --darkgrey: #1E1E1E;
+    --grey: #333333;
+    --lightgrey: #999999;
+    --text-grey: #78716c;
+    --white: #fff;
+    --blue: #0d6efd;
+}
+
+.c-font {
+    font-family: "Crimson Text", serif;
+}
+
+.fs-48 {
+    font-size: 48px;
+}
+
+.bg-ts {
+    background-color: transparent;
+}
+
+* {
+    left: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.custom-border{
+    border-bottom-color: var(--primary-color) !important;
+}
+
+.text-p{
+    color: var(--primary-color);
+}
+
+.custom_bg {
+    background-color: var(--primary-color);
+}
+
+.custom-bg {
+    background-color: var(--primary-color);
+}
+
+.custom-bg:hover {
+    background-color: var(--primary-color-hover);
+}
+
+.custom-outline-bg {
+    border: 1px solid var(--primary-color);
+}
+
+.custom-outline-bg:hover {
+    border: 1px solid var(--primary-color-hover);
+    background-color: var(--primary-color-hover);
+    color: var(--white);
+}
+
+.h {
+    font-family: "Crimson Text", serif;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.content {
+    max-width: 1440px;
+}
+
+.banner {
+    width: 100%;
+    background: url(src/bg-1.png) repeat;
+    padding-top: 5px;
+}
+
+.logo {
+    display: block;
+    margin: 0 auto;
+}
+
+.search-area {
+    display: flex;
+    justify-content: center;
+}
+
+.search-content {
+    max-width: 1440px;
+}
+
+.slider {
+    width: 100%;
+}
+
+.search-form{
+    margin-top: -60px;
+    z-index: 2;
+    position: relative;
+}
+
+/* .contact {
+    display: flex;
+    justify-content: space-between;
+    font-family: "Inter", sans-serif;
+    color: #C59B42;
+    padding: 5px 240px;
+    border-bottom: 2px solid #C59B42;
+}
+
+.contact-info {
+    display: flex;
+    gap: 40px;
+}
+
+.head-btn {
+    display: flex;
+    gap: 10px;
+}
+
+.contact-m,
+.contact-p {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.sign-up-btn {
+    display: inline-block;
+    font-size: 18px;
+    padding: 6px 12px;
+    background-color: var(--primary-color);
+    border: none;
+    color: var(--white);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-btn {
+    display: inline-block;
+    font-size: 18px;
+    padding: 6px 12px;
+    color: var(--primary-color);
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.banner {
+    width: 100%;
+    background: url(../src/bg-1.png) repeat;
+    padding-top: 5px;
+}
+
+.logo {
+    display: block;
+    margin: 0 auto 5px;
+}
+
+
+.nav {
+    width: 100%;
+    height: 40px;
+    background-color: var(--primary-color);
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    margin: auto;
+}
+
+.nav li {
+    width: auto;
+    height: 40px;
+    position: relative;
+    display: flex;
+    padding: 0 40px;
+    align-items: center;
+}
+
+.nav li:hover {
+    background-color: #996600;
+}
+
+.nav li a {
+    font-family: "Crimson Text", serif;
+    font-size: 17px;
+    text-decoration: none;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.search-area {
+    display: flex;
+    justify-content: center;
+}
+
+.search-content {
+    max-width: 1440px;
+}
+
+.slider {
+    width: 100%;
+}
+
+.booking-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-color);
+    margin: -50px 85px;
+    padding: 1rem;
+    z-index: 2;
+    position: relative;
+}
+
+.input {
+    display: flex;
+    flex: 1 1 220px;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.input span {
+    font-size: 30px;
+    color: var(--text-dark)
+}
+
+.input label {
+    font-weight: 500;
+    margin-bottom: 2.5px;
+}
+
+.input input {
+    display: block;
+    width: 100%;
+    max-width: 150px;
+    padding-block: 5px;
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--white);
+}
+
+.input select {
+    display: block;
+    width: 100%;
+    max-width: 150px;
+    padding-block: 5px;
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--white);
+}
+
+.select-selected {
+    background-color: var(--text-dark);
+    border-color: var(--text-dark);
+}
+
+.input button {
+    padding: 14px 45px;
+    font-size: 22px;
+    color: var(--text-dark);
+    border: white;
+} */
+
+/* history area */
+.history {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 150px auto;
+}
+
+.head-text {
+    margin-bottom: 40px;
+}
+
+.head-text h1 {
+    font-size: 48px;
+    font-family: "Crimson Text", serif;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.banner-history {
+    margin-bottom: 30px;
+}
+
+.text {
+    width: 1200px;
+    color: var(--text-grey);
+    margin: 0 auto;
+}
+
+/* room type area */
+
+.room__container {
+    background-color: var(--darkgrey);
+    text-align: center;
+}
+
+.head-container {
+    display: flex;
+    justify-content: center;
+    padding: 120px 0 50px;
+}
+
+.head-roomtype {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 66%;
+    color: var(--white);
+}
+
+.head-roomtype h1 {
+    font-family: "Crimson Text", serif;
+    font-weight: 500;
+    font-size: 48px;
+}
+
+.allroom-btn {
+    text-decoration: none;
+    color: var(--white);
+    padding: 10px 20px;
+    border: 2px solid #fff;
+    font-family: "Crimson Text", serif;
+    font-size: 18px;
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-bottom: 200px;
+}
+
+.card-ts {
+    width: 394px;
+    overflow: hidden;
+    margin: 0 10px;
+    background-color: transparent;
+    border: transparent;
+}
+
+.card-ts img {
+    width: 100%;
+    height: auto;
+}
+
+
+.card-content h3 {
+    font-family: "Crimson Text", serif;
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: var(--white);
+}
+
+.card-content h5 {
+    font-family: "Crimson Text", serif;
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: var(--white);
+}
+
+.features {
+    display: flex;
+    font-size: 15px;
+    line-height: 1.3;
+    color: var(--white);
+    margin: 0 0 20px 10px;
+    gap: 10px;
+}
+
+.badge {
+    background-color: var(--grey);
+    color: var(--white);
+    padding: 4px 8px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.line {
+    height: 2px;
+    background-color: var(--lightgrey);
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding: 0;
+    align-items: center;
+    border: transparent;
+}
+
+.card-price span {
+    color: var(--white);
+    font-family: "Crimson Text", serif;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.card-price h3 {
+    font-family: "Crimson Text", serif;
+    font-weight: 500;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+
+.detail a {
+    border-radius: 0;
+    padding: 10px 32px;
+    font-family: "Crimson Text", serif;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.title {
+    font-size: 48px;
+}
+
+/* facilites section */
+
+.facilities {
+    padding: 20px;
+}
+
+.facilities h1 {
+    font-family: "Crimson Text", serif;
+    text-transform: uppercase;
+    font-size: 48px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.facilities .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.facilities .col-md-6 {
+    padding: 0 10px;
+}
+
+.facilities img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Events section */
+.event__container {
+    text-align: center;
+    background-color: var(--darkgrey);
+}
+
+.event__title {
+    padding: 80px 0 50px;
+}
+
+.event__title h1 {
+    font-size: 48px;
+    font-family: "Crimson Text", serif;
+    font-weight: 500;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    color: var(--white);
+}
+
+.card-container {
+    text-align: start;
+}
+
+.card img {
+    margin-bottom: 15px;
+}
+
+.cardevent-content h3 {
+    font-family: "Crimson Text", serif;
+    font-size: xx-large;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 15px;
+}
+
+.event-date,
+.event-time {
+    font-family: "Crimson Text", serif;
+    font-weight: 500;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--lightgrey);
+    margin-bottom: 15px;
+}
+
+.event-link {
+    font-family: "Crimson Text", serif;
+    font-weight: 500;
+    font-size: 20px;
+    text-decoration: none;
+    color: var(--white);
+}
+
+.event__btn {
+    padding: 8px 16px;
+    background-color: transparent;
+    border: 2px solid var(--white);
+    color: var(--white);
+    margin-bottom: 80px;
+    font-family: "Crimson Text", serif;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+
+.facility-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.facility-card img {
+    width: 100%;
+    height: auto;
+}
+
+.facility-card-title {
+    display: flex;
+    justify-content: start;
+    margin: 1rem;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 1);
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    align-items: center;
+    font-size: 1.2em;
+}
