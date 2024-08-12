@@ -46,13 +46,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link text-white">
+                        <a href="rooms.php" class="nav-link text-white">
                         <i class="bi bi-house me-2"></i>
                             Rooms
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link text-white">
+                        <a href="users.php" class="nav-link text-white">
                         <i class="bi bi-person-circle me-2"></i>
                             Users
                         </a>

@@ -316,13 +316,6 @@
     </section>
 
     <!-- map -->
-    <?php
-    $contact_q = "SELECT * FROM `contact_details` WHERE `sr_no`=?";
-    $values = [1];
-    $contact_r = mysqli_fetch_assoc(select($contact_q, $values, 'i'));
-    print_r($contact_r);
-    ?>
-
     <section>
         <h1 class="mt-5 pt-4 mb-4 text-center fw-medium c-font fs-48">Reach us</h1>
         <div class="container">
@@ -332,7 +325,6 @@
                 </div>
             </div>
         </div>
-
     </section>
     <!-- Modal -->
     <?php require('inc/modal-login.php') ?>

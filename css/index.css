@@ -42,11 +42,11 @@ input[type=number] {
     -moz-appearance: textfield;
 }
 
-.custom-border{
+.custom-border {
     border-bottom-color: var(--primary-color) !important;
 }
 
-.text-p{
+.text-p {
     color: var(--primary-color);
 }
 
@@ -57,6 +57,22 @@ input[type=number] {
 .custom-bg {
     background-color: var(--primary-color);
 }
+
+.nav-pills{
+    color: #fff;
+}
+
+.nav-link {
+    border-radius: 0;
+}
+
+.nav-link.active,
+.show>.nav-link {
+    color: #fff;
+    background-color: var(--primary-color-hover);
+    border-radius: 0;
+}
+
 
 .custom-bg:hover {
     background-color: var(--primary-color-hover);
@@ -109,7 +125,7 @@ input[type=number] {
     width: 100%;
 }
 
-.search-form{
+.search-form {
     margin-top: -60px;
     z-index: 2;
     position: relative;

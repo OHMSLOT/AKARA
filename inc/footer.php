@@ -2,9 +2,8 @@
 $contact_q = "SELECT * FROM `contact_details` WHERE `sr_no`=?";
 $values = [1];
 $contact_r = mysqli_fetch_assoc(select($contact_q, $values, 'i'));
-print_r($contact_r);
+// print_r($contact_r);
 ?>
-
 
 <div class="container-fluid custom_bg mt-5">
     <div class="row justify-content-between">
@@ -29,9 +28,15 @@ print_r($contact_r);
                 <i class="bi bi-telephone-fill"></i> +<?php echo $contact_r['pn1'] ?>
             </a>
             <br>
-            <a href="tel: +<?php echo $contact_r['pn2'] ?>" class="d-inline-block text-decoration-none text-dark">
-                <i class="bi bi-telephone-fill"></i> +<?php echo $contact_r['pn2'] ?>
-            </a>
+            <?php 
+                if($contact_r['pn2']!=''){
+                    echo<<<data
+                        <a href="tel: +$contact_r[pn2]" class="d-inline-block text-decoration-none text-dark">
+                            <i class="bi bi-telephone-fill"></i> +$contact_r[pn2]
+                        </a>
+                    data;
+                }
+            ?>
             <h5 class="mt-4">Email</h5>
             <a href="mailto:<?php echo $contact_r['email'] ?>" class="d-inline-block text-decoration-none text-dark">
                 <i class="bi bi-envelope-fill me-1"></i> <?php echo $contact_r['email'] ?>
@@ -49,3 +54,22 @@ print_r($contact_r);
         </div>
     </div>
 </div>
+
+<?php include 'inc/script.php';?>
+
+<script>
+    function setActive(){
+        let navbar = document.getElementById('nav-bar');
+        let a_tags = navbar.getElementsByTagName('a');
+
+        for(i=0; i<a_tags.length; i++){
+            let file = a_tags[i].href.split('/').pop();
+            let file_name = file.split('.')[0];
+
+            if(document.location.href.indexOf(file_name)>=0){
+                a_tags[i].classList.add('active');
+            }
+        }   
+    }
+    setActive();
+</script>

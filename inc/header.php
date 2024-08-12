@@ -1,7 +1,11 @@
 <?php 
     require('admin/inc/db_config.php');
     require('admin/inc/essentials.php');
-    
+
+    $contact_q = "SELECT * FROM `contact_details` WHERE `sr_no`=?";
+    $values = [1];
+    $contact_r = mysqli_fetch_assoc(select($contact_q, $values, 'i'));
+    // print_r($contact_r);
 ?>
 
 <nav class="py-2 bg-light border-bottom custom-border border-2">
@@ -27,7 +31,7 @@
     </div>
 </div>
 <!-- navbar section -->
-<nav class="navbar navbar-expand-lg stiky-top py-0" aria-label="Twelfth navbar example">
+<nav id="nav-bar" class="navbar navbar-expand-lg stiky-top py-0" aria-label="Twelfth navbar example">
     <div class="container-fluid p-0">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample10" aria-controls="navbarsExample10" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -35,7 +39,7 @@
         <div class="collapse navbar-collapse custom_bg justify-content-md-center" id="navbarsExample10">
             <ul class="navbar-nav gap-2">
                 <li class="nav-item">
-                    <a class="nav-link active px-4 text-light" href="index.php">HOME</a>
+                    <a class="nav-link px-4 text-light" href="index.php">HOME</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link px-4 text-light" href="room-type.php">ROOM TYPE</a>
