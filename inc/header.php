@@ -1,11 +1,11 @@
-<?php 
-    require('admin/inc/db_config.php');
-    require('admin/inc/essentials.php');
+<?php
+require('admin/inc/db_config.php');
+require('admin/inc/essentials.php');
 
-    $contact_q = "SELECT * FROM `contact_details` WHERE `sr_no`=?";
-    $values = [1];
-    $contact_r = mysqli_fetch_assoc(select($contact_q, $values, 'i'));
-    // print_r($contact_r);
+$contact_q = "SELECT * FROM `contact_details` WHERE `sr_no`=?";
+$values = [1];
+$contact_r = mysqli_fetch_assoc(select($contact_q, $values, 'i'));
+// print_r($contact_r);
 ?>
 
 <nav class="py-2 bg-light border-bottom custom-border border-2">
@@ -31,12 +31,12 @@
     </div>
 </div>
 <!-- navbar section -->
-<nav id="nav-bar" class="navbar navbar-expand-lg stiky-top py-0" aria-label="Twelfth navbar example">
+<nav class="navbar navbar-expand-lg stiky-top py-0" id="nav-bar-menu">
     <div class="container-fluid p-0">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample10" aria-controls="navbarsExample10" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsdropdown" aria-controls="navbarsdropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse custom_bg justify-content-md-center" id="navbarsExample10">
+        <div class="collapse navbar-collapse custom_bg justify-content-md-center" id="navbarsdropdown">
             <ul class="navbar-nav gap-2">
                 <li class="nav-item">
                     <a class="nav-link px-4 text-light" href="index.php">HOME</a>

@@ -58,10 +58,6 @@ input[type=number] {
     background-color: var(--primary-color);
 }
 
-.nav-pills{
-    color: #fff;
-}
-
 .nav-link {
     border-radius: 0;
 }
@@ -70,7 +66,6 @@ input[type=number] {
 .show>.nav-link {
     color: #fff;
     background-color: var(--primary-color-hover);
-    border-radius: 0;
 }
 
 
@@ -103,7 +98,7 @@ input[type=number] {
 
 .banner {
     width: 100%;
-    background: url(src/bg-1.png) repeat;
+    background-image: url("../src/bg-1.png");
     padding-top: 5px;
 }
 

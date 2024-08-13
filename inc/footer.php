@@ -22,7 +22,7 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values, 'i'));
             <a href="gallery.php" class="d-inline-block mb-2 text-dark text-decoration-none">Gallery</a> <br>
             <a href="contact.php" class="d-inline-block mb-2 text-dark text-decoration-none">Contact</a>
         </div>
-        <div class="col-lg-2 py-4">
+        <div class="col-lg-2 lg-py-4 md-p-4 p-4">
             <h5>Call us</h5>
             <a href="tel: +<?php echo $contact_r['pn1'] ?>" class="d-inline-block mb-2 text-decoration-none text-dark">
                 <i class="bi bi-telephone-fill"></i> +<?php echo $contact_r['pn1'] ?>
@@ -59,7 +59,7 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values, 'i'));
 
 <script>
     function setActive(){
-        let navbar = document.getElementById('nav-bar');
+        let navbar = document.getElementById('nav-bar-menu');
         let a_tags = navbar.getElementsByTagName('a');
 
         for(i=0; i<a_tags.length; i++){
