@@ -7,13 +7,13 @@
     <title>Document</title>
     <?php require('inc/links.php') ?>
     <style>
-        .content{
+        .contents {
             width: 100%;
             height: 100%;
             top: 0;
             left: 0;
             position: absolute;
-            background:rgba(0,0,0,0.6) ;
+            background: rgba(0, 0, 0, 0.6);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -22,20 +22,19 @@
             transition: 0.6s;
         }
 
-        .content:hover{
+        .content:hover {
             opacity: 1;
         }
 
-        /* .gal {
-            opacity: 0;
+        .gal {
+            opacity: 1;
             background: rgba(0,0,0,.54);
             transition: opacity .4s;
-        } */
+        }
 
         .gal:hover {
             filter: grayscale(100%);
             transition: all 0.4s;
-            /* opacity: 1; */
         }
 
         /* .gal a {
@@ -69,6 +68,39 @@
             width: 100%;
             object-fit: cover;
         }
+        
+        .full:hover{
+            filter: grayscale(100%);
+        }
+
+        .gallery-item{
+            position: relative;
+        }
+
+        .gallery-item .img{
+            filter: grayscale(0%);
+        }
+
+        .gallery-item .overlay{
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            position: absolute;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            opacity: 0;
+            z-index: 1;
+            padding: 20px;
+            transition: 0.6s;
+        }
+
+        .gallery-item:hover .overlay{
+            opacity: 1;
+        }
     </style>
 </head>
 
@@ -86,21 +118,25 @@
         <div class="row">
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card justify-content-center">
-                    <a href="#">
+                    <a href="#"></a>    
                         <img style="margin-bottom: 0; height: 270px;" class="card-img image" src="src/room.jpg" alt="">
-                    </a>
-                    <div class="container text-center filter">
+                    <div class="contents text-center filter">
                         <h5>ROOM</h5>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card">
-                    <img style="margin-bottom: 0; height: 270px" class="card-img image content" src="src/Swimming_pool.png" alt="">
+                <div class="gallery-item">
+                    <div class="card">
+                        <img style="margin-bottom: 0; height: 270px" class="card-img image" src="src/Swimming_pool.png" alt="">
+                        <div class="overlay">
+                            <h5>ROOM</h5>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card gal">
+                <div class="card">
                     <img style="margin-bottom: 0; height: 270px;" class="card-img image" src="src/lobby.jpg" alt="">
                 </div>
             </div>
@@ -129,3 +165,10 @@
 <?php require('inc/script.php') ?>
 
 </html>
+
+<li style="background: url('admin/images/1338DN6_0152.jpg') center no-repeat; background-size: cover;">
+        	<a href="?page=gallery&amp;a_id=20"></a>
+            <div class="contents">
+            	<h1>Room</h1>
+            </div>
+        </li>

@@ -83,15 +83,18 @@
             </div>
             <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
                 <div class="carousel-inner">
-                    <div class="carousel-item active" style="height: 700px;">
-                        <img src="src/carousel1.jpg" class="d-block w-100 image" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="src/carousel2.jpg" class="d-block w-100 image" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="src/carousel3.jpg" class="d-block w-100 image" alt="...">
-                    </div>
+                    <?php 
+                        $res = selectAll('carousel');
+
+                        while ($row = mysqli_fetch_assoc($res)) {
+                            $path = CAROUSEL_IMG_PATH;
+                            echo <<<data
+                                <div class="carousel-item active">
+                                    <img src="$path$row[image]" style="max-height: 700px;" class="d-block w-100 image img-fluid" alt="...">
+                                </div>
+                            data;
+                        }   
+                    ?>
                 </div>
             </div>
             <p class="my-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, mollitia porro! Illum est,

@@ -19,13 +19,13 @@
                     </li>
                     <li class="nav-item">
                         <a href="user_queries.php" class="nav-link text-white">
-                        <i class="bi bi-house me-2"></i>
+                        <i class="bi bi-person-circle me-2"></i>
                             User Queries
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="carousel.php" class="nav-link text-white">
-                        <i class="bi bi-person-circle me-2"></i>
+                        <i class="bi bi-image me-2"></i>
                             Carousel
                         </a>
                     </li>

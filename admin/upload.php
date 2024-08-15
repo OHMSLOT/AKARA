@@ -96,13 +96,14 @@ if (isset($_GET['delete'])) {
             position: absolute;
             top: 10px;
             right: 10px;
-            border: 3px solid #fff;
-            background-color: #6c757d;
+            background-color: #dc3545;
             border-radius: 10px;
             color: #fff;
             padding: 4px 10px 4px 10px;
-            font-size: 24px;
+            font-size: 14px;
+            font-family: "Inter", sans-serif;
             cursor: pointer;
+            font-style: normal;
         }
     </style>
 </head>
@@ -145,7 +146,7 @@ if (isset($_GET['delete'])) {
                                         echo '<div class="col-md-3 mb-3">';
                                         echo '<div class="card image-container">';
                                         echo '<img src="uploads/' . $row["image_name"] . '" class="card-img-top img-fluid" alt="Image">';
-                                        echo '<a href="?delete=' . $row["id"] . '" onclick="return confirm(\'Are you sure you want to delete this image?\');"><i class="bi bi-trash delete-btn"></i></a>';
+                                        echo '<a href="?delete=' . $row["id"] . '" onclick="return confirm(\'Are you sure you want to delete this image?\');"><i class="bi bi-trash delete-btn me-2"> Delete</i></a>';
                                         echo '</div>';
                                         echo '</div>';
                                     }

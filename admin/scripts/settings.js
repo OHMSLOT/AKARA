@@ -103,8 +103,7 @@ function get_contacts() {
     contacts_data = Object.values(contacts_data);
 
     for (i = 0; i < contacts_p_id.length; i++) {
-        document.getElementById(contacts_p_id[i]).innerText =
-        contacts_data[i + 1];
+        document.getElementById(contacts_p_id[i]).innerText =contacts_data[i + 1];
     }
     iframe.src = contacts_data[8];
     contacts_inp(contacts_data);
@@ -190,62 +189,61 @@ function upd_contacts() {
     xhr.send(data_str);
 }
 
-team_s_form.addEventListener("submit", function (e){
-    e.preventDefault();
-    add_member();
-})
+// team_s_form.addEventListener("submit", function (e){
+//     e.preventDefault();
+//     add_member();
+// })
 
-function add_member(){
-    let data = new FormData();
-    data.append('name', member_name_inp.value);
-    data.append('picture',member_name_inp.files[0]);
-    data.append('add_member','');
+// function add_member(){
+//     let data = new FormData();
+//     data.append('name', member_name_inp.value);
+//     data.append('picture',member_name_inp.files[0]);
+//     data.append('add_member','');
 
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", "ajax/settings_crud.php", true);
+//     let xhr = new XMLHttpRequest();
+//     xhr.open("POST", "ajax/settings_crud.php", true);
 
-    xhr.onload = function () {
+//     xhr.onload = function () {
         
-    }
-    xhr.send(data);
-}
+//     }
+//     xhr.send(data);
+// }
 
-function get_members() {
+// function get_members() {
     
 
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", "ajax/settings_crud.php", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+//     let xhr = new XMLHttpRequest();
+//     xhr.open("POST", "ajax/settings_crud.php", true);
+//     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-    xhr.onload = function () {
-        document.getElementById('team-data').innerHTML = this.responseText;
-    };
+//     xhr.onload = function () {
+//         document.getElementById('team-data').innerHTML = this.responseText;
+//     };
 
-    xhr.send('get_members');
-}
+//     xhr.send('get_members');
+// }
 
-function rem_member() {
+// function rem_member() {
     
 
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", "ajax/settings_crud.php", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+//     let xhr = new XMLHttpRequest();
+//     xhr.open("POST", "ajax/settings_crud.php", true);
+//     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-    xhr.onload = function () {
-        if(this.responseText==1){
-            alert('success','Member removed!');
-            get_members();  
-        }
-        else{
-            alert('error','Server down!');
-        }
-    };
+//     xhr.onload = function () {
+//         if(this.responseText==1){
+//             alert('success','Member removed!');
+//             get_members();  
+//         }
+//         else{
+//             alert('error','Server down!');
+//         }
+//     };
 
-    xhr.send('rem_member'+val);
-}
+//     xhr.send('rem_member'+val);
+// }
 
 window.onload = function () {
     get_general();
     get_contacts();
-    get_members();
 };
