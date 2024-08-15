@@ -23,9 +23,6 @@
 }
 
 * {
-    left: 0;
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
     font-family: "Inter", sans-serif;
 }
@@ -40,6 +37,13 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
     -moz-appearance: textfield;
+}
+
+.custom-alert{
+    display: block;
+    position: fixed;
+    top: 80px;
+    right: 25px;
 }
 
 .custom-border {
@@ -322,7 +326,7 @@ input[type=number] {
 
 /* room type area */
 
-.room__container {
+/* .room__container {
     background-color: var(--darkgrey);
     text-align: center;
 }
@@ -447,40 +451,11 @@ input[type=number] {
 
 .title {
     font-size: 48px;
-}
-
-/* facilites section */
-
-.facilities {
-    padding: 20px;
-}
-
-.facilities h1 {
-    font-family: "Crimson Text", serif;
-    text-transform: uppercase;
-    font-size: 48px;
-    font-weight: 500;
-    margin-bottom: 20px;
-}
-
-.facilities .row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.facilities .col-md-6 {
-    padding: 0 10px;
-}
-
-.facilities img {
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
-}
+} */
 
 /* Events section */
-.event__container {
+
+/* .event__container {
     text-align: center;
     background-color: var(--darkgrey);
 }
@@ -544,8 +519,9 @@ input[type=number] {
     font-family: "Crimson Text", serif;
     font-weight: 500;
     font-size: 20px;
-}
+} */
 
+/* Facility section */
 
 .facility-card {
     position: relative;
@@ -563,6 +539,7 @@ input[type=number] {
     justify-content: start;
     margin: 1rem;
     position: absolute;
+    left: 0;
     right: 0;
     bottom: 0;
     background-color: rgba(255, 255, 255, 1);
@@ -570,4 +547,15 @@ input[type=number] {
     padding: 10px;
     align-items: center;
     font-size: 1.2em;
+}
+.fs-14{
+    font-size: 14px;
+}
+
+.fs-20{
+    font-size: 20px;
+}
+
+.bd-t{
+    border-top: 1.5px solid var(--lightgrey);
 }

@@ -29,37 +29,9 @@
 
 <body>
     <!-- header -->
-    <!-- <header>
-        <div class="contact">
-            <div class="contact-info">
-                <div class="contact-p">
-                    <img src="src/ic-phone.png">
-                    +6653 215 995
-                </div>
-                <div class="contact-m">
-                    <img src="src/ic-mail.png">
-                    reservation@thaiakara.com
-                </div>
-            </div>
-            <div class="head-btn">
-                <button class="sign-up-btn" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
-                <button class="login-btn" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
-            </div>
-        </div>
-        <div class="banner">
-            <img class="logo" src="src/logo.png" alt="">
-            <ul class="nav">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Room Type</a></li>
-                <li><a href="#">Facilities</a></li>
-                <li><a href="#">Gallery</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </div>
-    </header> -->
     <?php require('inc/header.php') ?>
     <!-- search -->
-    <section class="booking__container">
+    <section>
         <div class="container">
             <img src="src/image 3.png" class="slider" alt="Hotel Room">
         </div>
@@ -104,13 +76,23 @@
 
     </section>
     <!-- history -->
-    <section class="history__container">
+    <section>
         <div class="container pt-5">
             <div class="my-5 px-4 pt-5">
                 <h1 class="fw-semibold c-font text-center">. Heart of Chiang Mai .</h1>
             </div>
-            <div class="container px-0">
-                <img class="image" style="height: 700px;" src="src/carousel1.jpg" alt="">
+            <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+                <div class="carousel-inner">
+                    <div class="carousel-item active" style="height: 700px;">
+                        <img src="src/carousel1.jpg" class="d-block w-100 image" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="src/carousel2.jpg" class="d-block w-100 image" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="src/carousel3.jpg" class="d-block w-100 image" alt="...">
+                    </div>
+                </div>
             </div>
             <p class="my-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, mollitia porro! Illum est,
                 at sit eius eveniet corporis accusantium, quae similique unde libero soluta quam aperiam neque facere, quia nam?
@@ -118,117 +100,234 @@
         </div>
     </section>
     <!-- room-type -->
-    <section class="room__container">
-        <div class="room-type">
-            <div class="head-container">
-                <div class="head-roomtype">
-                    <h1>ROOM TYPE</h1>
-                    <a href="#" class="allroom-btn">ALL ROOMS</a>
-                </div>
-            </div>
-            <div class="card-container">
-                <div class="card-ts">
-                    <img src="src/LINE_ALBUM_Superior room Thai Akara_240716_1.jpg" alt="">
-                    <div class="card-content">
-                        <h3>Superior room</h3>
-                        <h5>Features</h5>
-                        <div class="features">
-                            <span class="badge">
-                                50 m2
-                            </span>
-                            <span class="badge">
-                                1 beds
-                            </span>
-                            <span class="badge">
-                                1 bathroom
-                            </span>
-                            <span class="badge">
-                                1 balcony
-                            </span>
-                        </div>
-                        <div class="line"></div>
-                        <div class="card-footer">
-                            <div class="card-price">
-                                <span>Start from</span>
-                                <h3>$1500/night</h3>
-                            </div>
-                            <div class="detail">
-                                <a href="#" class="btn btn-outline-light">DETAIL</a>
-                            </div>
-                        </div>
+    <section>
+        <div class="container-fluid bg-dark">
+            <div class="container">
+                <div class="d-flex flex-wrap justify-content-between align-items-center py-5">
+                    <h1 style="display: block;" class="text-light c-font fs-48 m-0">ROOM TYPE</h1>
+                    <div>
+                        <a href="room-type.php" class="btn btn-outline-light c-font fs-18 fw-normal" style="width: auto; display: inline-block; border-radius: 0;">ALL ROOMS</a>
                     </div>
                 </div>
-                <div class="card-ts">
-                    <img src="src/LINE_ALBUM_Superior room Thai Akara_240716_1.jpg" alt="">
-                    <div class="card-content">
-                        <h3>Superior room</h3>
-                        <h5>Features</h5>
-                        <div class="features">
-                            <span class="badge">
-                                50 m2
-                            </span>
-                            <span class="badge">
-                                1 beds
-                            </span>
-                            <span class="badge">
-                                1 bathroom
-                            </span>
-                            <span class="badge">
-                                1 balcony
-                            </span>
-                        </div>
-                        <div class="line"></div>
-                        <div class="card-footer">
-                            <div class="card-price">
-                                <span>Start from</span>
-                                <h3>$1500/night</h3>
+
+                <div class="row pb-5">
+                    <swiper-container class="mySwiper" init="false">
+                        <swiper-slide>
+                            <div class="card text-start bg-dark border-dark text-light">
+                                <img src="src/LINE_ALBUM_Superior room Thai Akara_240716_1.jpg" style="height: 270px;" class="card-img-top image" alt="...">
+                                <div class="card-body px-0">
+                                    <h1 class="mb-3 c-font">Superior</h1>
+                                    <h4 class="c-font">Features</h4>
+                                    <div class="mb-3">
+                                        <span class="badge fs-14 fw-normal p-0 me-2">
+                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 50 m2
+                                        </span>
+                                        <span class="badge fs-14 fw-normal p-0 me-2">
+                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 1 beds
+                                        </span>
+                                        <span class="badge fs-14 fw-normal p-0 me-2">
+                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 1 bathroom
+                                        </span>
+                                        <span class="badge fs-14 fw-normal p-0 me-2">
+                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 1 balcony
+                                        </span>
+                                    </div>
+                                    <div class="card-footer bd-t px-0">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <span class="c-font fs-20">Start from</span>
+                                                <h3 class="c-font">$1500/NIGHT</h3>
+                                            </div>
+                                            <div>
+                                                <a href="#" style="border-radius: 0;" class="btn btn-outline-light c-font px-4 fs-18">DETAIL</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="detail">
-                                <a href="#" class="btn btn-outline-light">DETAIL</a>
+                        </swiper-slide>
+                        <swiper-slide>
+                            <div class="card text-start bg-dark border-dark text-light">
+                                <img src="src/LINE_ALBUM_Superior room Thai Akara_240716_1.jpg" style="height: 270px;" class="card-img-top image" alt="...">
+                                <div class="card-body px-0">
+                                    <h1 class="mb-3 c-font">Superior</h1>
+                                    <h4 class="c-font">Features</h4>
+                                    <div class="mb-3">
+                                        <span class="badge fs-14 fw-normal p-0 me-2">
+                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 50 m2
+                                        </span>
+                                        <span class="badge fs-14 fw-normal p-0 me-2">
+                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 1 beds
+                                        </span>
+                                        <span class="badge fs-14 fw-normal p-0 me-2">
+                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 1 bathroom
+                                        </span>
+                                        <span class="badge fs-14 fw-normal p-0 me-2">
+                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 1 balcony
+                                        </span>
+                                    </div>
+                                    <div class="card-footer bd-t px-0">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <span class="c-font fs-20">Start from</span>
+                                                <h3 class="c-font">$1500/NIGHT</h3>
+                                            </div>
+                                            <div>
+                                                <a href="#" style="border-radius: 0;" class="btn btn-outline-light c-font px-4 fs-18">DETAIL</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                        </swiper-slide>
+                        <swiper-slide>
+                            <div class="card text-start bg-dark border-dark text-light">
+                                <img src="src/LINE_ALBUM_Superior room Thai Akara_240716_1.jpg" style="height: 270px;" class="card-img-top image" alt="...">
+                                <div class="card-body px-0">
+                                    <h1 class="mb-3 c-font">Superior</h1>
+                                    <h4 class="c-font">Features</h4>
+                                    <div class="mb-3">
+                                        <span class="badge fs-14 fw-normal p-0 me-2">
+                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 50 m2
+                                        </span>
+                                        <span class="badge fs-14 fw-normal p-0 me-2">
+                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 1 beds
+                                        </span>
+                                        <span class="badge fs-14 fw-normal p-0 me-2">
+                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 1 bathroom
+                                        </span>
+                                        <span class="badge fs-14 fw-normal p-0 me-2">
+                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 1 balcony
+                                        </span>
+                                    </div>
+                                    <div class="card-footer bd-t px-0">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <span class="c-font fs-20">Start from</span>
+                                                <h3 class="c-font">$1500/NIGHT</h3>
+                                            </div>
+                                            <div>
+                                                <a href="#" style="border-radius: 0;" class="btn btn-outline-light c-font px-4 fs-18">DETAIL</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </swiper-slide>
+                        <swiper-slide>
+                            <div class="card text-start bg-dark border-dark text-light">
+                                <img src="src/LINE_ALBUM_Superior room Thai Akara_240716_1.jpg" style="height: 270px;" class="card-img-top image" alt="...">
+                                <div class="card-body px-0">
+                                    <h1 class="mb-3 c-font">Superior</h1>
+                                    <h4 class="c-font">Features</h4>
+                                    <div class="mb-3">
+                                        <span class="badge fs-14 fw-normal p-0 me-2">
+                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 50 m2
+                                        </span>
+                                        <span class="badge fs-14 fw-normal p-0 me-2">
+                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 1 beds
+                                        </span>
+                                        <span class="badge fs-14 fw-normal p-0 me-2">
+                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 1 bathroom
+                                        </span>
+                                        <span class="badge fs-14 fw-normal p-0 me-2">
+                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 1 balcony
+                                        </span>
+                                    </div>
+                                    <div class="card-footer bd-t px-0">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <span class="c-font fs-20">Start from</span>
+                                                <h3 class="c-font">$1500/NIGHT</h3>
+                                            </div>
+                                            <div>
+                                                <a href="#" style="border-radius: 0;" class="btn btn-outline-light c-font px-4 fs-18">DETAIL</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </swiper-slide>
+                        <swiper-slide>
+                            <div class="card text-start bg-dark border-dark text-light">
+                                <img src="src/LINE_ALBUM_Superior room Thai Akara_240716_1.jpg" style="height: 270px;" class="card-img-top image" alt="...">
+                                <div class="card-body px-0">
+                                    <h1 class="mb-3 c-font">Superior</h1>
+                                    <h4 class="c-font">Features</h4>
+                                    <div class="mb-3">
+                                        <span class="badge fs-14 fw-normal p-0 me-2">
+                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 50 m2
+                                        </span>
+                                        <span class="badge fs-14 fw-normal p-0 me-2">
+                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 1 beds
+                                        </span>
+                                        <span class="badge fs-14 fw-normal p-0 me-2">
+                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 1 bathroom
+                                        </span>
+                                        <span class="badge fs-14 fw-normal p-0 me-2">
+                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 1 balcony
+                                        </span>
+                                    </div>
+                                    <div class="card-footer bd-t px-0">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <span class="c-font fs-20">Start from</span>
+                                                <h3 class="c-font">$1500/NIGHT</h3>
+                                            </div>
+                                            <div>
+                                                <a href="#" style="border-radius: 0;" class="btn btn-outline-light c-font px-4 fs-18">DETAIL</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </swiper-slide>
+                        <swiper-slide>
+                            <div class="card text-start bg-dark border-dark text-light">
+                                <img src="src/LINE_ALBUM_Superior room Thai Akara_240716_1.jpg" style="height: 270px;" class="card-img-top image" alt="...">
+                                <div class="card-body px-0">
+                                    <h1 class="mb-3 c-font">Superior</h1>
+                                    <h4 class="c-font">Features</h4>
+                                    <div class="mb-3">
+                                        <span class="badge fs-14 fw-normal p-0 me-2">
+                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 50 m2
+                                        </span>
+                                        <span class="badge fs-14 fw-normal p-0 me-2">
+                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 1 beds
+                                        </span>
+                                        <span class="badge fs-14 fw-normal p-0 me-2">
+                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 1 bathroom
+                                        </span>
+                                        <span class="badge fs-14 fw-normal p-0 me-2">
+                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 1 balcony
+                                        </span>
+                                    </div>
+                                    <div class="card-footer bd-t px-0">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <span class="c-font fs-20">Start from</span>
+                                                <h3 class="c-font">$1500/NIGHT</h3>
+                                            </div>
+                                            <div>
+                                                <a href="#" style="border-radius: 0;" class="btn btn-outline-light c-font px-4 fs-18">DETAIL</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </swiper-slide>
+                    </swiper-container>
                 </div>
-                <div class="card-ts">
-                    <img src="src/LINE_ALBUM_Superior room Thai Akara_240716_1.jpg" alt="">
-                    <div class="card-content">
-                        <h3>Superior room</h3>
-                        <h5>Features</h5>
-                        <div class="features">
-                            <span class="badge">
-                                50 m2
-                            </span>
-                            <span class="badge">
-                                1 beds
-                            </span>
-                            <span class="badge">
-                                1 bathroom
-                            </span>
-                            <span class="badge">
-                                1 balcony
-                            </span>
-                        </div>
-                        <div class="line"></div>
-                        <div class="card-footer">
-                            <div class="card-price">
-                                <span>Start from</span>
-                                <h3>$1500/night</h3>
-                            </div>
-                            <div class="detail">
-                                <a href="#" class="btn btn-outline-light">DETAIL</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
     </section>
     <!-- facilites -->
-    <section class="facilities">
-        <div class="container mt-5">
+    <section>
+        <div class="container my-5">
             <div class="row mb-2 gap-0">
                 <div class="col-lg-6 col-md-12">
-                    <h1 class="text-uppercase">Hotel Facilities</h1>
+                    <h1 class="text-uppercase c-font fs-48">Hotel Facilities</h1>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, dolores?</p>
                 </div>
                 <div class="col-lg-3 col-md-6 mb-4 px-3">
@@ -274,13 +373,13 @@
         <div class="container-fluid bg-dark">
             <div class="container">
                 <div class="py-5">
-                    <h1 class="text-light text-center">Upcoming Events</h1>
+                    <h1 class="text-light text-center c-font fs-48">Upcoming Events</h1>
                 </div>
                 <div class="row pb-5">
                     <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="card text-start bg-dark text-light">
+                        <div class="card text-start bg-dark border-dark text-light">
                             <img src="src/event1.png" class="card-img-top" alt="...">
-                            <div class="card-body">
+                            <div class="card-body px-0">
                                 <h2 class="mb-3 c-font">BEAD BRACELET</h2>
                                 <p class="mb-3 c-font fs-18"><i class="bi bi-clock me-1"></i> 12:00 - 16:00 PM</p>
                                 <p class="mb-3 c-font fs-18"><i class="bi bi-calendar-event me-1"></i> 12 November 2024</p>
@@ -289,9 +388,9 @@
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="card text-start bg-dark text-light">
+                        <div class="card text-start bg-dark border-dark text-light">
                             <img src="src/event2.png" class="card-img-top" alt="...">
-                            <div class="card-body">
+                            <div class="card-body px-0">
                                 <h2 class="mb-3 c-font">BEAD BRACELET</h2>
                                 <p class="mb-3 c-font fs-18"><i class="bi bi-clock me-1"></i> 12:00 - 16:00 PM</p>
                                 <p class="mb-3 c-font fs-18"><i class="bi bi-calendar-event me-1"></i> 12 November 2024</p>
@@ -300,9 +399,9 @@
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="card text-start bg-dark text-light">
+                        <div class="card text-start bg-dark border-dark text-light">
                             <img src="src/event3.png" class="card-img-top" alt="...">
-                            <div class="card-body">
+                            <div class="card-body px-0  ">
                                 <h2 class="mb-3 c-font">BEAD BRACELET</h2>
                                 <p class="mb-3 c-font fs-18"><i class="bi bi-clock me-1"></i> 12:00 - 16:00 PM</p>
                                 <p class="mb-3 c-font fs-18"><i class="bi bi-calendar-event me-1"></i> 12 November 2024</p>
@@ -314,14 +413,13 @@
             </div>
         </div>
     </section>
-
     <!-- map -->
     <section>
         <h1 class="mt-5 pt-4 mb-4 text-center fw-medium c-font fs-48">Reach us</h1>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 mb-3 rounded">
-                    <iframe class="w-100" height="550" src="<?php echo $contact_r['iframe']?>"></iframe>
+                    <iframe class="w-100" height="550" src="<?php echo $contact_r['iframe'] ?>"></iframe>
                 </div>
             </div>
         </div>
@@ -333,6 +431,32 @@
     <?php require('inc/footer.php') ?>
 </body>
 <?php require('inc/script.php') ?>
-<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> -->
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+<script>
+    const swiperEl = document.querySelector('swiper-container')
+    Object.assign(swiperEl, {
+        slidesPerView: 3,
+        spaceBetween: 30,
+        pagination: {
+            clickable: true,
+        },
+        breakpoints: {
+            320: {
+                slidesPerView: 1,
+            },
+            640: {
+                slidesPerView: 1,
+            },
+            768: {
+                slidesPerView: 2,
+            },
+            1024: {
+                slidesPerView: 3,
+            },
+        },
+    });
+    swiperEl.initialize();
+</script>
 
 </html>

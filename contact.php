@@ -56,30 +56,49 @@
             </div>
             <div class="col-lg-6 col-md-6 mb-5 px-4">
                 <div class="bg-white shadow p-4">
-                    <form>
+                    <form method="POST">
                         <h5>Send a message</h5>
                         <div class="mt-3">
                             <label class="form-label fw-medium">Name</label>
-                            <input type="text" class="form-control shadow-none">
+                            <input name="name" type="text" class="form-control shadow-none" required>
                         </div>
                         <div class="mt-3">
                             <label class="form-label fw-medium">Email</label>
-                            <input type="email" class="form-control shadow-none">
+                            <input name="email" type="email" class="form-control shadow-none" required>
                         </div>
                         <div class="mt-3">
                             <label class="form-label fw-medium">Subject</label>
-                            <input type="text" class="form-control shadow-none">
+                            <input name="subject" type="text" class="form-control shadow-none" required>
                         </div>
                         <div class="mt-3">
                             <label class="form-label fw-medium">Message</label>
-                            <textarea class="form-control shadow-none" rows="6" style="resize: none;"></textarea>
+                            <textarea name="message" class="form-control shadow-none" rows="6" style="resize: none;" required></textarea>
                         </div>
-                        <button type="submit" class="btn custom-bg text-light shadow-none mt-3 px-3">SEND</button>
+                        <button type="submit" name="send" class="btn custom-bg text-light shadow-none mt-3 px-3">SEND</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
+    <?php 
+        if(isset($_POST['send'])){
+            $frm_data = filteration($_POST);
+
+            $q = "INSERT INTO `user_queries`(`name`, `email`, `subject`, `message`) VALUES (?,?,?,?)";
+            $values =[$frm_data['name'],$frm_data['email'],$frm_data['subject'],$frm_data['message']];
+
+            $res = insert($q,$values,'ssss');
+            if($res==1){
+                alert('success','Mail sent!');
+            }
+            else{
+                alert('error','Server Down! Try again later.');
+            }
+            
+        }
+    ?>
+
     <?php require('inc/modal-login.php') ?>
     <?php require('inc/modal-register.php') ?>
     <?php require('inc/footer.php') ?>
@@ -88,3 +107,4 @@
 <?php require('inc/script.php') ?>
 
 </html>
+

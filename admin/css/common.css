@@ -3,10 +3,10 @@
     --teal_hover: #279e8c;
 }
 
-.custom-bg{
-    background-color: var(--teal);
-    border: 1px solid var(--teal);
-}
+    .custom-bg{
+        background-color: var(--teal);
+        border: 1px solid var(--teal);
+    }
 
 .custom-bg:hover{
     background-color: var(--teal_hover);

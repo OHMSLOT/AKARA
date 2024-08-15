@@ -4,12 +4,11 @@ require('admin/inc/essentials.php');
 
 $contact_q = "SELECT * FROM `contact_details` WHERE `sr_no`=?";
 $values = [1];
-$contact_r = mysqli_fetch_assoc(select($contact_q, $values, 'i'));
-// print_r($contact_r);
+$contact_r = mysqli_fetch_assoc(select($contact_q, $values, 'i'));  
 ?>
 
 <nav class="py-2 bg-light border-bottom custom-border border-2">
-    <div class="container d-flex flex-wrap text-aligt">
+    <div class="container d-flex flex-wrap">
         <ul class="nav me-auto gap-3">
             <div class="d-flex align-items-center">
                 <i style="font-size: 18px;" class="bi bi-telephone-fill me-1"></i>+6653 215 995
@@ -27,7 +26,7 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values, 'i'));
 <!-- banner section -->
 <div class="container-fluid px-0">
     <div class="banner">
-        <img class="logo" src="src/logo.png" alt="">
+        <img class="logo" src="src/logo.png">
     </div>
 </div>
 <!-- navbar section -->
@@ -36,7 +35,7 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values, 'i'));
         <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsdropdown" aria-controls="navbarsdropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse custom_bg justify-content-md-center" id="navbarsdropdown">
+        <div class="navbar-collapse collapse custom_bg justify-content-md-center" id="navbarsdropdown">
             <ul class="navbar-nav gap-2">
                 <li class="nav-item">
                     <a class="nav-link px-4 text-light" href="index.php">HOME</a>
