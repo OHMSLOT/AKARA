@@ -4,6 +4,7 @@
 
     define('SITE_URL','http://127.0.0.1/AKARA/');
     define('CAROUSEL_IMG_PATH',SITE_URL.'src/carousel/');
+    define('FACILITIES_IMG_PATH',SITE_URL.'src/facilities/');
 
 
     //backend 
@@ -11,6 +12,7 @@
     define('UPLOAD_IMAGE_PATH',$_SERVER['DOCUMENT_ROOT'].'/AKARA/src/');
     define('CAROUSEL_FOLDER','carousel/');
     define('ABOUT_FOLDER','carousel/');
+    define('FACILITIES_FOLDER','facilities/');
 
     function adminLogin(){
         session_start();

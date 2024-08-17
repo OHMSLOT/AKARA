@@ -28,7 +28,7 @@
 
         .gal {
             opacity: 1;
-            background: rgba(0,0,0,.54);
+            background: rgba(0, 0, 0, .54);
             transition: opacity .4s;
         }
 
@@ -68,20 +68,20 @@
             width: 100%;
             object-fit: cover;
         }
-        
-        .full:hover{
+
+        .image:hover {
             filter: grayscale(100%);
         }
 
-        .gallery-item{
+        .full:hover {
+            filter: grayscale(100%);
+        }
+
+        .gallery-item {
             position: relative;
         }
 
-        .gallery-item .img{
-            filter: grayscale(0%);
-        }
-
-        .gallery-item .overlay{
+        .gallery-item .overlay {
             width: 100%;
             height: 100%;
             top: 0;
@@ -96,10 +96,15 @@
             z-index: 1;
             padding: 20px;
             transition: 0.6s;
+            border-radius: 5px;
         }
 
-        .gallery-item:hover .overlay{
+        .gallery-item:hover .overlay {
             opacity: 1;
+        }
+
+        .gallery-item h5 {
+            color: #fff;
         }
     </style>
 </head>
@@ -117,42 +122,75 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card justify-content-center">
-                    <a href="#"></a>    
-                        <img style="margin-bottom: 0; height: 270px;" class="card-img image" src="src/room.jpg" alt="">
-                    <div class="contents text-center filter">
-                        <h5>ROOM</h5>
+                <div class="gallery-item">
+                    <div class="card">
+                        <a href="gallery_room.php">
+                            <img style="margin-bottom: 0; height: 270px" class="card-img image" src="src/Swimming_pool.png" alt="">
+                            <div class="overlay">
+                                <h5>Room</h5>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="gallery-item">
                     <div class="card">
-                        <img style="margin-bottom: 0; height: 270px" class="card-img image" src="src/Swimming_pool.png" alt="">
-                        <div class="overlay">
-                            <h5>ROOM</h5>
-                        </div>
+                        <a href="gallery_room.php">
+                            <img style="margin-bottom: 0; height: 270px" class="card-img image" src="src/Swimming_pool.png" alt="">
+                            <div class="overlay">
+                                <h5>Swimming_pool</h5>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card">
-                    <img style="margin-bottom: 0; height: 270px;" class="card-img image" src="src/lobby.jpg" alt="">
+                <div class="gallery-item">
+                    <div class="card">
+                        <a href="gallery_room.php">
+                            <img style="margin-bottom: 0; height: 270px" class="card-img image" src="src/Swimming_pool.png" alt="">
+                            <div class="overlay">
+                                <h5>Swimming_pool</h5>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card gal">
-                    <img style="margin-bottom: 0; height: 270px;" class="card-img image" src="src/Restaurant.jpg" alt="">
+                <div class="gallery-item">
+                    <div class="card">
+                        <a href="gallery_room.php">
+                            <img style="margin-bottom: 0; height: 270px" class="card-img image" src="src/Swimming_pool.png" alt="">
+                            <div class="overlay">
+                                <h5>Swimming_pool</h5>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card gal">
-                    <img style="margin-bottom: 0; height: 270px;" class="card-img image" src="src/carousel2.jpg" alt="">
+                <div class="gallery-item">
+                    <div class="card">
+                        <a href="gallery_room.php">
+                            <img style="margin-bottom: 0; height: 270px" class="card-img image" src="src/Swimming_pool.png" alt="">
+                            <div class="overlay">
+                                <h5>Swimming_pool</h5>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card gal">
-                    <img style="margin-bottom: 0; height: 270px;" class="card-img image" src="src/Fitness.jpg" alt="">
+                <div class="gallery-item">
+                    <div class="card">
+                        <a href="gallery_room.php">
+                            <img style="margin-bottom: 0; height: 270px" class="card-img image" src="src/Swimming_pool.png" alt="">
+                            <div class="overlay">
+                                <h5>Swimming_pool</h5>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -165,10 +203,3 @@
 <?php require('inc/script.php') ?>
 
 </html>
-
-<li style="background: url('admin/images/1338DN6_0152.jpg') center no-repeat; background-size: cover;">
-        	<a href="?page=gallery&amp;a_id=20"></a>
-            <div class="contents">
-            	<h1>Room</h1>
-            </div>
-        </li>

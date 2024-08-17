@@ -41,6 +41,12 @@
                             upload
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="facilities.php" class="nav-link text-white">
+                        <i class="bi bi-gear me-2"></i>
+                            Features & Facilities  
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

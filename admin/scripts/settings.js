@@ -204,7 +204,25 @@ function upd_contacts() {
 //     xhr.open("POST", "ajax/settings_crud.php", true);
 
 //     xhr.onload = function () {
-        
+            // var myModal = document.getElementById('facilities-s')
+            // var modal = bootstrap.Modal.getInstance(myModal);
+            // modal.hide();
+
+            // if(this.responseText == 'inv_img'){
+            //     alert('error','Only JPG and PNG images are allowed!');
+            // }
+            // else if(this.responseText == 'inv_size'){
+            //     alert('error','Image should be less than 2MB!');
+            // }
+            // else if(this.responseText == 'upd_failed'){
+            //     alert('error','Image upload failed. Server Down!');
+            // }
+            // else{
+            //     alert('success','New member added!');
+            //     member_name_inp.value='';
+            //     member_picture_inp.value='';
+            //     get_members();
+            // }
 //     }
 //     xhr.send(data);
 // }
