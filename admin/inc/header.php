@@ -47,6 +47,18 @@
                             Features & Facilities  
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="event.php" class="nav-link text-white">
+                        <i class="bi bi-gear me-2"></i>
+                            Events  
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="rooms.php" class="nav-link text-white">
+                        <i class="bi bi-gear me-2"></i>
+                            Rooms  
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

@@ -10,7 +10,7 @@ adminLogin();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel - Facilities</title>
+    <title>Admin Panel - Rooms</title>
     <?php include 'inc/links.php'; ?>
 </head>
 
@@ -21,20 +21,19 @@ adminLogin();
     <div class="container-fluid" id="main-content">
         <div class="row">
             <div class="col-lg-10 ms-auto p-4 overflow-hidden">
-                <h3 class="mb-4">Features & Facilities</h3>
+                <h3 class="mb-4">Rooms</h3>
 
                 <div class="card border-0 shadow-sm mb-4">
                     <div class="card-body">
 
-                        <div class="d-flex align-items-center justify-content-between mb-3">
-                            <h5 class="card-title m-0">Features</h5>
-                            <button type="button" class="btn btn-dark shadow-none btn-sm" data-bs-toggle="modal" data-bs-target="#feature-s">
+                        <div class="text-end mb-3">
+                            <button type="button" class="btn btn-dark shadow-none btn-sm" data-bs-toggle="modal" data-bs-target="#add-room">
                                 <i class="bi bi-plus-square"></i>
                                 Add
                             </button>
                         </div>
 
-                        <div class="table-responsive-md" style="height: 450px; overflow-y: scroll;">
+                        <div class="table-responsive-lg" style="height: 450px; overflow-y: scroll;">
                             <table class="table table-hover border">
                                 <thead class="table-dark">
                                     <tr>

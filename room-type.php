@@ -30,12 +30,14 @@
         <div class="row">
             <div class="col-lg-6 mb-4">
                 <div class="card text-center">
-                    <img style="height: 320px;" src="src/LINE_ALBUM_Superior room Thai Akara_240716_1.jpg" class="card-img-top image" alt="...">
-                    <div class="card-body">
-                        <h3 class="card-title">Superior</h3>
-                        <hr>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    </div>
+                    <a class="text-decoration-none text-dark" href="room-type-superior.php">
+                        <img style="height: 320px;" src="src/LINE_ALBUM_Superior room Thai Akara_240716_1.jpg" class="card-img-top image" alt="...">
+                        <div class="card-body">
+                            <h3 class="card-title">Superior</h3>
+                            <hr>
+                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                    </a>
                 </div>
             </div>
             <div class="col-lg-6 mb-4">

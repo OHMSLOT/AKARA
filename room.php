@@ -83,8 +83,8 @@
                         <div class="col-md-5 mb-lg-0 mb-md-0 mb-3">
                             <img src="src/LINE_ALBUM_Superior room Thai Akara_240716_1.jpg" class="img-fluid rounded" alt="...">
                         </div>
-                        <div class="col-md-5 px-lg-3 px-md-3 px-0">
-                            <h5 class="mb-3">Simple Rooms Name</h5>
+                        <div class="col-md-5 ps-lg-3 ps-md-3 px-0 align-self-start">
+                            <h4 class="mb-3 fw-semibold">Simple Rooms Name</h4>
                             <div class="feature mb-3">
                                 <h6 class="mb-1">Features</h6>
                                 <span class="badge rounded-pill bg-light text-dark text-wrap">
@@ -103,32 +103,25 @@
                             <div class="facilites mb-3">
                                 <h6 class="mb-1">Facilities</h6>
                                 <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    Wifi
+                                    <i style="font-size: 18px;" class="bi bi-wifi"></i>
                                 </span>
                                 <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    Television
+                                    <i style="font-size: 18px;" class="bi bi-tv"></i>
                                 </span>
                                 <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    Air-conditioning
+                                    <i style="font-size: 18px;" class="bi bi-tv"></i>
                                 </span>
                                 <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    Refrigerator
+                                    <i style="font-size: 18px;" class="bi bi-tv"></i>
                                 </span>
                             </div>
-                            <div class="guests">
-                                <h6 class="mb-1">Guests</h6>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    2 Adults
-                                </span>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    1 Children
-                                </span>
+                            <div>
+                                <h6 class="mb-1">Start from</h6>
+                                <h4>$1,500/<span style="font-size: 16px;" class="text-secondary">night</span></h4>
                             </div>
                         </div>
-                        <div class="col-md-2 mt-lg-0 mt-md-3 mt-4 text-center">
-                            <h6 class="mb-4">$200 per night</h6>
-                            <a href="#" class="btn btn-sm w-100 text-white custom-bg shadow-none mb-2">Book Now</a>
-                            <a href="#" class="btn btn-sm w-100 text-p custom-outline-bg shadow-none mb-2">More details</a>
+                        <div class="col-md-2 mt-lg-0 mt-md-3 mt-4 align-self-end text-end">
+                            <a href="#" style="border-radius: 0;" class="btn btn-sm w-100 text-p custom-outline-bg shadow-none mb-2 ">Book Now</a>
                         </div>
                     </div>
                 </div>
@@ -137,8 +130,8 @@
                         <div class="col-md-5 mb-lg-0 mb-md-0 mb-3">
                             <img src="src/LINE_ALBUM_Superior room Thai Akara_240716_1.jpg" class="img-fluid rounded" alt="...">
                         </div>
-                        <div class="col-md-5 px-lg-3 px-md-3 px-0">
-                            <h5 class="mb-3">Simple Rooms Name</h5>
+                        <div class="col-md-5 ps-lg-3 ps-md-3 px-0">
+                            <h4 class="mb-3 fw-semibold">Simple Rooms Name</h4>
                             <div class="feature mb-3">
                                 <h6 class="mb-1">Features</h6>
                                 <span class="badge rounded-pill bg-light text-dark text-wrap">
@@ -157,16 +150,16 @@
                             <div class="facilites mb-3">
                                 <h6 class="mb-1">Facilities</h6>
                                 <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    Wifi
+                                    <i style="font-size: 18px;" class="bi bi-wifi"></i>
                                 </span>
                                 <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    Television
+                                    <i style="font-size: 18px;" class="bi bi-tv"></i>
                                 </span>
                                 <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    Air-conditioning
+                                    <i style="font-size: 18px;" class="bi bi-tv"></i>
                                 </span>
                                 <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    Refrigerator
+                                    <i style="font-size: 18px;" class="bi bi-tv"></i>
                                 </span>
                             </div>
                             <div class="guests">
@@ -179,10 +172,9 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="col-md-2 mt-lg-0 mt-md-3 mt-4 text-center">
-                            <h6 class="mb-4">$200 per night</h6>
-                            <a href="#" class="btn btn-sm w-100 text-white custom-bg shadow-none mb-2">Book Now</a>
-                            <a href="#" class="btn btn-sm w-100 text-p custom-outline-bg shadow-none mb-2">More details</a>
+                        <div class="col-md-2 mt-lg-0 mt-md-3 mt-4 align-self-end text-end">
+                            <h5 class="mt-2">$200/night</h5>
+                            <a href="#" style="border-radius: 0;" class="btn btn-sm w-100 text-white custom-bg shadow-none mb-2">Book Now</a>
                         </div>
                     </div>
                 </div>
@@ -191,8 +183,11 @@
                         <div class="col-md-5 mb-lg-0 mb-md-0 mb-3">
                             <img src="src/LINE_ALBUM_Superior room Thai Akara_240716_1.jpg" class="img-fluid rounded" alt="...">
                         </div>
-                        <div class="col-md-5 px-lg-3 px-md-3 px-0">
-                            <h5 class="mb-3">Simple Rooms Name</h5>
+                        <div class="col-md-5 px-lg-3 px-md-3 px-0 border-end border-3 align-self-stretch">
+                            <h4 class="mb-3 fw-semibold">Simple Rooms Name</h4>
+                            <div class="description mb-3">
+                                <p style="font-size: 15px;">Relax in your Superior room that consists of teak plaster walls of ancient Lanna style</p> 
+                            </div>
                             <div class="feature mb-3">
                                 <h6 class="mb-1">Features</h6>
                                 <span class="badge rounded-pill bg-light text-dark text-wrap">
@@ -211,37 +206,74 @@
                             <div class="facilites mb-3">
                                 <h6 class="mb-1">Facilities</h6>
                                 <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    Wifi
+                                    <i style="font-size: 18px;" class="bi bi-wifi"></i>
                                 </span>
                                 <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    Television
+                                    <i style="font-size: 18px;" class="bi bi-tv"></i>
                                 </span>
                                 <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    Air-conditioning
+                                    <i style="font-size: 18px;" class="bi bi-tv"></i>
                                 </span>
                                 <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    Refrigerator
-                                </span>
-                            </div>
-                            <div class="guests">
-                                <h6 class="mb-1">Guests</h6>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    2 Adults
-                                </span>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    1 Children
+                                    <i style="font-size: 18px;" class="bi bi-tv"></i>
                                 </span>
                             </div>
                         </div>
-                        <div class="col-md-2 mt-lg-0 mt-md-3 mt-4 text-center">
-                            <h6 class="mb-4">$200 per night</h6>
-                            <a href="#" class="btn btn-sm w-100 text-white custom-bg shadow-none mb-2">Book Now</a>
-                            <a href="#" class="btn btn-sm w-100 text-p custom-outline-bg shadow-none mb-2">More details</a>
+                        <div class="col-md-2 mt-lg-0 mt-md-3 mt-4 mb-3 ps-3 align-self-end text-center">
+                            <span class="mb-3"><i style="font-size: 20px;" class="ri-team-fill"></i></span>
+                            <h4 class="mb-2">$200</h4>
+                            <a href="#" style="border-radius: 0;" class="btn btn-sm w-100 text-white custom-bg shadow-none mb-2">Book Now</a>
+                            <a href="#" style="border-radius: 0;" class="btn btn-sm w-100 text-p custom-outline-bg shadow-none">More Info</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-4 border-0 shadow">
+                    <div class="row g-0 p-3 align-items-center">
+                        <div class="col-md-5 mb-lg-0 mb-md-0 mb-3">
+                            <img src="src/LINE_ALBUM_Superior room Thai Akara_240716_1.jpg" class="img-fluid rounded" alt="...">
+                        </div>
+                        <div class="col-md-5 px-lg-3 px-md-3 px-0 border-end border-3 align-self-stretch">
+                            <h4 class="mb-3 fw-semibold">Simple Rooms Name</h4>
+                            <div class="feature mb-3">
+                                <h6 class="mb-1">Features</h6>
+                                <span class="badge rounded-pill bg-light text-dark text-wrap">
+                                    50 m2
+                                </span>
+                                <span class="badge rounded-pill bg-light text-dark text-wrap">
+                                    1 beds
+                                </span>
+                                <span class="badge rounded-pill bg-light text-dark text-wrap">
+                                    1 bathroom
+                                </span>
+                                <span class="badge rounded-pill bg-light text-dark text-wrap">
+                                    1 balcony
+                                </span>
+                            </div>
+                            <div class="facilites mb-3">
+                                <h6 class="mb-1">Facilities</h6>
+                                <span class="badge rounded-pill bg-light text-dark text-wrap">
+                                    <i style="font-size: 18px;" class="bi bi-wifi"></i>
+                                </span>
+                                <span class="badge rounded-pill bg-light text-dark text-wrap">
+                                    <i style="font-size: 18px;" class="bi bi-tv"></i>
+                                </span>
+                                <span class="badge rounded-pill bg-light text-dark text-wrap">
+                                    <i style="font-size: 18px;" class="bi bi-tv"></i>
+                                </span>
+                                <span class="badge rounded-pill bg-light text-dark text-wrap">
+                                    <i style="font-size: 18px;" class="bi bi-tv"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-2 mt-lg-0 mt-md-3 mt-4 mb-3 ps-3 align-self-end text-center">
+                            <span class="mb-3"><i style="font-size: 20px;" class="ri-team-fill"></i></span>
+                            <h4 class="mb-2">$200</h4>
+                            <a href="#" style="border-radius: 0;" class="btn btn-sm w-100 text-white custom-bg shadow-none mb-2">Book Now</a>
+                            <a href="#" style="border-radius: 0;" class="btn btn-sm w-100 text-p custom-outline-bg shadow-none">More Info</a>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 

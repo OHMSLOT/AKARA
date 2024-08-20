@@ -45,25 +45,6 @@ function get_carousel(){
     xhr.send('get_carousel');
 }
 
-// function rem_image() {
-    
-//     let xhr = new XMLHttpRequest();
-//     xhr.open("POST", "ajax/carousel_crud.php", true);
-//     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-//     xhr.onload = function () {
-//         if(this.responseText==1){
-//             alert('success','Image removed!');
-//             get_carousel();  
-//         }
-//         else{
-//             alert('error','Server down!');
-//         }
-//     };
-
-//     xhr.send('rem_image='+val);
-// }
-
 function rem_image(val) {
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "ajax/carousel_crud.php", true);
