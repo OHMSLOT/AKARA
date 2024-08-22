@@ -67,7 +67,7 @@ adminLogin();
                                 <thead class="table-dark">
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Image</th>
+                                        <th scope="col">Icon</th>
                                         <th scope="col">Name</th>
                                         <th scope="col">Description</th>
                                         <th scope="col">Action</th>
@@ -117,8 +117,8 @@ adminLogin();
                     </div>
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label class="form-label">Picture</label>
-                            <input type="file" name="facilities_picture" class="form-control shadow-none">
+                            <label class="form-label">Icon</label>
+                            <input type="file" name="facilities_icon" class="form-control shadow-none">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Name</label>

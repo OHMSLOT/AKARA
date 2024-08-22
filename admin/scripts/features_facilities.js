@@ -70,10 +70,7 @@ function rem_feature(val) {
 function add_facilities() {
     let data = new FormData();
     data.append("name", facilities_s_form.elements["facilities_name"].value);
-    data.append(
-    "picture",
-    facilities_s_form.elements["facilities_picture"].files[0]
-    );
+    data.append("icon",facilities_s_form.elements["facilities_icon"].files[0]);
     data.append("desc", facilities_s_form.elements["facilities_desc"].value);
     data.append("add_facilities", "");
 
@@ -88,7 +85,7 @@ function add_facilities() {
     if (this.responseText == "inv_img") {
         alert("error", "Only JPG and PNG image are allowed!");
     } else if (this.responseText == "inv_size") {
-        alert("error", "Image should be less than 2MB!");
+        alert("error", "Image should be less than 1MB!");
     } else if (this.responseText == "upd_failed") {
         alert("error", "Image upload failed. Server Down!");
     } else {
@@ -118,7 +115,7 @@ function rem_facilities(val) {
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     xhr.onload = function () {
-    if (this.responseText == 1) {
+    if (this.responseText==1) {
         alert("success", "Facilities removed!");
         get_facilities();
     } else if (this.responseText == "room_added") {

@@ -34,3 +34,10 @@
         margin-top: 60px;
     }
 }
+
+
+.image {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+}

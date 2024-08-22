@@ -6,6 +6,7 @@
     define('CAROUSEL_IMG_PATH',SITE_URL.'src/carousel/');
     define('FACILITIES_IMG_PATH',SITE_URL.'src/facilities/');
     define('EVENTS_IMG_PATH',SITE_URL.'src/event/');
+    define('HOTEL_FACILITIES_IMG_PATH',SITE_URL.'src/hotel_facilities/');
 
 
     //backend 
@@ -15,6 +16,7 @@
     define('ABOUT_FOLDER','carousel/');
     define('FACILITIES_FOLDER','facilities/');
     define('EVENTS_FOLDER','event/');
+    define('HOTEL_FACILITIES_FOLDER','hotel_facilities/');
 
     function adminLogin(){
         session_start();
@@ -52,6 +54,29 @@
             return 'inv_img';
         }
         else if(($image['size']/(1024*1024))>2){
+            return 'inv_size'; 
+        }
+        else{
+            $ext = pathinfo($image['name'],PATHINFO_EXTENSION);
+            $rname = 'IMG'.random_int(11111,99999).".$ext";
+            $img_path = UPLOAD_IMAGE_PATH.$folder.$rname;
+            if(move_uploaded_file($image['tmp_name'],$img_path)){
+                return $rname;
+            }
+            else{
+                return 'upd_failed';
+            }
+        }
+    }
+
+    function uploadSVGImage($image,$folder){
+        $valid_mime =['image/svg+xml'];
+        $img_mime = $image['type'];
+
+        if(!in_array($img_mime,$valid_mime)){
+            return 'inv_img';
+        }
+        else if(($image['size']/(1024*1024))>1){
             return 'inv_size'; 
         }
         else{

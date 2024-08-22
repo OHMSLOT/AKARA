@@ -42,7 +42,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="facilities.php" class="nav-link text-white">
+                        <a href="features_facilities.php" class="nav-link text-white">
                         <i class="bi bi-gear me-2"></i>
                             Features & Facilities  
                         </a>
@@ -57,6 +57,12 @@
                         <a href="rooms.php" class="nav-link text-white">
                         <i class="bi bi-gear me-2"></i>
                             Rooms  
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="hotel_facilities.php" class="nav-link text-white">
+                        <i class="bi bi-gear me-2"></i>
+                            Hotel Facilities
                         </a>
                     </li>
                 </ul>

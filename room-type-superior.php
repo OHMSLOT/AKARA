@@ -25,34 +25,8 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-lg-9 mb-4">
+            <div class="col-lg-10 mb-4">
                 <img style="height: 100%;" class="image-fluid image" src="src/LINE_ALBUM_Superior room Thai Akara_240716_1.jpg" alt="">
-            </div>
-            <div class="col-lg-3 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <form>
-                            <div class="mb-3">
-                                <label class="form-label">Email address</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Person</label>
-                                <input type="number" class="form-control" id="exampleInputEmail1">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Check-in</label>
-                                <input type="date" class="form-control" id="exampleInputEmail1">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Check-in</label>
-                                <input type="date" class="form-control" id="exampleInputEmail1">
-                            </div>
-        
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

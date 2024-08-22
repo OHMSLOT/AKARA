@@ -45,25 +45,6 @@
 
     <div class="container">
         <div class="row row-cols-1 row-cols-md-3 g-4">
-            <?php 
-                $res = selectAll('facilities');
-                $path = FACILITIES_IMG_PATH;
-
-                while($row = mysqli_fetch_assoc($res)){
-                    echo<<<data
-                        <div class="col-lg-4 col-md-6">
-                            <div class="card text-bg-light shadow mb-3 h-100 pop">
-                                <img style="height: 260px;" src="$path$row[image]" class="card-img-top image" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title text-uppercase">$row[name]</h5>
-                                    <hr>
-                                    <p class="card-text">$row[description]</p>
-                                </div>
-                            </div>
-                        </div>
-                    data;
-                }
-            ?>
             <div class="col-lg-4 col-md-6">
                 <div class="card text-bg-light shadow mb-3 h-100 pop">
                     <img style="height: 260px;" src="src/Fitness.jpg" class="card-img-top image" alt="...">
