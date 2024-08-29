@@ -7,6 +7,7 @@
     define('FACILITIES_IMG_PATH',SITE_URL.'src/facilities/');
     define('EVENTS_IMG_PATH',SITE_URL.'src/event/');
     define('HOTEL_FACILITIES_IMG_PATH',SITE_URL.'src/hotel_facilities/');
+    define('ROOMS_IMG_PATH',SITE_URL.'src/rooms/');
 
 
     //backend 
@@ -17,6 +18,7 @@
     define('FACILITIES_FOLDER','facilities/');
     define('EVENTS_FOLDER','event/');
     define('HOTEL_FACILITIES_FOLDER','hotel_facilities/');
+    define('ROOMS_FOLDER','rooms/');
 
     function adminLogin(){
         session_start();
