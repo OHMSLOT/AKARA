@@ -40,7 +40,7 @@ adminLogin();
                                         <th scope="col">Name</th>
                                         <th scope="col">Time open</th>
                                         <th scope="col">Time close</th>
-                                        <th scope="col">Description</th>
+                                        <th scope="col" width="30%">Description</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>

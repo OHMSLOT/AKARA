@@ -30,14 +30,17 @@
     <div class="login-form text-center rounded bg-white shadow overflow-hidden">
         <form method="POST">
             <h4 class="bg-dark text-white py-3">ADMIN LOGIN PANEL</h4>
+            
+            
+
             <div class="p-4">
                 <div class="mb-3">
-                    <input name="admin_name" required type="text" class="form-control shadow-none " placeholder="Admin Name">
+                    <input type="text" name="admin_name" class="form-control shadow-none " placeholder="Admin Name" required>
                 </div>
                 <div class="mb-4">
-                    <input name="admin_pass" required type="password" class="form-control shadow-none" placeholder="Password"> 
+                    <input type="password" name="admin_pass" class="form-control shadow-none" placeholder="Password" required> 
                 </div>
-                <button name="login" type="submit" class="btn text-white custom-bg shadow-none">LOGIN</button>
+                <button type="submit"  name="login" class="btn text-white custom-bg shadow-none">LOGIN</button>
             </div>
         </form>
     </div>
