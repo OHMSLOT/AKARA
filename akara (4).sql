@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 04, 2024 at 10:24 PM
+-- Generation Time: Sep 05, 2024 at 03:11 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -176,9 +176,9 @@ CREATE TABLE `hotel_facilities` (
 --
 
 INSERT INTO `hotel_facilities` (`id`, `image`, `name`, `time_s`, `time_e`, `description`) VALUES
-(2, 'IMG74879.jpg', 'fitness', '12:00:00', '18:00:00', 'ddddddddddddddddddddddd'),
 (3, 'IMG19070.jpg', 'fitness', '09:00:00', '16:00:00', 'ddddddddddaaaaaaaaaaaaaaa'),
-(4, 'IMG12874.jpg', 'Restaurant', '07:30:00', '14:00:00', 'Breakfast is served from 07.00 am. - 10.30 am. and Lunch open from 11.30 am. - 14.00 hrs. The restaurant serves buffet and A la carte.');
+(4, 'IMG12874.jpg', 'Restaurant', '07:30:00', '14:00:00', 'Breakfast is served from 07.00 am. - 10.30 am. and Lunch open from 11.30 am. - 14.00 hrs. The restaurant serves buffet and A la carte.'),
+(5, 'IMG94554.png', 'fitness', '10:00:00', '16:00:00', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of t');
 
 -- --------------------------------------------------------
 
@@ -495,7 +495,7 @@ ALTER TABLE `features`
 -- AUTO_INCREMENT for table `hotel_facilities`
 --
 ALTER TABLE `hotel_facilities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `images`
