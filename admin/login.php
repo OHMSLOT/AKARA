@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Start a session and save the admin ID
             $_SESSION['admin_id'] = $id;
             $_SESSION['admin_name'] = $admin_name;
-            header("Location: welcome.php"); // Redirect to a welcome page
+            header("Location: dashboard.php"); // Redirect to a welcome page
             exit;
         } else {
             $error = "Invalid password.";

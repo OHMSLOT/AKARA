@@ -526,7 +526,7 @@ input[type=number] {
 .facility-card {
     position: relative;
     overflow: hidden;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 .facility-card img {

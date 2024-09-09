@@ -109,7 +109,7 @@
                 <div class="d-flex flex-wrap justify-content-between align-items-center py-5">
                     <h1 style="display: block;" class="text-light c-font fs-48 m-0">ROOM TYPE</h1>
                     <div>
-                        <a href="room-type.php" class="btn btn-outline-light c-font fs-18 fw-normal" style="width: auto; display: inline-block; border-radius: 0;">ALL ROOMS</a>
+                        <a href="room-type.php" class="btn btn-outline-light c-font fs-18 fw-normal" style="width: auto; display: inline-block; border-radius: 0;">ALL events</a>
                     </div>
                 </div>
 
@@ -379,39 +379,39 @@
                     <h1 class="text-light text-center c-font fs-48">Upcoming Events</h1>
                 </div>
                 <div class="row pb-5">
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="card text-start bg-dark border-dark text-light">
-                            <img src="src/event1.png" class="card-img-top" alt="...">
-                            <div class="card-body px-0">
-                                <h2 class="mb-3 c-font">BEAD BRACELET</h2>
-                                <p class="mb-3 c-font fs-18"><i class="bi bi-clock me-1"></i> 12:00 - 16:00 PM</p>
-                                <p class="mb-3 c-font fs-18"><i class="bi bi-calendar-event me-1"></i> 12 November 2024</p>
-                                <a class="text-decoration-none text-light fs-5 c-font" href="#">SEE DETAIL</a>
+
+                <?php
+                    // เรียกใช้งานฟังก์ชัน selectAll()
+                    $event_res = selectAll('events');
+
+                    // ใช้ลูป while เพื่อแสดงข้อมูลในรูปแบบการ์ด
+                    while ($event = mysqli_fetch_assoc($event_res)) {
+                        // กำหนดเส้นทางรูปภาพที่ถูกต้อง (ตัวอย่างใช้โฟลเดอร์ uploads/facilities/)
+                        $image_path = EVENTS_IMG_PATH . $event['image'];
+
+                        // ฟอร์แมตวันที่
+                        $formatted_date = date("d F Y", strtotime($event['date']));
+
+                        // ฟอร์แมตเวลาเป็น 24 ชั่วโมง (สมมติว่า $event['time'] เป็นเวลาเริ่มต้น เช่น 12:00:00)
+                        $formatted_time_s = date("H:i", strtotime($event['time_s']));
+                        $formatted_time_e = date("H:i", strtotime($event['time_e']));
+
+                        echo <<<data
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="card text-start bg-dark border-dark text-light">
+                                <img src="{$image_path}" class="card-img-top rounded-0">
+                                <div class="card-body px-0">
+                                    <h2 class="mb-3 c-font">{$event['name']}</h2>
+                                    <p class="me-4 c-font fs-18"><i class="bi bi-clock me-1"></i> {$formatted_time_s} - {$formatted_time_e}</p>
+                                    <p class="c-font fs-18"><i class="bi bi-calendar-event me-1"></i> {$formatted_date}</p>
+                                    <a class="text-decoration-none text-light fs-5 c-font" href="#">SEE DETAIL</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="card text-start bg-dark border-dark text-light">
-                            <img src="src/event2.png" class="card-img-top" alt="...">
-                            <div class="card-body px-0">
-                                <h2 class="mb-3 c-font">BEAD BRACELET</h2>
-                                <p class="mb-3 c-font fs-18"><i class="bi bi-clock me-1"></i> 12:00 - 16:00 PM</p>
-                                <p class="mb-3 c-font fs-18"><i class="bi bi-calendar-event me-1"></i> 12 November 2024</p>
-                                <a class="text-decoration-none text-light fs-5 c-font" href="#">SEE DETAIL</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="card text-start bg-dark border-dark text-light">
-                            <img src="src/event3.png" class="card-img-top" alt="...">
-                            <div class="card-body px-0  ">
-                                <h2 class="mb-3 c-font">BEAD BRACELET</h2>
-                                <p class="mb-3 c-font fs-18"><i class="bi bi-clock me-1"></i> 12:00 - 16:00 PM</p>
-                                <p class="mb-3 c-font fs-18"><i class="bi bi-calendar-event me-1"></i> 12 November 2024</p>
-                                <a class="text-decoration-none text-light fs-5 c-font" href="#">SEE DETAIL</a>
-                            </div>
-                        </div>
-                    </div>
+                    data;
+                    }
+                ?>
+
                 </div>
             </div>
         </div>

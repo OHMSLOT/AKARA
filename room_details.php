@@ -72,7 +72,7 @@
                             while ($img_res = mysqli_fetch_assoc($img_q)) {
                                 echo "
                                         <div class='carousel-item $active_class'>
-                                        <img src='" . ROOMS_IMG_PATH . $img_res['image'] . "' class='d-block w-100'>
+                                        <img src='" . ROOMS_IMG_PATH . $img_res['image'] . "' class='d-block w-100' style='max-height: 515px; object-fit: cover;'>
                                         </div>
                                     ";
                                 $active_class = '';
@@ -101,25 +101,85 @@
                     <div class="card-body">
                         <?php
 
+                        $fea_q = mysqli_query($con, "SELECT f.name FROM `features` f INNER JOIN `room_features` rfea ON f.id = rfea.features_id WHERE rfea.room_id = '$room_data[id]'");
+
+                        $features_data = "";
+                        while ($fea_row = mysqli_fetch_assoc($fea_q)) {
+                            $features_data .= "<span class='badge rounded-pill bg-light text-dark text-wrap me-1 mb-1'>
+                                                    $fea_row[name]
+                                                </span>";
+                        }
+
+                        $fac_q = mysqli_query($con, "SELECT f.icon, f.name FROM `facilities` f INNER JOIN `room_facilities` rfac ON f.id = rfac.facilities_id WHERE rfac.room_id = '$room_data[id]'");
+
+                        $facilities_data = "";
+                        while ($fac_row = mysqli_fetch_assoc($fac_q)) {
+                            $fac_i = FACILITIES_IMG_PATH . $fac_row['icon'];
+                            $facilities_data .= "<span class='badge rounded-pill bg-light text-dark text-wrap me-2' style='font-size: 15px; font-weight: 500;'>
+                                                    <img src='$fac_i' class='me-1' style='width: 24px;'> $fac_row[name]
+                                                </span>";
+                        }
+
+                        echo <<<feature
+                            <div class="mb-4">
+                                <h5>Features</h5>
+                                $features_data   
+                            </div>
+                        feature;
+                        
+                        echo<<<person
+                            <div class="mb-4">
+                                <h5>Person</h5>
+                                <span class='badge rounded-pill bg-light text-dark text-wrap'>
+                                    $room_data[adult] Adults
+                                </span>
+                                <span class='badge rounded-pill bg-light text-dark text-wrap'>
+                                    $room_data[children] Children
+                                </span>
+                            </div>
+                        person;
+
+                        echo<<<area
+                            <div class="mb-4">
+                                <h5>Area</h5>
+                                <span class='badge rounded-pill bg-light text-dark text-wrap'>
+                                    $room_data[area] sq. ft.
+                                </span>
+                            </div>
+                        area;
+
                         echo <<<price
-                                <h4>฿$room_data[price]</h4>
-                            price;
+                            <div class='d-flex justify-content-between mb-3'>
+                                <h5>Pricing per night</h5>
+                                <h5>฿$room_data[price]</h5>
+                            </div>
+                        price;
 
                         echo <<<book
-                                <a href="" class="btn w-100 text-white custom-bg shadow-none mb-2">Book Now</a>
-                            book;
+                                <a href="#" class="btn w-100 text-white custom-bg shadow-none mb-2">Book Now</a>
+                        book;
                         ?>
                     </div>
                 </div>
             </div>
 
             <div class="col-12 mt-5 px-4">
-                <div class="mb-4">
-                    <h5>Description</h5>
+                <div class="mb-5">
+                    <h5 class="mb-3">Description</h5>
                     <p>
                         <?php echo $room_data['description'] ?>
                     </p>
                 </div>
+
+                <?php 
+                    echo <<<facilities
+                        <div class="mb-5">
+                            <h5 class='mb-3'>Facilities</h5>
+                            $facilities_data   
+                        </div>
+                    facilities;
+                ?>
+                
                 <?php
                 // $room_res = select("SELECT * FROM `rooms` WHERE `status`=? AND `removed`=?", [1, 0], 'ii');
 
