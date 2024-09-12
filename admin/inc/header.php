@@ -36,9 +36,9 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="upload.php" class="nav-link text-white">
+                        <a href="gallery.php" class="nav-link text-white">
                         <i class="bi bi-gear me-2"></i>
-                            upload
+                            Gallery
                         </a>
                     </li>
                     <li class="nav-item">
