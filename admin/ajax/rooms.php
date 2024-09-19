@@ -94,7 +94,7 @@
                         <button type='button' onclick='edit_details($row[id])' class='btn btn-secondary shadow-none btn-sm' data-bs-toggle='modal' data-bs-target='#edit-room'>
                                 <i class='bi bi-pencil-square'></i>
                         </button>
-                        <button type='button' onclick=\"room_images($row[id],'$row[name]')\" class='btn btn-info shadow-none btn-sm' data-bs-toggle='modal' data-bs-target='#room-images'>
+                        <button type='button' onclick=\"room_images($row[id],'$row[name]')\" class='btn btn-success shadow-none btn-sm' data-bs-toggle='modal' data-bs-target='#room-images'>
                                 <i class='bi bi-images'></i>
                         </button>
                         <button type='button' onclick='remove_room($row[id])' class='btn btn-danger shadow-none btn-sm'>

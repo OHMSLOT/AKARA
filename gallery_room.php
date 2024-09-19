@@ -69,7 +69,7 @@
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <!-- <div class="modal-body">
                     <div id="carouselExampleFade" class="carousel slide carousel-fade">
@@ -102,13 +102,13 @@
                         <div id="carouselExampleFade" class="carousel slide carousel-fade">
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <img class="card-img image" src="src/LINE_ALBUM_Deluxe room  Thai Akara_240716_1.jpg" alt="">
+                                    <img style="height: 750px;" class="card-img image" src="src/LINE_ALBUM_Deluxe room  Thai Akara_240716_1.jpg" alt="">
                                 </div>
                                 <div class="carousel-item">
-                                    <img class="card-img image" src="src/LINE_ALBUM_Public Area _Thai Akara_240808_5.jpg" alt="">
+                                    <img style="height: 750px;" class="card-img image" src="src/LINE_ALBUM_Public Area _Thai Akara_240808_5.jpg" alt="">
                                 </div>
                                 <div class="carousel-item">
-                                    <img class="card-img image" src="src/LINE_ALBUM_Superior room Thai Akara_240716_1.jpg" alt="">
+                                    <img style="height: 750px;" class="card-img image" src="src/LINE_ALBUM_Superior room Thai Akara_240716_1.jpg" alt="">
                                 </div>
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">

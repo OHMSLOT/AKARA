@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>GALLERY</title>
     <?php require('inc/links.php') ?>
     <style>
         .contents {
@@ -121,78 +121,42 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="gallery-item">
-                    <div class="card">
-                        <a href="gallery_room.php">
-                            <img style="margin-bottom: 0; height: 270px" class="card-img image" src="src/Swimming_pool.png" alt="">
-                            <div class="overlay">
-                                <h5>Room</h5>
+            <?php
+                // Fetch images where thumb = 1
+                $gallery_res = mysqli_query($con, "SELECT * FROM gallery_images WHERE thumb = 1");
+
+                // Check if there are thumb images
+                if (mysqli_num_rows($gallery_res) > 0) {
+                    while ($gallery_data = mysqli_fetch_assoc($gallery_res)) {
+                        // Create image path
+                        $image_path = GALLERY_IMG_PATH . $gallery_data['image'];
+
+                        // Fetch gallery name using gallery_id (optional if you want to display gallery names)
+                        $gallery_id = $gallery_data['gallery_id'];
+                        $gallery = mysqli_query($con, "SELECT name FROM gallery WHERE id = $gallery_id");
+                        $galleryName = mysqli_fetch_assoc($gallery)['name'];
+
+                        // Display each thumbnail image
+                        echo <<<data
+                            <div class="col-lg-4 col-md-6 mb-4">
+                                <div class="gallery-item">
+                                    <div class="card">
+                                        <a href="gallery_image.php?id=$gallery_data[gallery_id]">
+                                            <img style="margin-bottom: 0; height: 270px" class="card-img image" src="$image_path" alt="">
+                                            <div class="overlay">
+                                                <h5>$galleryName</h5>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="gallery-item">
-                    <div class="card">
-                        <a href="gallery_room.php">
-                            <img style="margin-bottom: 0; height: 270px" class="card-img image" src="src/Swimming_pool.png" alt="">
-                            <div class="overlay">
-                                <h5>Swimming_pool</h5>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="gallery-item">
-                    <div class="card">
-                        <a href="gallery_room.php">
-                            <img style="margin-bottom: 0; height: 270px" class="card-img image" src="src/Swimming_pool.png" alt="">
-                            <div class="overlay">
-                                <h5>Swimming_pool</h5>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="gallery-item">
-                    <div class="card">
-                        <a href="gallery_room.php">
-                            <img style="margin-bottom: 0; height: 270px" class="card-img image" src="src/Swimming_pool.png" alt="">
-                            <div class="overlay">
-                                <h5>Swimming_pool</h5>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="gallery-item">
-                    <div class="card">
-                        <a href="gallery_room.php">
-                            <img style="margin-bottom: 0; height: 270px" class="card-img image" src="src/Swimming_pool.png" alt="">
-                            <div class="overlay">
-                                <h5>Swimming_pool</h5>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="gallery-item">
-                    <div class="card">
-                        <a href="gallery_room.php">
-                            <img style="margin-bottom: 0; height: 270px" class="card-img image" src="src/Swimming_pool.png" alt="">
-                            <div class="overlay">
-                                <h5>Swimming_pool</h5>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
+                            data;
+                    }
+                } else {
+                    echo '<p class="text-center">No thumbnail images found</p>';
+                }
+            ?>
+
         </div>
     </div>
 
@@ -201,5 +165,8 @@
     <?php require('inc/footer.php') ?>
 </body>
 <?php require('inc/script.php') ?>
+<script>
+
+</script>
 
 </html>
