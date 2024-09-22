@@ -25,7 +25,7 @@
                     <td>$i</td>
                     <td>$row[name]</td>
                     <td>
-                        <button type="button" onclick="edit_feature($row[id],'$row[name]')" class="btn btn-warning btn-sm shadow-none">
+                        <button type="button" onclick="edit_feature($row[id],'$row[name]')" class="btn btn-secondary btn-sm shadow-none">
                             <i class="bi bi-pencil-square"></i> Edit
                         </button>
                         <button type="button" onclick="rem_feature($row[id])" class="btn btn-danger btn-sm shadow-none">
@@ -105,8 +105,11 @@
                     <td>$row[name]</td>
                     <td>$row[description]</td>
                     <td>
-                        <button type="button" onclick="edit_facilities($row[id],'$row[name]','$row[description]','$row[icon]')" class="btn btn-warning btn-sm shadow-none">
+                        <button type="button" onclick="edit_facilities($row[id],'$row[name]','$row[description]')" class="btn btn-secondary btn-sm shadow-none">
                             <i class="bi bi-pencil-square"></i> Edit
+                        </button>
+                        <button type="button" onclick="edit_facilities_image($row[id], '$path$row[icon]')" class="btn btn-success btn-sm shadow-none">
+                            <i class="bi bi-image"></i> Edit Image
                         </button>
                         <button type="button" onclick="rem_facilities($row[id])" class="btn btn-danger btn-sm shadow-none">
                             <i class="bi bi-trash"></i> Delete
@@ -123,39 +126,36 @@
         $frm_data = filteration($_POST);
         $q = "UPDATE `facilities` SET `name`=?, `description`=? WHERE `id`=?";
         $values = [$frm_data['name'], $frm_data['desc'], $frm_data['id']];
+        $res = update($q, $values, 'ssi');
+        echo $res;
+    }
 
-        if(isset($_FILES['icon'])) {
-            // Process new image upload if provided
-            $img_r = uploadSVGImage($_FILES['icon'], FACILITIES_FOLDER);
+    if(isset($_POST['update_facilities_image']))
+    {
+        $frm_data = filteration($_POST);
+        
+        $img_r = uploadSVGImage($_FILES['icon'], FACILITIES_FOLDER);
 
-            if($img_r == 'inv_img'){
-                echo $img_r;
-            }
-            else if($img_r == 'inv_size'){
-                echo $img_r;
-            }
-            else if($img_r == 'upd_failed'){
-                echo $img_r;
-            }
-            else{
-                // Delete old image and update with new one
-                $pre_q = "SELECT * FROM `facilities` WHERE `id`=?";
-                $res = select($pre_q,[$frm_data['id']],'i');
-                $img = mysqli_fetch_assoc($res);
-                
-                if(deleteImage($img['icon'],FACILITIES_FOLDER)){
-                    $q = "UPDATE `facilities` SET `icon`=? WHERE `id`=?";
-                    $values = [$img_r, $frm_data['id']];
-                    $res = update($q, $values, 'si');
-                    echo $res;
-                }
-                else{
-                    echo 'upd_failed';
-                }
-            }
-        } else {
-            // Update without changing the icon
-            $res = update($q, $values, 'ssi');
+        if($img_r == 'inv_img'){
+            echo $img_r;
+        }
+        else if($img_r == 'inv_size'){
+            echo $img_r;
+        }
+        else if($img_r == 'upd_failed'){
+            echo $img_r;
+        }
+        else{
+            // delete the old image
+            $pre_q = "SELECT * FROM `facilities` WHERE `id`=?";
+            $res = select($pre_q,[$frm_data['id']],'i');
+            $img = mysqli_fetch_assoc($res);
+            deleteImage($img['icon'],FACILITIES_FOLDER);
+
+            // update with the new image
+            $q = "UPDATE `facilities` SET `icon`=? WHERE `id`=?";
+            $values = [$img_r, $frm_data['id']];
+            $res = update($q, $values, 'si');
             echo $res;
         }
     }

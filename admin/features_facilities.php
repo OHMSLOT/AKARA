@@ -66,10 +66,10 @@ adminLogin();
                             <table class="table table-hover border">
                                 <thead class="table-dark">
                                     <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Icon</th>
+                                        <th scope="col" width="5%">#</th>
+                                        <th scope="col" width="15%">Icon</th>
                                         <th scope="col">Name</th>
-                                        <th scope="col">Description</th>
+                                        <th scope="col" width="40%">Description</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
@@ -172,22 +172,42 @@ adminLogin();
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Facilities</h1>
                     </div>
                     <div class="modal-body">
-                        <div class="text-center my-2">
-                            <img id="current_icon" src="" width="50px">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Icon</label>
-                            <input type="file" name="edit_facilities_icon" class="form-control shadow-none">
-                        </div>
                         <div class="mb-3">
                             <label class="form-label">Name</label>
                             <input type="text" name="edit_facilities_name" class="form-control shadow-none">
+                            <input type="hidden" name="facilities_id">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Description</label>
                             <textarea name="edit_facilities_desc" class="form-control shadow-none" rows="5"></textarea>
                         </div>
-                        <input type="hidden" name="facilities_id">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Facilities Image Modal -->
+    <div class="modal fade" id="edit-facilities-image-s" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form id="edit_facilities_image_s_form">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Facilities Image</h1>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3 text-center">
+                            <img id="current_facilities_image" src="" alt="Current Image" class="img-thumbnail border-0" width="150px">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">New Icon</label>
+                            <input type="file" name="facilities_icon" class="form-control shadow-none">
+                            <input type="hidden" name="facilities_id">
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
