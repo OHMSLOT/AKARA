@@ -48,6 +48,46 @@ function get_features() {
     xhr.send("get_features");
 }
 
+function edit_feature(id, name) {
+    let myModal = new bootstrap.Modal(document.getElementById('edit-feature-s'));
+    document.getElementById('edit_feature_s_form').elements['edit_feature_name'].value = name;
+    document.getElementById('edit_feature_s_form').elements['feature_id'].value = id;
+    myModal.show();
+}
+
+let edit_feature_s_form = document.getElementById("edit_feature_s_form");
+
+edit_feature_s_form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    update_feature();
+});
+
+function update_feature() {
+    let data = new FormData();
+    data.append("id", edit_feature_s_form.elements["feature_id"].value);
+    data.append("name", edit_feature_s_form.elements["edit_feature_name"].value);
+    data.append("update_feature", "");
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "ajax/features_facilities.php", true);
+
+    xhr.onload = function () {
+        var myModal = document.getElementById("edit-feature-s");
+        var modal = bootstrap.Modal.getInstance(myModal);
+        modal.hide();
+
+        if (this.responseText == 1) {
+            alert("success", "Feature updated successfully!");
+            edit_feature_s_form.reset();
+            get_features();
+        } else {
+            alert("error", "Server down!");
+        }
+    };
+    xhr.send(data);
+}
+
+
 function rem_feature(val) {
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "ajax/features_facilities.php", true);

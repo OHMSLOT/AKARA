@@ -38,8 +38,8 @@ adminLogin();
                             <table class="table table-hover border">
                                 <thead class="table-dark">
                                     <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Name</th>
+                                        <th scope="col" width="10%">#</th>
+                                        <th scope="col" width="70%">Name</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
@@ -107,6 +107,31 @@ adminLogin();
         </div>
     </div>
 
+    <!-- Edit Feature Modal -->
+    <div class="modal fade" id="edit-feature-s" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form id="edit_feature_s_form">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Feature</h1>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">Name</label>
+                            <input type="text" name="edit_feature_name" class="form-control shadow-none">
+                            <input type="hidden" name="feature_id">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
     <!-- Facilities Modal -->
     <div class="modal fade" id="facilities-s" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -142,6 +167,6 @@ adminLogin();
     <?php include 'inc/script.php'; ?>
     <script src="scripts/features_facilities.js"></script>
 
-</body> 
+</body>
 
 </html>

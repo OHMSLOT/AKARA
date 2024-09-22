@@ -25,6 +25,9 @@
                     <td>$i</td>
                     <td>$row[name]</td>
                     <td>
+                        <button type="button" onclick="edit_feature($row[id],'$row[name]')" class="btn btn-warning btn-sm shadow-none">
+                            <i class="bi bi-pencil-square"></i> Edit
+                        </button>
                         <button type="button" onclick="rem_feature($row[id])" class="btn btn-danger btn-sm shadow-none">
                             <i class="bi bi-trash"></i> Delete
                         </button>
@@ -34,6 +37,16 @@
             $i++;
         }
     }
+
+    if(isset($_POST['update_feature']))
+    {
+        $frm_data = filteration($_POST);
+        $q = "UPDATE `features` SET `name`=? WHERE `id`=?";
+        $values = [$frm_data['name'], $frm_data['id']];
+        $res = update($q, $values, 'si');
+        echo $res;
+    }
+
 
     if(isset($_POST['rem_feature']))
     {
