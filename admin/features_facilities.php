@@ -163,6 +163,41 @@ adminLogin();
         </div>
     </div>
 
+    <!-- Edit Facilities Modal -->
+    <div class="modal fade" id="edit-facilities-s" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form id="edit_facilities_s_form">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Facilities</h1>
+                    </div>
+                    <div class="modal-body">
+                        <div class="text-center my-2">
+                            <img id="current_icon" src="" width="50px">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Icon</label>
+                            <input type="file" name="edit_facilities_icon" class="form-control shadow-none">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Name</label>
+                            <input type="text" name="edit_facilities_name" class="form-control shadow-none">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
+                            <textarea name="edit_facilities_desc" class="form-control shadow-none" rows="5"></textarea>
+                        </div>
+                        <input type="hidden" name="facilities_id">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
 
     <?php include 'inc/script.php'; ?>
     <script src="scripts/features_facilities.js"></script>

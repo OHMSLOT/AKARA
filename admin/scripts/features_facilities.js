@@ -149,6 +149,56 @@ function get_facilities() {
     xhr.send("get_facilities");
 }
 
+function edit_facilities(id, name, desc, icon) {
+    let myModal = new bootstrap.Modal(document.getElementById('edit-facilities-s'));
+    document.getElementById('edit_facilities_s_form').elements['edit_facilities_name'].value = name;
+    document.getElementById('edit_facilities_s_form').elements['edit_facilities_desc'].value = desc;
+    document.getElementById('edit_facilities_s_form').elements['facilities_id'].value = id;
+    document.getElementById('current_icon').src = "../src/facilities/" + icon;
+    myModal.show();
+}
+
+let edit_facilities_s_form = document.getElementById("edit_facilities_s_form");
+
+edit_facilities_s_form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    update_facilities();
+});
+
+function update_facilities() {
+    let data = new FormData();
+    data.append("id", edit_facilities_s_form.elements["facilities_id"].value);
+    data.append("name", edit_facilities_s_form.elements["edit_facilities_name"].value);
+    data.append("desc", edit_facilities_s_form.elements["edit_facilities_desc"].value);
+    if (edit_facilities_s_form.elements["edit_facilities_icon"].files.length > 0) {
+        data.append("icon", edit_facilities_s_form.elements["edit_facilities_icon"].files[0]);
+    }
+    data.append("update_facilities", "");
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "ajax/features_facilities.php", true);
+
+    xhr.onload = function () {
+        var myModal = document.getElementById("edit-facilities-s");
+        var modal = bootstrap.Modal.getInstance(myModal);
+        modal.hide();
+
+        if (this.responseText == "inv_img") {
+            alert("error", "Only JPG and PNG images are allowed!");
+        } else if (this.responseText == "inv_size") {
+            alert("error", "Image should be less than 1MB!");
+        } else if (this.responseText == 1) {
+            alert("success", "Facilities updated successfully!");
+            edit_facilities_s_form.reset();
+            get_facilities();
+        } else {
+            alert("error", "Server down!");
+        }
+    };
+    xhr.send(data);
+}
+
+
 function rem_facilities(val) {
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "ajax/features_facilities.php", true);

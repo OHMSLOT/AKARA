@@ -105,6 +105,9 @@
                     <td>$row[name]</td>
                     <td>$row[description]</td>
                     <td>
+                        <button type="button" onclick="edit_facilities($row[id],'$row[name]','$row[description]','$row[icon]')" class="btn btn-warning btn-sm shadow-none">
+                            <i class="bi bi-pencil-square"></i> Edit
+                        </button>
                         <button type="button" onclick="rem_facilities($row[id])" class="btn btn-danger btn-sm shadow-none">
                             <i class="bi bi-trash"></i> Delete
                         </button>
@@ -114,6 +117,49 @@
             $i++;
         }
     }
+
+    if(isset($_POST['update_facilities']))
+    {
+        $frm_data = filteration($_POST);
+        $q = "UPDATE `facilities` SET `name`=?, `description`=? WHERE `id`=?";
+        $values = [$frm_data['name'], $frm_data['desc'], $frm_data['id']];
+
+        if(isset($_FILES['icon'])) {
+            // Process new image upload if provided
+            $img_r = uploadSVGImage($_FILES['icon'], FACILITIES_FOLDER);
+
+            if($img_r == 'inv_img'){
+                echo $img_r;
+            }
+            else if($img_r == 'inv_size'){
+                echo $img_r;
+            }
+            else if($img_r == 'upd_failed'){
+                echo $img_r;
+            }
+            else{
+                // Delete old image and update with new one
+                $pre_q = "SELECT * FROM `facilities` WHERE `id`=?";
+                $res = select($pre_q,[$frm_data['id']],'i');
+                $img = mysqli_fetch_assoc($res);
+                
+                if(deleteImage($img['icon'],FACILITIES_FOLDER)){
+                    $q = "UPDATE `facilities` SET `icon`=? WHERE `id`=?";
+                    $values = [$img_r, $frm_data['id']];
+                    $res = update($q, $values, 'si');
+                    echo $res;
+                }
+                else{
+                    echo 'upd_failed';
+                }
+            }
+        } else {
+            // Update without changing the icon
+            $res = update($q, $values, 'ssi');
+            echo $res;
+        }
+    }
+
 
     if(isset($_POST['rem_facilities']))
     {
