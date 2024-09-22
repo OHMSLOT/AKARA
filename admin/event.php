@@ -102,6 +102,77 @@ adminLogin();
         </div>
     </div>
 
+    <!-- Edit Info Modal -->
+    <div class="modal fade" id="edit-info-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form id="edit_info_form">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Event Info</h1>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">Name</label>
+                            <input type="text" name="edit_event_name" class="form-control shadow-none">
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <label class="form-label">Time start</label>
+                                <input type="time" name="edit_event_time_s" class="form-control shadow-none">
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label">Time end</label>
+                                <input type="time" name="edit_event_time_e" class="form-control shadow-none">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Date</label>
+                            <input type="date" name="edit_event_date" class="form-control shadow-none">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
+                            <textarea name="edit_event_desc" class="form-control shadow-none" rows="5"></textarea>
+                        </div>
+                        <input type="hidden" name="event_id">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Image Modal -->
+    <div class="modal fade" id="edit-image-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form id="edit_image_form">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Event Image</h1>
+                    </div>
+                    <div class="modal-body">
+                        <div class="text-center mb-3">
+                            <img id="current_event_img" src="" width="200px">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">New Picture</label>
+                            <input type="file" name="edit_event_picture" class="form-control shadow-none">
+                        </div>
+                        <input type="hidden" name="event_id">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
     <?php include 'inc/script.php'; ?>
     <script>
         let event_s_form = document.getElementById("event_s_form");
@@ -155,6 +226,97 @@ adminLogin();
 
             xhr.send("get_event");
         }
+
+        function edit_info(id, name, time_s, time_e, date, desc) {
+            let myModal = new bootstrap.Modal(document.getElementById('edit-info-modal'));
+            document.getElementById('edit_info_form').elements['edit_event_name'].value = name;
+            document.getElementById('edit_info_form').elements['edit_event_time_s'].value = time_s;
+            document.getElementById('edit_info_form').elements['edit_event_time_e'].value = time_e;
+            document.getElementById('edit_info_form').elements['edit_event_date'].value = date;
+            document.getElementById('edit_info_form').elements['edit_event_desc'].value = desc;
+            document.getElementById('edit_info_form').elements['event_id'].value = id;
+            myModal.show();
+        }
+
+        let edit_info_form = document.getElementById("edit_info_form");
+
+        edit_info_form.addEventListener("submit", function(e) {
+            e.preventDefault();
+            update_event_info();
+        });
+
+        function update_event_info() {
+            let data = new FormData();
+            data.append("id", edit_info_form.elements["event_id"].value);
+            data.append("name", edit_info_form.elements["edit_event_name"].value);
+            data.append("time_s", edit_info_form.elements["edit_event_time_s"].value);
+            data.append("time_e", edit_info_form.elements["edit_event_time_e"].value);
+            data.append("date", edit_info_form.elements["edit_event_date"].value);
+            data.append("desc", edit_info_form.elements["edit_event_desc"].value);
+            data.append("update_event_info", "");
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "ajax/events_crud.php", true);
+
+            xhr.onload = function() {
+                var myModal = document.getElementById("edit-info-modal");
+                var modal = bootstrap.Modal.getInstance(myModal);
+                modal.hide();
+
+                if (this.responseText == 1) {
+                    alert("success", "Event info updated successfully!");
+                    edit_info_form.reset();
+                    get_event();
+                } else {
+                    alert("error", "Server down!");
+                }
+            };
+            xhr.send(data);
+        }
+
+        function edit_image(id, image) {
+            let myModal = new bootstrap.Modal(document.getElementById('edit-image-modal'));
+            document.getElementById('current_event_img').src = "../src/event/" + image;
+            document.getElementById('edit_image_form').elements['event_id'].value = id;
+            myModal.show();
+        }
+
+        let edit_image_form = document.getElementById("edit_image_form");
+
+        edit_image_form.addEventListener("submit", function(e) {
+            e.preventDefault();
+            update_event_image();
+        });
+
+        function update_event_image() {
+            let data = new FormData();
+            data.append("id", edit_image_form.elements["event_id"].value);
+            data.append("picture", edit_image_form.elements["edit_event_picture"].files[0]);
+            data.append("update_event_image", "");
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "ajax/events_crud.php", true);
+
+            xhr.onload = function() {
+                var myModal = document.getElementById("edit-image-modal");
+                var modal = bootstrap.Modal.getInstance(myModal);
+                modal.hide();
+
+                if (this.responseText == "inv_img") {
+                    alert("error", "Only JPG and PNG images are allowed!");
+                } else if (this.responseText == "inv_size") {
+                    alert("error", "Image should be less than 2MB!");
+                } else if (this.responseText == 1) {
+                    alert("success", "Event image updated successfully!");
+                    edit_image_form.reset();
+                    get_event();
+                } else {
+                    alert("error", "Server down!");
+                }
+            };
+            xhr.send(data);
+        }
+
 
         function rem_event(val) {
             let xhr = new XMLHttpRequest();

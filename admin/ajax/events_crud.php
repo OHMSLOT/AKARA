@@ -50,13 +50,54 @@
                     <td>$row[date]</td>
                     <td>$row[description]</td>
                     <td>
-                        <button type="button" onclick="rem_event($row[id])" class="btn btn-danger btn-sm shadow-none">
-                            <i class="bi bi-trash"></i> Delete
+                        <button type="button" onclick="edit_info($row[id],'$row[name]','$row[time_s]','$row[time_e]','$row[date]','$row[description]')" class="btn btn-secondary btn-md shadow-none">
+                            <i class="bi bi-pencil-square"></i>
+                        </button>
+                        <button type="button" onclick="edit_image($row[id],'$row[image]')" class="btn btn-success btn-md shadow-none">
+                            <i class="bi bi-image"></i>
+                        </button>
+                        <button type="button" onclick="rem_event($row[id])" class="btn btn-danger btn-md shadow-none">
+                            <i class="bi bi-trash"></i>
                         </button>
                     </td>
                 </tr>
             data;
             $i++;
+        }
+    }
+
+    if(isset($_POST['update_event_info'])) {
+        $frm_data = filteration($_POST);
+        $q = "UPDATE `events` SET `name`=?, `time_s`=?, `time_e`=?, `date`=?, `description`=? WHERE `id`=?";
+        $values = [$frm_data['name'], $frm_data['time_s'], $frm_data['time_e'], $frm_data['date'], $frm_data['desc'], $frm_data['id']];
+        $res = update($q, $values, 'sssssi');
+        echo $res;
+    }
+
+    if(isset($_POST['update_event_image'])) {
+        if(isset($_FILES['picture']) && $_FILES['picture']['size'] > 0) {
+            $frm_data = filteration($_POST);
+            $img_r = uploadImage($_FILES['picture'], EVENTS_FOLDER);
+    
+            if($img_r == 'inv_img'){
+                echo $img_r;
+            } else if($img_r == 'inv_size'){
+                echo $img_r;
+            } else {
+                // Delete old image and update with new one
+                $pre_q = "SELECT * FROM `events` WHERE `id`=?";
+                $res = select($pre_q,[$frm_data['id']],'i');
+                $img = mysqli_fetch_assoc($res);
+    
+                if(deleteImage($img['image'], EVENTS_FOLDER)) {
+                    $q = "UPDATE `events` SET `image`=? WHERE `id`=?";
+                    $values = [$img_r, $frm_data['id']];
+                    $res = update($q, $values, 'si');
+                    echo $res;
+                } else {
+                    echo 'upd_failed';
+                }
+            }
         }
     }
 
