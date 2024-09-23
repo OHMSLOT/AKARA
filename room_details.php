@@ -60,30 +60,87 @@
                 </div>
             </div>
 
-            <div class="col-lg-8 col-md-12 px-4 ">
+
+            <?php
+            $img_large_displayed = false; // ตัวแปรเพื่อเช็คว่าได้แสดงภาพใหญ่แล้วหรือไม่
+            $img_q = mysqli_query($con, "SELECT * FROM `room_images` WHERE `room_id`='$room_data[id]'");
+
+            if (mysqli_num_rows($img_q) > 0) {
+                $small_images = ''; // ตัวแปรเก็บภาพเล็ก
+                while ($img_res = mysqli_fetch_assoc($img_q)) {
+                    $img_path = ROOMS_IMG_PATH . $img_res['image'];
+                    if ($img_res['thumb'] == 1 && !$img_large_displayed) {
+                        // แสดงภาพใหญ่ใน col-lg-8
+                        echo "
+                <div class='col-lg-8'>
+                    <img src='$img_path' class='img-fluid w-100' style='height: 583.5px; object-fit: cover;' alt='Room Image'>
+                </div>
+            ";
+                        $img_large_displayed = true; // ตั้งค่าให้ไม่แสดงภาพใหญ่ซ้ำ
+                    } else if ($img_res['thumb'] == 0) {
+                        // เก็บภาพเล็กไว้ในตัวแปร
+                        $small_images .= "
+                <img src='$img_path' class='img-fluid mb-3 w-100' style='height: 283.56px; object-fit: cover;' alt='Room Image'>
+            ";
+                    }
+                }
+
+                if (!empty($small_images)) {
+                    // แสดงภาพเล็กทั้งหมดใน col-lg-4
+                    echo "
+                            <div class='col-lg-4'>
+                                $small_images
+                            </div>
+                        ";
+                }
+            } else {
+                // กรณีไม่มีภาพ ให้แสดงภาพที่เป็น thumbnail เริ่มต้น
+                echo "
+                        <div class='col-lg-8'>
+                            <img src='" . ROOMS_IMG_PATH . "thumbnail.jpg' class='img-fluid' alt='No Image Available'>
+                        </div>
+                        <div class='col-lg-4'>
+                            <img src='" . ROOMS_IMG_PATH . "thumbnail.jpg' class='img-fluid mb-3' alt='No Image Available'>
+                            <img src='" . ROOMS_IMG_PATH . "thumbnail.jpg' class='img-fluid' alt='No Image Available'>
+                        </div>
+                    ";
+            }
+            ?>
+
+            <!-- <div class="col-lg-8">
+                    <img src="src/carousel1.jpg" class="img-fluid" alt="...">
+                </div>
+
+                <div class="col-lg-4">
+                    <img src="src/carousel1.jpg" class="img-fluid mb-3" alt="...">
+                    <img src="src/carousel1.jpg" class="img-fluid" alt="...">
+                </div> -->
+
+
+
+            <!-- <div class="col-lg-8 col-md-12 px-4 ">
                 <div id="roomcarousel" class="carousel slide">
                     <div class="carousel-inner">
-                        <?php
-                        $room_img = ROOMS_IMG_PATH . "thumbnail.jpg";
-                        $img_q = mysqli_query($con, "SELECT * FROM `room_images` WHERE `room_id`='$room_data[id]'");
+                    <?php
+                    // $room_img = ROOMS_IMG_PATH . "thumbnail.jpg";
+                    // $img_q = mysqli_query($con, "SELECT * FROM `room_images` WHERE `room_id`='$room_data[id]'");
 
-                        if (mysqli_num_rows($img_q) > 0) {
-                            $active_class = 'active';
-                            while ($img_res = mysqli_fetch_assoc($img_q)) {
-                                echo "
-                                        <div class='carousel-item $active_class'>
-                                        <img src='" . ROOMS_IMG_PATH . $img_res['image'] . "' class='d-block w-100' style='max-height: 515px; object-fit: cover;'>
-                                        </div>
-                                    ";
-                                $active_class = '';
-                            }
-                        } else {
-                            echo "<div class='carousel-item active'>
-                                <img src='$room_img' class='d-block w-100'>
-                                </div>";
-                        }
-
-                        ?>
+                    // if (mysqli_num_rows($img_q) > 0) {
+                    //     $active_class = 'active';
+                    //     while ($img_res = mysqli_fetch_assoc($img_q)) {
+                    //         echo "
+                    //                 <div class='carousel-item $active_class'>
+                    //                     <img src='" . ROOMS_IMG_PATH . $img_res['image'] . "' class='d-block w-100' style='max-height: 515px; object-fit: cover;'>
+                    //                 </div>
+                    //             ";
+                    //         $active_class = '';
+                    //     }
+                    // } else {
+                    //     echo "<div class='carousel-item active'>
+                    //             <img src='$room_img' class='d-block w-100'>
+                    //         </div>";
+                    // }
+                    ?>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#roomcarousel" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -94,10 +151,40 @@
                         <span class="visually-hidden">Next</span>
                     </button>
                 </div>
+            </div> -->
+
+
+            <div class="col-lg-8 mt-5">
+                <div class="mb-5">
+                    <h5 class="mb-3">Description</h5>
+                    <p>
+                        <?php echo $room_data['description'] ?>
+                    </p>
+                </div>
+                <?php
+
+                $fac_q = mysqli_query($con, "SELECT f.icon, f.name FROM `facilities` f INNER JOIN `room_facilities` rfac ON f.id = rfac.facilities_id WHERE rfac.room_id = '$room_data[id]'");
+
+                $facilities_data = "";
+                while ($fac_row = mysqli_fetch_assoc($fac_q)) {
+                    $fac_i = FACILITIES_IMG_PATH . $fac_row['icon'];
+                    $facilities_data .= "<span class='badge rounded-pill bg-light text-dark text-wrap me-2' style='font-size: 15px; font-weight: 500;'>
+                    <img src='$fac_i' class='me-1' style='width: 24px;'> $fac_row[name]
+                    </span>";
+                }
+
+                echo <<<facilities
+                        <div class="mb-5">
+                            <h5 class='mb-3'>Facilities</h5>
+                            $facilities_data   
+                        </div>
+                    facilities;
+
+                ?>
             </div>
 
-            <div class="col-lg-4 col-md-12 px-4">
-                <div class="card mb-4 border-0 shadow-sm rounded-3">
+            <div class="col-4 mt-5">
+                <div class="card">
                     <div class="card-body">
                         <?php
 
@@ -106,80 +193,76 @@
                         $features_data = "";
                         while ($fea_row = mysqli_fetch_assoc($fea_q)) {
                             $features_data .= "<span class='badge rounded-pill bg-light text-dark text-wrap me-1 mb-1'>
-                                                    $fea_row[name]
-                                                </span>";
+                                                        $fea_row[name]
+                                                    </span>";
                         }
-
-                        $fac_q = mysqli_query($con, "SELECT f.icon, f.name FROM `facilities` f INNER JOIN `room_facilities` rfac ON f.id = rfac.facilities_id WHERE rfac.room_id = '$room_data[id]'");
-
-                        $facilities_data = "";
-                        while ($fac_row = mysqli_fetch_assoc($fac_q)) {
-                            $fac_i = FACILITIES_IMG_PATH . $fac_row['icon'];
-                            $facilities_data .= "<span class='badge rounded-pill bg-light text-dark text-wrap me-2' style='font-size: 15px; font-weight: 500;'>
-                                                    <img src='$fac_i' class='me-1' style='width: 24px;'> $fac_row[name]
-                                                </span>";
-                        }
-
-                        echo <<<feature
-                            <div class="mb-4">
-                                <h5>Features</h5>
-                                $features_data   
-                            </div>
-                        feature;
-                        
-                        echo<<<person
-                            <div class="mb-4">
-                                <h5>Person</h5>
-                                <span class='badge rounded-pill bg-light text-dark text-wrap'>
-                                    $room_data[adult] Adults
-                                </span>
-                                <span class='badge rounded-pill bg-light text-dark text-wrap'>
-                                    $room_data[children] Children
-                                </span>
-                            </div>
-                        person;
-
-                        echo<<<area
-                            <div class="mb-4">
-                                <h5>Area</h5>
-                                <span class='badge rounded-pill bg-light text-dark text-wrap'>
-                                    $room_data[area] sq. ft.
-                                </span>
-                            </div>
-                        area;
 
                         echo <<<price
-                            <div class='d-flex justify-content-between mb-3'>
-                                <h5>Pricing per night</h5>
-                                <h5>฿$room_data[price]</h5>
-                            </div>
-                        price;
+                                <div class="mb-4">
+                                    <span>Start from</span>
+                                    <h3 class='mt-1'>฿$room_data[price]</h5>
+                                </div>
+                            price;
+
+                        echo <<<feature
+                                <div class="mb-4">
+                                    <h5>Features</h5>
+                                    $features_data   
+                                </div>
+                            feature;
+
+                        echo <<<person
+                                <div class="mb-4">
+                                    <h5>Person</h5>
+                                    <span class='badge rounded-pill bg-light text-dark text-wrap'>
+                                        $room_data[adult] Adults
+                                    </span>
+                                    <span class='badge rounded-pill bg-light text-dark text-wrap'>
+                                        $room_data[children] Children
+                                    </span>
+                                </div>
+                            person;
+
+                        echo <<<area
+                                <div class="mb-4">
+                                    <h5>Area</h5>
+                                    <span class='badge rounded-pill bg-light text-dark text-wrap'>
+                                        $room_data[area] sq. ft.
+                                    </span>
+                                </div>
+                            area;
 
                         echo <<<book
-                                <a href="#" class="btn w-100 text-white custom-bg shadow-none mb-2">Book Now</a>
-                        book;
+                                    <a href="#" class="btn w-100 text-white custom-bg shadow-none mb-2">Book Now</a>
+                            book;
+
                         ?>
                     </div>
                 </div>
             </div>
 
             <div class="col-12 mt-5 px-4">
-                <div class="mb-5">
-                    <h5 class="mb-3">Description</h5>
+                <h5 class="mb-3">Ratings</h5>
+                <div>
+                    <div class="d-flex align-items-center justify-content-between mb-2">
+                        <div class="d-flex">
+                            <img src="/src/ic-phone.png">
+                            <h6 class="m-0 ms-2">Random user1</h6>
+                        </div>
+                        <div class="rating d-flex align-items-center">
+                            <h6 class="m-0 me-2">5.0</h6>
+                            <i class="bi bi-star-fill text-warning me-1"></i>
+                            <i class="bi bi-star-fill text-warning me-1"></i>
+                            <i class="bi bi-star-fill text-warning me-1"></i>
+                            <i class="bi bi-star-fill text-warning me-1"></i>
+                            <i class="bi bi-star-fill text-warning me-1"></i>
+                        </div>
+                    </div>
                     <p>
-                        <?php echo $room_data['description'] ?>
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque, quam aperiam. Nulla, aut dolor dolores unde maiores neque quos ipsum?
                     </p>
                 </div>
 
-                <?php 
-                    echo <<<facilities
-                        <div class="mb-5">
-                            <h5 class='mb-3'>Facilities</h5>
-                            $facilities_data   
-                        </div>
-                    facilities;
-                ?>
-                
                 <?php
                 // $room_res = select("SELECT * FROM `rooms` WHERE `status`=? AND `removed`=?", [1, 0], 'ii');
 

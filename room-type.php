@@ -49,7 +49,7 @@
                 echo<<<data
                     <div class="col-lg-6 mb-4">
                         <div class="card text-center">
-                            <a class="text-decoration-none text-dark" href="room-type-superior.php">
+                            <a class="text-decoration-none text-dark" href="room_details.php?id=$room_data[id]">
                                 <img style="height: 320px;" src="$room_thumb" class="card-img-top image">
                                 <div class="card-body">
                                     <h3 class="card-title">$room_data[name]</h3>
