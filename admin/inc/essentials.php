@@ -9,6 +9,7 @@
     define('HOTEL_FACILITIES_IMG_PATH',SITE_URL.'src/hotel_facilities/');
     define('ROOMS_IMG_PATH',SITE_URL.'src/rooms/');
     define('GALLERY_IMG_PATH',SITE_URL.'src/gallery/');
+    define('USERS_IMG_PATH',SITE_URL.'src/users/');
 
 
     //backend 
@@ -21,6 +22,7 @@
     define('HOTEL_FACILITIES_FOLDER','hotel_facilities/');
     define('ROOMS_FOLDER','rooms/');
     define('GALLERY_FOLDER','gallery/');
+    define('USERS_FOLDER','users/');
 
     function adminLogin(){
         session_start();
@@ -102,6 +104,35 @@
         }
         else{
             return false;
+        }
+    }
+    
+    function uploadUserImage($image){
+        $valid_mime =['image/jpeg','image/png','image/wedp'];
+        $img_mime = $image['type'];
+
+        if(!in_array($img_mime,$valid_mime)){
+            return 'inv_img';
+        }
+        else{
+            $ext = pathinfo($image['name'],PATHINFO_EXTENSION);
+            $rname = 'IMG'.random_int(11111,99999).".jpeg";
+            $img_path = UPLOAD_IMAGE_PATH.USERS_FOLDER.$rname;
+            if($ext== 'png' || $ext == 'PNG'){
+                $img = imagecreatefrompng($image['tmp_name']);
+            }
+            else if($ext== 'webp' || $ext == 'WEBP'){
+                $img = imagecreatefromwebp($image['tmp_name']);
+            }
+            else{
+                $img = imagecreatefromjpeg($image['tmp_name']);
+            }
+            if(imagejpeg($img,$img_path,75)){
+                return $rname;
+            }
+            else{
+                return 'upd_failed';
+            }
         }
     }
 ?>

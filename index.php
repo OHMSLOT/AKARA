@@ -371,7 +371,6 @@
         </div>
     </section>
     <!-- Events section -->
-    <!-- <section class="event__container"> -->
     <section>
         <div class="container-fluid bg-dark">
             <div class="container">
@@ -427,13 +426,10 @@
             </div>
         </div>
     </section>
-    <!-- Modal -->
-    <?php require('inc/modal-login.php') ?>
-    <?php require('inc/modal-register.php') ?>
     <!-- footer -->
     <?php require('inc/footer.php') ?>
 </body>
-<?php require('inc/script.php') ?>
+
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
 <script>
