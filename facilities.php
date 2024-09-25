@@ -58,9 +58,6 @@
         </div>
     </div>
     <?php require('inc/footer.php') ?>
-    <?php require('inc/modal-login.php') ?>
-    <?php require('inc/modal-register.php') ?>
-</body>
-<?php require('inc/script.php') ?>
 
+</body>
 </html>

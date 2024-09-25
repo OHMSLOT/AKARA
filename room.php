@@ -103,10 +103,6 @@
                             </span>";
                     }
 
-                    // get description of room
-
-                    // $des_q = mysqli_query($con,"")
-
                     // get facilities of room
 
                     $fac_q = mysqli_query($con, "SELECT f.icon FROM `facilities` f INNER JOIN `room_facilities` rfac ON f.id = rfac.facilities_id WHERE rfac.room_id = '$room_data[id]'");

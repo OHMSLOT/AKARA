@@ -109,182 +109,70 @@
                 <div class="d-flex flex-wrap justify-content-between align-items-center py-5">
                     <h1 style="display: block;" class="text-light c-font fs-48 m-0">ROOM TYPE</h1>
                     <div>
-                        <a href="room-type.php" class="btn btn-outline-light c-font fs-18 fw-normal" style="width: auto; display: inline-block; border-radius: 0;">ALL events</a>
+                        <a href="room-type.php" class="btn btn-outline-light c-font fs-18 fw-normal" style="width: auto; display: inline-block; border-radius: 0;">ALL ROOMS</a>
                     </div>
                 </div>
 
                 <div class="row pb-5">
                     <swiper-container class="mySwiper" init="false">
-                        <swiper-slide>
-                            <div class="card text-start bg-dark border-dark text-light">
-                                <img src="src/LINE_ALBUM_Superior room Thai Akara_240716_1.jpg" style="height: 270px;" class="card-img-top image" alt="...">
-                                <div class="card-body px-0">
-                                    <h1 class="mb-3 c-font">Superior</h1>
-                                    <h4 class="c-font">Features</h4>
-                                    <div class="mb-3">
-                                        <span class="badge fs-14 fw-normal p-0 me-2">
-                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 50 m2
-                                        </span>
-                                        <span class="badge fs-14 fw-normal p-0 me-2">
-                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 1 beds
-                                        </span>
-                                        <span class="badge fs-14 fw-normal p-0 me-2">
-                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 1 bathroom
-                                        </span>
-                                        <span class="badge fs-14 fw-normal p-0 me-2">
-                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 1 balcony
-                                        </span>
-                                    </div>
-                                    <div class="card-footer bd-t px-0">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div>
-                                                <span class="c-font fs-20">Start from</span>
-                                                <h3 class="c-font">$1500/NIGHT</h3>
+                            <?php 
+                                $room_res = select("SELECT * FROM `rooms` WHERE `status`=? AND `removed`=?", [1, 0], 'ii');
+
+                                while ($room_data = mysqli_fetch_assoc($room_res)) {
+                                    // get features of room
+                
+                                    $fea_q = mysqli_query($con, "SELECT f.name FROM `features` f INNER JOIN `room_features` rfea on f.id = rfea.features_id WHERE rfea.room_id = '$room_data[id]'");
+                
+                                    $features_data = "";
+                                    while ($fea_row = mysqli_fetch_assoc($fea_q)) {
+                                        $features_data .= "<span class='badge fs-14 fw-normal p-0 me-2'>
+                                        <i style='font-size: 12px;' class='bi bi-record-fill'></i> $fea_row[name]
+                                    </span>";
+                                            
+                                    }
+                
+                                    // get thumbnail of room
+                
+                                    $room_thumb = ROOMS_IMG_PATH . "thumbnail.jpg";
+                                    $thumb_q = mysqli_query($con, "SELECT * FROM `room_images` WHERE `room_id`='$room_data[id]' AND `thumb`='1'");
+                
+                                    if (mysqli_num_rows($thumb_q) > 0) {
+                                        $thumb_res = mysqli_fetch_assoc($thumb_q);
+                                        $room_thumb = ROOMS_IMG_PATH . $thumb_res['image'];
+                                    }
+
+                                    // print card
+                                    
+                                    echo<<<data
+                                        <swiper-slide>
+                                            <div class="card text-start bg-dark border-dark text-light">
+                                                <img src="$room_thumb" style="height: 270px;" class="card-img-top image" alt="...">
+                                                <div class="card-body px-0">
+                                                    <h1 class="mb-3 c-font">$room_data[name]</h1>
+                                                    <h4 class="c-font">Features</h4>
+                                                    <div class="mb-3">
+                                                        <span class="badge fs-14 fw-normal p-0 me-2">
+                                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> $room_data[area] m2
+                                                        </span>
+                                                        $features_data
+                                                    </div>
+                                                    <div class="card-footer bd-t px-0">
+                                                        <div class="d-flex justify-content-between align-items-center">
+                                                            <div>
+                                                                <span class="c-font fs-20">Start from</span>
+                                                                <h3 class="c-font">฿$room_data[price]/NIGHT</h3>
+                                                            </div>
+                                                            <div>
+                                                                <a href="room_details.php?id=$room_data[id]" style="border-radius: 0;" class="btn btn-outline-light c-font px-4 fs-18">DETAIL</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div>
-                                                <a href="#" style="border-radius: 0;" class="btn btn-outline-light c-font px-4 fs-18">DETAIL</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </swiper-slide>
-                        <swiper-slide>
-                            <div class="card text-start bg-dark border-dark text-light">
-                                <img src="src/LINE_ALBUM_Superior room Thai Akara_240716_1.jpg" style="height: 270px;" class="card-img-top image" alt="...">
-                                <div class="card-body px-0">
-                                    <h1 class="mb-3 c-font">Superior</h1>
-                                    <h4 class="c-font">Features</h4>
-                                    <div class="mb-3">
-                                        <span class="badge fs-14 fw-normal p-0 me-2">
-                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 50 m2
-                                        </span>
-                                        <span class="badge fs-14 fw-normal p-0 me-2">
-                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 1 beds
-                                        </span>
-                                        <span class="badge fs-14 fw-normal p-0 me-2">
-                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 1 bathroom
-                                        </span>
-                                        <span class="badge fs-14 fw-normal p-0 me-2">
-                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 1 balcony
-                                        </span>
-                                    </div>
-                                    <div class="card-footer bd-t px-0">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div>
-                                                <span class="c-font fs-20">Start from</span>
-                                                <h3 class="c-font">$1500/NIGHT</h3>
-                                            </div>
-                                            <div>
-                                                <a href="#" style="border-radius: 0;" class="btn btn-outline-light c-font px-4 fs-18">DETAIL</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </swiper-slide>
-                        <swiper-slide>
-                            <div class="card text-start bg-dark border-dark text-light">
-                                <img src="src/LINE_ALBUM_Superior room Thai Akara_240716_1.jpg" style="height: 270px;" class="card-img-top image" alt="...">
-                                <div class="card-body px-0">
-                                    <h1 class="mb-3 c-font">Superior</h1>
-                                    <h4 class="c-font">Features</h4>
-                                    <div class="mb-3">
-                                        <span class="badge fs-14 fw-normal p-0 me-2">
-                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 50 m2
-                                        </span>
-                                        <span class="badge fs-14 fw-normal p-0 me-2">
-                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 1 beds
-                                        </span>
-                                        <span class="badge fs-14 fw-normal p-0 me-2">
-                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 1 bathroom
-                                        </span>
-                                        <span class="badge fs-14 fw-normal p-0 me-2">
-                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 1 balcony
-                                        </span>
-                                    </div>
-                                    <div class="card-footer bd-t px-0">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div>
-                                                <span class="c-font fs-20">Start from</span>
-                                                <h3 class="c-font">$1500/NIGHT</h3>
-                                            </div>
-                                            <div>
-                                                <a href="#" style="border-radius: 0;" class="btn btn-outline-light c-font px-4 fs-18">DETAIL</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </swiper-slide>
-                        <swiper-slide>
-                            <div class="card text-start bg-dark border-dark text-light">
-                                <img src="src/LINE_ALBUM_Superior room Thai Akara_240716_1.jpg" style="height: 270px;" class="card-img-top image" alt="...">
-                                <div class="card-body px-0">
-                                    <h1 class="mb-3 c-font">Superior</h1>
-                                    <h4 class="c-font">Features</h4>
-                                    <div class="mb-3">
-                                        <span class="badge fs-14 fw-normal p-0 me-2">
-                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 50 m2
-                                        </span>
-                                        <span class="badge fs-14 fw-normal p-0 me-2">
-                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 1 beds
-                                        </span>
-                                        <span class="badge fs-14 fw-normal p-0 me-2">
-                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 1 bathroom
-                                        </span>
-                                        <span class="badge fs-14 fw-normal p-0 me-2">
-                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 1 balcony
-                                        </span>
-                                    </div>
-                                    <div class="card-footer bd-t px-0">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div>
-                                                <span class="c-font fs-20">Start from</span>
-                                                <h3 class="c-font">$1500/NIGHT</h3>
-                                            </div>
-                                            <div>
-                                                <a href="#" style="border-radius: 0;" class="btn btn-outline-light c-font px-4 fs-18">DETAIL</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </swiper-slide>
-                        <swiper-slide>
-                            <div class="card text-start bg-dark border-dark text-light">
-                                <img src="src/LINE_ALBUM_Superior room Thai Akara_240716_1.jpg" style="height: 270px;" class="card-img-top image" alt="...">
-                                <div class="card-body px-0">
-                                    <h1 class="mb-3 c-font">Superior</h1>
-                                    <h4 class="c-font">Features</h4>
-                                    <div class="mb-3">
-                                        <span class="badge fs-14 fw-normal p-0 me-2">
-                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 50 m2
-                                        </span>
-                                        <span class="badge fs-14 fw-normal p-0 me-2">
-                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 1 beds
-                                        </span>
-                                        <span class="badge fs-14 fw-normal p-0 me-2">
-                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 1 bathroom
-                                        </span>
-                                        <span class="badge fs-14 fw-normal p-0 me-2">
-                                            <i style="font-size: 12px;" class="bi bi-record-fill"></i> 1 balcony
-                                        </span>
-                                    </div>
-                                    <div class="card-footer bd-t px-0">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div>
-                                                <span class="c-font fs-20">Start from</span>
-                                                <h3 class="c-font">$1500/NIGHT</h3>
-                                            </div>
-                                            <div>
-                                                <a href="#" style="border-radius: 0;" class="btn btn-outline-light c-font px-4 fs-18">DETAIL</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </swiper-slide>
+                                        </swiper-slide>
+                                    data;
+                                }    
+                            ?>
                         <swiper-slide>
                             <div class="card text-start bg-dark border-dark text-light">
                                 <img src="src/LINE_ALBUM_Superior room Thai Akara_240716_1.jpg" style="height: 270px;" class="card-img-top image" alt="...">

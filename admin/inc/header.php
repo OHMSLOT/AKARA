@@ -30,6 +30,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="user.php" class="nav-link text-white">
+                        <i class="bi bi-image me-2"></i>
+                            Users
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="settings.php" class="nav-link text-white">
                         <i class="bi bi-gear me-2"></i>
                             Settings

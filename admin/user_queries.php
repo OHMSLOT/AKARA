@@ -139,7 +139,7 @@ if(isset($_GET['del']))
         </div>
     </div>
 
-    <?php include 'inc/script.php'; ?>
+    <?php require('inc/script.php') ?>
 
 </body>
 

@@ -5,6 +5,16 @@ require('admin/inc/essentials.php');
 $contact_q = "SELECT * FROM `contact_details` WHERE `sr_no`=?";
 $values = [1];
 $contact_r = mysqli_fetch_assoc(select($contact_q, $values, 'i'));
+
+if(isset($_COOKIE['login_email'])&& isset($_COOKIE['login_password'])){
+    $id = $_COOKIE['login_email'];
+    $pass = $_COOKIE['login_password'];
+}
+else{
+    $id = "";
+    $pass = "";
+}
+
 ?>
 
 <nav class="py-2 bg-light border-bottom custom-border border-2">
@@ -17,10 +27,32 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values, 'i'));
                 <i style="font-size: 20px;" class="bi bi-envelope-fill me-2"></i>reservation@thaiakara.com
             </div>
         </ul>
-        <ul class="nav">
-            <button type="button" class="btn custom-outline-bg text-p me-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
-            <button type="button" class="btn custom-bg text-light" data-bs-toggle="modal" data-bs-target="#registerModal">Sign-up</button>
-        </ul>
+        <?php
+            if (isset($_SESSION['login']) && $_SESSION['login'] == true) {
+                $path = USERS_IMG_PATH;
+                echo<<<data
+                <div class="btn-group">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                        <img src="$path$_SESSION[uPic]" class="me-1 rounded-5" style="width: 25px; height: 25px;">
+                        $_SESSION[uName]
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-lg-end">
+                        <li><a class="dropdown-item" href="profile.php">Profile</a></li>
+                        <li><a class="dropdown-item" href="bookings.php">Bookings</a></li>
+                        <li><a class="dropdown-item" href="logout.php">logout</a></li>
+                    </ul>
+                </div>
+                data;
+            }
+            else{
+                echo<<<data
+                    <ul class="nav">
+                        <button type="button" class="btn custom-outline-bg text-p me-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+                        <button type="button" class="btn custom-bg text-light" data-bs-toggle="modal" data-bs-target="#registerModal">Sign-up</button>
+                    </ul>
+                data;
+            }
+        ?> 
     </div>
 </nav>
 <!-- banner section -->
@@ -121,7 +153,7 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values, 'i'));
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="loginModal">
+<!-- <div class="modal fade" id="loginModal">
     <div class="modal-dialog" role="document">
         <div class="modal-content rounded-4 shadow">
             <div class="modal-header p-5 pb-4 border-bottom-0">
@@ -139,30 +171,71 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values, 'i'));
                         <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password">
                         <label for="floatingPassword">Password</label>
                     </div>
-                    <button class="btn w-100 mb-2 btn-lg rounded-3 custom-bg text-white" type="submit">Sign up</button>
-                    <small class="text-body-secondary">By clicking Sign up, you agree to the terms of use.</small>
-                    <!-- <hr class="my-4">
-                    <h2 class="fs-5 fw-bold mb-3">Or use a third-party</h2>
-                    <button class="w-100 py-2 mb-2 btn btn-outline-secondary rounded-3" type="submit">
-                        <svg class="bi me-1" width="16" height="16">
-                            <use xlink:href="#twitter"></use>
-                        </svg>
-                        Sign up with Twitter
-                    </button>
-                    <button class="w-100 py-2 mb-2 btn btn-outline-primary rounded-3" type="submit">
-                        <svg class="bi me-1" width="16" height="16">
-                            <use xlink:href="#facebook"></use>
-                        </svg>
-                        Sign up with Facebook
-                    </button>
-                    <button class="w-100 py-2 mb-2 btn btn-outline-secondary rounded-3" type="submit">
-                        <svg class="bi me-1" width="16" height="16">
-                            <use xlink:href="#github"></use>
-                        </svg>
-                        Sign up with GitHub
-                    </button> -->
+                    <button class="btn w-100 mb-2 btn-lg rounded-3 custom-bg text-white" type="submit">Sign up</button> 
                 </form>
             </div>
+        </div>
+    </div>
+</div> -->
+
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="login_form">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="loginModalLabel">Login</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-floating mb-4 mt-3">
+                        <input type="email" class="form-control" id="loginEmail" name="login_email" placeholder="Enter your email" value="<?php echo $id ?>" required>
+                        <label for="floatingInput">Email address</label>
+                    </div>
+                    <div class="form-floating mb-4">
+                        <input type="password" class="form-control" id="loginPassword" name="login_password" placeholder="Enter your password" value="<?php echo $pass ?>" required>
+                        <label for="floatingPassword">Password</label>
+                    </div>
+                    <div class="d-flex justify-content-between mt-4">
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberMe" name="rememberMe">
+                            <label class="form-check-label" for="rememberMe">Remember me</label>
+                        </div>
+                        <div class="mb-3">
+                            <!-- <a href="#" id="forgotPasswordLink">Forgot password?</a> -->
+                            <button type="button" class="btn text-secondary text-decoration-none shadow-none p-0" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal" data-bs-dismiss="modal">Forgot password?</button>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-lg custom-bg text-white w-100">Login</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- Forgot Password Modal -->
+<div class="modal fade" id="forgotPasswordModal" tabindex="-1" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="forgot_password_form">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="forgotPasswordModalLabel">Forgot Password</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="resetEmail" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="resetEmail" name="email" placeholder="Enter your email to reset password" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Send Reset Link</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

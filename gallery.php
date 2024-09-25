@@ -160,13 +160,6 @@
         </div>
     </div>
 
-    <?php require('inc/modal-login.php') ?>
-    <?php require('inc/modal-register.php') ?>
     <?php require('inc/footer.php') ?>
 </body>
-<?php require('inc/script.php') ?>
-<script>
-
-</script>
-
 </html>

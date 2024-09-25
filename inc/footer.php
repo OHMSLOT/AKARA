@@ -58,9 +58,7 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values, 'i'));
 <?php include 'inc/script.php'; ?>
 
 <script>
-
-    function alert(type,msg,position='body')
-    {
+    function alert(type, msg, position = 'body') {
         let bs_class = (type == 'success') ? 'alert-success' : 'alert-danger';
         let element = document.createElement('div');
         element.innerHTML = `
@@ -70,16 +68,16 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values, 'i'));
             </div>
         `;
 
-        if(position=='body'){
+        if (position == 'body') {
             document.body.append(element);
             element.classList.add('custom-alert');
-        }else{
+        } else {
             document.getElementById(position).appendChild(element);
         }
         setTimeout(remAlert, 2000);
     }
 
-    function remAlert(){
+    function remAlert() {
         document.getElementsByClassName('alert')[0].remove();
     }
 
@@ -87,12 +85,15 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values, 'i'));
         let navbar = document.getElementById('nav-bar-menu');
         let a_tags = navbar.getElementsByTagName('a');
 
-        for (i = 0; i < a_tags.length; i++) {
-            let file = a_tags[i].href.split('/').pop();
-            let file_name = file.split('.')[0];
+        // ดึง path ของไฟล์จาก URL ปัจจุบัน
+        let currentPage = window.location.pathname.split("/").pop();
 
-            if (document.location.href.indexOf(file_name) >= 0) {
-                a_tags[i].classList.add('active');
+        for (let i = 0; i < a_tags.length; i++) {
+            let file = a_tags[i].href.split("/").pop(); // ดึงชื่อไฟล์จาก href ของแต่ละลิงก์
+
+            // ตรวจสอบว่าชื่อไฟล์ตรงกับ URL ปัจจุบันหรือไม่
+            if (file === currentPage) {
+                a_tags[i].classList.add('active'); // ถ้าตรงกัน เพิ่มคลาส active
             }
         }
     }
@@ -101,7 +102,7 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values, 'i'));
 
     register_form.addEventListener("submit", function(e) {
         e.preventDefault();
-        
+
         let data = new FormData();
         data.append("picture", register_form.elements["picture"].files[0]);
         data.append("name", register_form.elements["name"].value);
@@ -141,6 +142,76 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values, 'i'));
         };
         xhr.send(data);
     });
+
+    let login_form = document.getElementById("login_form");
+
+    login_form.addEventListener("submit", function(e) {
+        e.preventDefault(); // ป้องกันการรีเฟรชหน้า
+
+        let email = login_form.elements["login_email"].value;
+        let password = login_form.elements["login_password"].value;
+        let rememberMe = document.getElementById("rememberMe").checked ? 1 : 0; // ตรวจสอบว่า Remember Me ถูกเลือกหรือไม่
+
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "ajax/login.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        xhr.onload = function() {
+            if (this.responseText === "inv_email") {
+                alert("error", "Invalid Email");
+            } else if (this.responseText === "inv_pass") {
+                alert("error", "Incorrect Password!");
+            } else if (this.responseText === "login_success") {
+
+                // Remember me option
+                if (rememberMe) {
+                    localStorage.setItem("email", email);
+                } else {
+                    localStorage.removeItem("email");
+                }
+
+                // Refresh the page or redirect to another page
+                window.location.reload(); // รีเฟรชหน้า
+            } else {
+                alert("Error: " + this.responseText);
+            }
+        };
+
+        // ส่งข้อมูลไปยังเซิร์ฟเวอร์
+        xhr.send(`login_email=${email}&login_password=${password}&remember_me=${rememberMe}&login=1`);
+    });
+
+    let forgot_password_form = document.getElementById("forgot_password_form");
+
+    forgot_password_form.addEventListener("submit", function(e) {
+        e.preventDefault(); // ป้องกันการรีเฟรชหน้า
+
+        let email = document.getElementById("resetEmail").value;
+
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "ajax/forgot_password.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        xhr.onload = function() {
+            if (this.responseText === "email_sent") {
+                alert("Reset link has been sent to your email.");
+            } else {
+                alert("Error: " + this.responseText);
+            }
+        };
+
+        // ส่งข้อมูลไปยังเซิร์ฟเวอร์
+        xhr.send(`reset_email=${email}`);
+    });
+
+
+    window.onload = function() {
+        if (localStorage.getItem('login_email') && localStorage.getItem('login_password')) {
+            document.getElementById("loginEmail").value = localStorage.getItem('login_email');
+            document.getElementById("loginPassword").value = localStorage.getItem('login_password');
+            document.getElementById("rememberMe").checked = true;
+        }
+    }
 
     setActive();
 </script>

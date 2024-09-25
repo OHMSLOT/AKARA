@@ -1,6 +1,6 @@
-<?php
-require('../admin/inc/db_config.php'); 
-require('../admin/inc/essentials.php'); 
+    <?php
+    require('../admin/inc/db_config.php'); 
+    require('../admin/inc/essentials.php'); 
 
 if (isset($_POST['register'])) {
     // กรองข้อมูลจากฟอร์ม
@@ -62,4 +62,5 @@ if (isset($_POST['register'])) {
         }
     }
 }
+
 ?>
