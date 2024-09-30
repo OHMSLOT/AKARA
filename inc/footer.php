@@ -181,29 +181,42 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values, 'i'));
         xhr.send(`login_email=${email}&login_password=${password}&remember_me=${rememberMe}&login=1`);
     });
 
-    let forgot_password_form = document.getElementById("forgot_password_form");
+    function checkLoginToBook(status, room_id) {
+        if (status) {
+            window.location.href = 'confirm_booking.php?id=' + room_id;
+        } else {
+            alert("error", "Plese Login to booking");
+        }
+    }
 
-    forgot_password_form.addEventListener("submit", function(e) {
-        e.preventDefault(); // ป้องกันการรีเฟรชหน้า
+    document.getElementById('sendResetLinkBtn').addEventListener('click', function() {
+        var email = document.getElementById('resetEmail').value;
 
-        let email = document.getElementById("resetEmail").value;
+        if (email.trim() === "") {
+            alert("Please enter your email address.");
+            return;
+        }
 
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", "ajax/forgot_password.php", true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'ajax/forgot_password.php', true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
         xhr.onload = function() {
-            if (this.responseText === "email_sent") {
-                alert("Reset link has been sent to your email.");
+            if (this.status == 200) {
+                var response = this.responseText.trim(); // รับข้อมูล response จาก PHP
+                alert(response);
+                if (response.includes('ข้อความได้ถูกส่งไปยังอีเมลของคุณ')) {
+                    // ปิด modal หลังจากที่ส่งข้อความสำเร็จ
+                    $('#forgotPasswordModal').modal('hide');
+                }
             } else {
-                alert("Error: " + this.responseText);
+                alert('An error occurred while processing the request.');
             }
         };
 
-        // ส่งข้อมูลไปยังเซิร์ฟเวอร์
-        xhr.send(`reset_email=${email}`);
+        // ส่งข้อมูล email ไปยัง PHP ผ่าน POST request
+        xhr.send('email=' + encodeURIComponent(email));
     });
-
 
     window.onload = function() {
         if (localStorage.getItem('login_email') && localStorage.getItem('login_password')) {

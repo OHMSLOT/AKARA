@@ -111,11 +111,9 @@
         </div>
     </div>
 
-    <?php require('inc/modal-login.php'); ?>
-    <?php require('inc/modal-register.php'); ?>
     <?php require('inc/footer.php'); ?>
 </body>
-<?php require('inc/script.php'); ?>
+
 
 <script>
     // JavaScript เพื่อให้ Carousel เปิดที่ภาพที่คลิก

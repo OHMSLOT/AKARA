@@ -42,7 +42,7 @@
     $room_res = select("SELECT * FROM `rooms` WHERE `id`=? AND `status`=? AND `removed`=?", [$data['id'], 1, 0], 'iii');
 
     if (mysqli_num_rows($room_res) == 0) {
-        redirect('rooms.php');
+        redirect('room.php');
     }
 
     $room_data = mysqli_fetch_assoc($room_res);
@@ -233,7 +233,7 @@
                             area;
 
                         echo <<<book
-                                    <a href="#" class="btn w-100 text-white custom-bg shadow-none mb-2">Book Now</a>
+                               <button onclick="bookRoom($room_data[id])" class="btn w-100 text-white custom-bg shadow-none mb-2">Book Now</button>                                        
                             book;
 
                         ?>
@@ -345,10 +345,28 @@
         </div>
     </div>
 
-    <?php require('inc/modal-login.php') ?>
-    <?php require('inc/modal-register.php') ?>
     <?php require('inc/footer.php') ?>
 </body>
-<?php require('inc/script.php') ?>
+<script>
+    function bookRoom(roomId) {
+        // ตรวจสอบสถานะการล็อกอินก่อนทำการจองห้อง
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "ajax/check_login.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        xhr.onload = function() {
+            if (this.responseText == "not_logged_in") {
+                alert("error", "Please login before booking a room.");
+            } else if (this.responseText == "logged_in") {
+                // ดำเนินการจองห้องที่นี่
+                alert("success", "Proceed with booking room ID: " + roomId);
+                // คุณสามารถเพิ่มโค้ดสำหรับจองห้องได้ที่นี่
+                window.location.href = 'confirm_booking.php?id=' + roomId;
+            }
+        };
+
+        xhr.send("room_id=" + roomId);
+    }
+</script>
 
 </html>

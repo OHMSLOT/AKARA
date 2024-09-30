@@ -71,6 +71,12 @@
                             Hotel Facilities
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="booking_management.php" class="nav-link text-white">
+                        <i class="bi bi-gear me-2"></i>
+                            booking
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

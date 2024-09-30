@@ -83,17 +83,17 @@
             </div>
             <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
                 <div class="carousel-inner">
-                    <?php 
-                        $res = selectAll('carousel');
+                    <?php
+                    $res = selectAll('carousel');
 
-                        while ($row = mysqli_fetch_assoc($res)) {
-                            $path = CAROUSEL_IMG_PATH;
-                            echo <<<data
+                    while ($row = mysqli_fetch_assoc($res)) {
+                        $path = CAROUSEL_IMG_PATH;
+                        echo <<<data
                                 <div class="carousel-item active">
                                     <img src="$path$row[image]" style="max-height: 700px;" class="d-block w-100 image img-fluid" alt="...">
                                 </div>
                             data;
-                        }   
+                    }
                     ?>
                 </div>
             </div>
@@ -115,35 +115,34 @@
 
                 <div class="row pb-5">
                     <swiper-container class="mySwiper" init="false">
-                            <?php 
-                                $room_res = select("SELECT * FROM `rooms` WHERE `status`=? AND `removed`=?", [1, 0], 'ii');
+                        <?php
+                        $room_res = select("SELECT * FROM `rooms` WHERE `status`=? AND `removed`=?", [1, 0], 'ii');
 
-                                while ($room_data = mysqli_fetch_assoc($room_res)) {
-                                    // get features of room
-                
-                                    $fea_q = mysqli_query($con, "SELECT f.name FROM `features` f INNER JOIN `room_features` rfea on f.id = rfea.features_id WHERE rfea.room_id = '$room_data[id]'");
-                
-                                    $features_data = "";
-                                    while ($fea_row = mysqli_fetch_assoc($fea_q)) {
-                                        $features_data .= "<span class='badge fs-14 fw-normal p-0 me-2'>
+                        while ($room_data = mysqli_fetch_assoc($room_res)) {
+                            // get features of room
+
+                            $fea_q = mysqli_query($con, "SELECT f.name FROM `features` f INNER JOIN `room_features` rfea on f.id = rfea.features_id WHERE rfea.room_id = '$room_data[id]'");
+
+                            $features_data = "";
+                            while ($fea_row = mysqli_fetch_assoc($fea_q)) {
+                                $features_data .= "<span class='badge fs-14 fw-normal p-0 me-2'>
                                         <i style='font-size: 12px;' class='bi bi-record-fill'></i> $fea_row[name]
                                     </span>";
-                                            
-                                    }
-                
-                                    // get thumbnail of room
-                
-                                    $room_thumb = ROOMS_IMG_PATH . "thumbnail.jpg";
-                                    $thumb_q = mysqli_query($con, "SELECT * FROM `room_images` WHERE `room_id`='$room_data[id]' AND `thumb`='1'");
-                
-                                    if (mysqli_num_rows($thumb_q) > 0) {
-                                        $thumb_res = mysqli_fetch_assoc($thumb_q);
-                                        $room_thumb = ROOMS_IMG_PATH . $thumb_res['image'];
-                                    }
+                            }
 
-                                    // print card
-                                    
-                                    echo<<<data
+                            // get thumbnail of room
+
+                            $room_thumb = ROOMS_IMG_PATH . "thumbnail.jpg";
+                            $thumb_q = mysqli_query($con, "SELECT * FROM `room_images` WHERE `room_id`='$room_data[id]' AND `thumb`='1'");
+
+                            if (mysqli_num_rows($thumb_q) > 0) {
+                                $thumb_res = mysqli_fetch_assoc($thumb_q);
+                                $room_thumb = ROOMS_IMG_PATH . $thumb_res['image'];
+                            }
+
+                            // print card
+
+                            echo <<<data
                                         <swiper-slide>
                                             <div class="card text-start bg-dark border-dark text-light">
                                                 <img src="$room_thumb" style="height: 270px;" class="card-img-top image" alt="...">
@@ -171,8 +170,8 @@
                                             </div>
                                         </swiper-slide>
                                     data;
-                                }    
-                            ?>
+                        }
+                        ?>
                         <swiper-slide>
                             <div class="card text-start bg-dark border-dark text-light">
                                 <img src="src/LINE_ALBUM_Superior room Thai Akara_240716_1.jpg" style="height: 270px;" class="card-img-top image" alt="...">
@@ -267,7 +266,7 @@
                 </div>
                 <div class="row pb-5">
 
-                <?php
+                    <?php
                     // เรียกใช้งานฟังก์ชัน selectAll()
                     $event_res = selectAll('events');
 
@@ -297,7 +296,7 @@
                         </div>
                     data;
                     }
-                ?>
+                    ?>
 
                 </div>
             </div>

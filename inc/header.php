@@ -215,27 +215,27 @@ else{
     </div>
 </div>
 
-
 <!-- Forgot Password Modal -->
 <div class="modal fade" id="forgotPasswordModal" tabindex="-1" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form id="forgot_password_form">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="forgotPasswordModalLabel">Forgot Password</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
+            <div class="modal-header">
+                <h5 class="modal-title" id="forgotPasswordModalLabel">Forgot Password</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="forgotPasswordForm">
                     <div class="mb-3">
                         <label for="resetEmail" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="resetEmail" name="email" placeholder="Enter your email to reset password" required>
+                        <input type="email" class="form-control" id="resetEmail" name="reset_email" placeholder="Enter your email to reset password" required>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Send Reset Link</button>
-                </div>
-            </form>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="sendResetLinkBtn">Send Reset Link</button>
+            </div>
         </div>
     </div>
 </div>
+

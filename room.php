@@ -153,7 +153,7 @@
                                             <i style="font-size: 24px;" class="ri-team-fill"></i>
                                         </span>
                                         <h4 class="mb-2">฿$room_data[price]</h4>
-                                        <a href="#" style="border-radius: 0;" class="btn btn-sm w-100 text-white custom-bg shadow-none mb-2">Book Now</a>
+                                        <button onclick="bookRoom($room_data[id])" style="border-radius: 0;" class="btn btn-sm w-100 text-white custom-bg shadow-none mb-2">Book Now</button>                                        
                                         <a href="room_details.php?id=$room_data[id]" style="border-radius: 0;" class="btn btn-sm w-100 text-p custom-outline-bg shadow-none">More Info</a>
                                     </div>
                                 </div>
@@ -162,7 +162,7 @@
                 }
                 ?>
 
-                <div class="card mb-4 border-0 shadow"> 
+                <div class="card mb-4 border-0 shadow">
                     <div class="row g-0 p-3 align-items-center">
                         <div class="col-md-5 mb-lg-0 mb-md-0 mb-3">
                             <img src="src/LINE_ALBUM_Superior room Thai Akara_240716_1.jpg" style="max-height: 320px;" class="img-fluid image rounded" alt="...">
@@ -220,10 +220,29 @@
         </div>
     </div>
 
-    <?php require('inc/modal-login.php') ?>
-    <?php require('inc/modal-register.php') ?>
     <?php require('inc/footer.php') ?>
 </body>
-<?php require('inc/script.php') ?>
+<script>
+    function bookRoom(roomId) {
+    // ตรวจสอบสถานะการล็อกอินก่อนทำการจองห้อง
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "ajax/check_login.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    xhr.onload = function () {
+        if (this.responseText == "not_logged_in") {
+            alert("error","Please login before booking a room.");
+        } else if (this.responseText == "logged_in") {
+            // ดำเนินการจองห้องที่นี่
+            alert("success","Proceed with booking room ID: " + roomId);
+            // คุณสามารถเพิ่มโค้ดสำหรับจองห้องได้ที่นี่
+            window.location.href = 'confirm_booking.php?id=' + roomId;
+        }
+    };
+
+    xhr.send("room_id=" + roomId);
+}
+
+</script>
 
 </html>
