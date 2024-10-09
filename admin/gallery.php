@@ -15,39 +15,47 @@ adminLogin();
 
 <body class="bg-light">
     <?php include 'inc/header.php'; ?>
+    <div id="layoutSidenav">
+        <!-- side navbar -->
+        <?php include_once "inc/sidenav.php"; ?>
+        <!-- main content -->
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid" id="main-content">
+                    <div class="row">
+                        <div class="col-lg-12 p-4 overflow-hidden">
+                            <h3 class="mb-4">GALLERY</h3>
 
-    <div class="container-fluid" id="main-content">
-        <div class="row">
-            <div class="col-lg-10 ms-auto p-4 overflow-hidden">
-                <h3 class="mb-4">GALLERY</h3>
+                            <div class="card border-0 shadow-sm mb-4">
+                                <div class="card-body">
 
-                <div class="card border-0 shadow-sm mb-4">
-                    <div class="card-body">
+                                    <div class="text-end mb-3">
+                                        <button type="button" class="btn btn-dark shadow-none btn-sm" data-bs-toggle="modal" data-bs-target="#gallery">
+                                            <i class="bi bi-plus-square"></i>
+                                            Add
+                                        </button>
+                                    </div>
 
-                        <div class="text-end mb-3">
-                            <button type="button" class="btn btn-dark shadow-none btn-sm" data-bs-toggle="modal" data-bs-target="#gallery">
-                                <i class="bi bi-plus-square"></i>
-                                Add
-                            </button>
+                                    <div class="table-responsive-md" style="height: 650px; overflow-y: scroll;">
+                                        <table class="table table-hover border">
+                                            <thead class="table-dark">
+                                                <tr>
+                                                    <th scope="col" width="10%">#</th>
+                                                    <th scope="col" width="65%">Name</th>
+                                                    <th scope="col">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="gallery-data">
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
-
-                        <div class="table-responsive-md" style="height: 650px; overflow-y: scroll;">
-                            <table class="table table-hover border">
-                                <thead class="table-dark">
-                                    <tr>
-                                        <th scope="col" width="10%">#</th>
-                                        <th scope="col" width="65%">Name</th>
-                                        <th scope="col">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="gallery-data">
-                                </tbody>
-                            </table>
-                        </div>
-
                     </div>
                 </div>
-            </div>
+            </main>
         </div>
     </div>
 

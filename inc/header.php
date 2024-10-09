@@ -1,6 +1,6 @@
 <?php
-require('admin/inc/db_config.php');
-require('admin/inc/essentials.php');
+require_once('admin/inc/db_config.php');
+require_once('admin/inc/essentials.php');
 
 $contact_q = "SELECT * FROM `contact_details` WHERE `sr_no`=?";
 $values = [1];
@@ -32,7 +32,7 @@ else{
                 $path = USERS_IMG_PATH;
                 echo<<<data
                 <div class="btn-group">
-                    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                    <button type="button" class="btn custom-outline-bg text-p dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
                         <img src="$path$_SESSION[uPic]" class="me-1 rounded-5" style="width: 25px; height: 25px;">
                         $_SESSION[uName]
                     </button>
@@ -89,7 +89,7 @@ else{
     </div>
 </nav>
 
-<!-- Modal -->
+<!-- Register Modal -->
 <div class="modal fade" id="registerModal" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">

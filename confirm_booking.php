@@ -118,7 +118,7 @@
             <div class="col-4">
                 <div class="card">
                     <div class="card-body">
-                        <form action="checkout_form.php" method="POST">
+                        <form action="checkout_form.php" method="POST" id="bookingForm">
                             <div class="d-flex mb-4">
                                 <h2 class='mt-1 me-2'><?php echo $room_data['name'] ?></h2>
                                 <div class='d-flex align-items-center'>
@@ -142,11 +142,12 @@
                                 <h4 class='mt-1'>฿<?php echo $room_data['price'] ?></h4>
                             </div>
                             <!-- ส่งข้อมูลการจองไปยังหน้า checkout_form.php -->
+                            <input type="hidden" name="room_id" value="<?php echo $room_data['id']; ?>">
                             <input type="hidden" name="roomName" value="<?php echo $room_data['name']; ?>">
+                            <input type="hidden" name="checkin" id="hiddenCheckin" value="">
+                            <input type="hidden" name="checkout" id="hiddenCheckout" value="">
                             <input type="hidden" name="price" value="<?php echo $room_data['price']; ?>">
-
-                            <button type="submit" class="btn w-100 text-white custom-bg shadow-none mb-2">Book Now</button>
-                            <!-- <button type="button" class="btn w-100 text-white custom-bg shadow-none mb-2" id="bookNowBtn" onclick="openBookingModal()" disabled>Book Now</button> -->
+                            <button type="submit" id="bookNowBtn" class="btn w-100 text-white custom-bg shadow-none mb-2" disabled>Book Now</button>
                         </form>
                     </div>
                 </div>
@@ -186,7 +187,7 @@
                 <div>
                     <div class="d-flex align-items-center justify-content-between mb-2">
                         <div class="d-flex">
-                            <img src="/src/ic-phone.png">
+                            <img src="src/users/IMG89899.jpeg" style="width: 25px;">
                             <h6 class="m-0 ms-2">Random user1</h6>
                         </div>
                         <div class="rating d-flex align-items-center">
@@ -210,16 +211,19 @@
     <?php require('inc/footer.php') ?>
 </body>
 <script>
-    // ฟังก์ชันตรวจสอบห้องว่างผ่าน AJAX
     document.getElementById('checkin').addEventListener('change', checkAvailability);
     document.getElementById('checkout').addEventListener('change', checkAvailability);
 
     function checkAvailability() {
         var checkin = document.getElementById('checkin').value;
         var checkout = document.getElementById('checkout').value;
-        var roomId = 1; // คุณสามารถเปลี่ยน roomId ตามที่ต้องการ
+        var roomId = "<?php echo $room_data['id']; ?>"; // ใช้ room_id แทน room_name
         var bookNowBtn = document.getElementById('bookNowBtn');
         var availabilityMsg = document.getElementById('availability-msg');
+
+        // Update the hidden inputs with the selected dates
+        document.getElementById('hiddenCheckin').value = checkin;
+        document.getElementById('hiddenCheckout').value = checkout;
 
         if (checkin && checkout) {
             // ส่ง request AJAX เพื่อตรวจสอบห้องว่าง
@@ -231,21 +235,22 @@
                     availabilityMsg.innerHTML = 'Room is available!';
                     availabilityMsg.classList.remove('text-danger');
                     availabilityMsg.classList.add('text-success');
-                    bookNowBtn.disabled = false; // เปิดใช้งานปุ่ม
+                    bookNowBtn.disabled = false; // Enable the button
                 } else {
                     availabilityMsg.innerHTML = 'Room is not available for the selected dates!';
                     availabilityMsg.classList.remove('text-success');
                     availabilityMsg.classList.add('text-danger');
-                    bookNowBtn.disabled = true; // ปิดการใช้งานปุ่ม
+                    bookNowBtn.disabled = true; // Disable the button
                 }
             };
-            xhr.send("checkin=" + checkin + "&checkout=" + checkout + "&room_id=" + roomId);
+            xhr.send("checkin=" + checkin + "&checkout=" + checkout + "&room_id=" + roomId); // เปลี่ยนเป็น room_id
         } else {
             availabilityMsg.innerHTML = 'Please select both check-in and check-out dates!';
             availabilityMsg.classList.add('text-danger');
             bookNowBtn.disabled = true;
         }
     }
+
 
     // function openBookingModal() {
     //     // ดึงข้อมูลจาก input ของวันที่

@@ -10,8 +10,7 @@
         die("Cannot Connect to Database" . mysqli_connect());
     }
 
-    function filteration($data)
-    {
+    function filteration($data) {
         foreach ($data as $key => $value) {
             $value = trim($value);
             $value = stripslashes($value);
@@ -21,6 +20,7 @@
         }
         return $data;
     }
+    
 
     function select($sql, $values, $datatypes)
     {

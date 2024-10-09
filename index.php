@@ -24,6 +24,13 @@
         .fs-18 {
             font-size: 18px;
         }
+
+        .custom-form {
+            background-color: transparent;
+            border-radius: 0;
+            border: 0;
+            border-bottom: 2px solid #000000;
+        }
     </style>
 </head>
 
@@ -39,19 +46,19 @@
         <div class="container search-form">
             <div class="row">
                 <div class="col-lg-10 col-md-10 col-sm-10 custom_bg mx-auto py-4 px-5">
-                    <form>
+                    <form action="room.php" method="GET">
                         <div class="row align-items-end">
                             <div class="col-lg-3 mb-2">
                                 <label class="form-label fw-medium">Check-in</label>
-                                <input type="date" class="form-control shadow-none">
+                                <input type="date" name="checkin" class="form-control shadow-none custom-form" required>
                             </div>
                             <div class="col-lg-3 mb-2">
                                 <label class="form-label fw-medium">Check-out</label>
-                                <input type="date" class="form-control shadow-none">
+                                <input type="date" name="checkout" class="form-control shadow-none custom-form" required>
                             </div>
                             <div class="col-lg-3 mb-2">
                                 <label class="form-label fw-medium">Adult</label>
-                                <select class="form-select shadow-none">
+                                <select name="adult" class="form-select shadow-none custom-form">
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -59,17 +66,19 @@
                             </div>
                             <div class="col-lg-2 mb-2">
                                 <label class="form-label fw-medium">Children</label>
-                                <select class="form-select shadow-none">
+                                <select name="children" class="form-select shadow-none custom-form">
+                                    <option value="0">0</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                 </select>
                             </div>
                             <div class="col-lg-1 mb-lg-2 mt-3">
-                                <button type="submit" class="btn btn-light text-dark shadow-none">Search</button>
+                                <button type="submit" style="border-radius: 0;" class="btn btn-dark text-white shadow-none">Search</button>
                             </div>
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>

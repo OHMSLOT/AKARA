@@ -17,72 +17,81 @@ adminLogin();
 <body class="bg-light">
 
     <?php include 'inc/header.php'; ?>
+    <div id="layoutSidenav">
+        <!-- side navbar -->
+        <?php include_once "inc/sidenav.php"; ?>
+        <!-- main content -->
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid" id="main-content">
+                    <div class="row">
+                        <div class="col-lg-12 ms-auto p-4 overflow-hidden">
+                            <h3 class="mb-4">Features & Facilities</h3>
 
-    <div class="container-fluid" id="main-content">
-        <div class="row">
-            <div class="col-lg-10 ms-auto p-4 overflow-hidden">
-                <h3 class="mb-4">Features & Facilities</h3>
+                            <div class="card border-0 shadow-sm mb-4">
+                                <div class="card-body">
 
-                <div class="card border-0 shadow-sm mb-4">
-                    <div class="card-body">
+                                    <div class="d-flex align-items-center justify-content-between mb-3">
+                                        <h5 class="card-title m-0">Features</h5>
+                                        <button type="button" class="btn btn-dark shadow-none btn-sm" data-bs-toggle="modal" data-bs-target="#feature-s">
+                                            <i class="bi bi-plus-square"></i>
+                                            Add
+                                        </button>
+                                    </div>
 
-                        <div class="d-flex align-items-center justify-content-between mb-3">
-                            <h5 class="card-title m-0">Features</h5>
-                            <button type="button" class="btn btn-dark shadow-none btn-sm" data-bs-toggle="modal" data-bs-target="#feature-s">
-                                <i class="bi bi-plus-square"></i>
-                                Add
-                            </button>
+                                    <div class="table-responsive-md" style="height: 250px; overflow-y: scroll;">
+                                        <table class="table table-hover border">
+                                            <thead class="table-dark">
+                                                <tr>
+                                                    <th scope="col" width="10%">#</th>
+                                                    <th scope="col" width="70%">Name</th>
+                                                    <th scope="col">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="feature-data">
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="card border-0 shadow-sm mb-4">
+                                <div class="card-body">
+
+                                    <div class="d-flex align-items-center justify-content-between mb-3">
+                                        <h5 class="card-title m-0">Facilities</h5>
+                                        <button type="button" class="btn btn-dark shadow-none btn-sm" data-bs-toggle="modal" data-bs-target="#facilities-s">
+                                            <i class="bi bi-plus-square"></i>
+                                            Add
+                                        </button>
+                                    </div>
+
+                                    <div class="table-responsive-md" style="height: 300px; overflow-y: scroll;">
+                                        <table class="table table-hover border">
+                                            <thead class="table-dark">
+                                                <tr>
+                                                    <th scope="col" width="5%">#</th>
+                                                    <th scope="col" width="15%">Icon</th>
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col" width="40%">Description</th>
+                                                    <th scope="col">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="facilities-data">
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
-
-                        <div class="table-responsive-md" style="height: 450px; overflow-y: scroll;">
-                            <table class="table table-hover border">
-                                <thead class="table-dark">
-                                    <tr>
-                                        <th scope="col" width="10%">#</th>
-                                        <th scope="col" width="70%">Name</th>
-                                        <th scope="col">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="feature-data">
-                                </tbody>
-                            </table>
-                        </div>
-
                     </div>
                 </div>
-
-                <div class="card border-0 shadow-sm mb-4">
-                    <div class="card-body">
-
-                        <div class="d-flex align-items-center justify-content-between mb-3">
-                            <h5 class="card-title m-0">Facilities</h5>
-                            <button type="button" class="btn btn-dark shadow-none btn-sm" data-bs-toggle="modal" data-bs-target="#facilities-s">
-                                <i class="bi bi-plus-square"></i>
-                                Add
-                            </button>
-                        </div>
-
-                        <div class="table-responsive-md" style="height: 450px; overflow-y: scroll;">
-                            <table class="table table-hover border">
-                                <thead class="table-dark">
-                                    <tr>
-                                        <th scope="col" width="5%">#</th>
-                                        <th scope="col" width="15%">Icon</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col" width="40%">Description</th>
-                                        <th scope="col">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="facilities-data">
-                                </tbody>
-                            </table>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
+            </main>
         </div>
     </div>
+
 
     <!-- Feature Modal -->
     <div class="modal fade" id="feature-s" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

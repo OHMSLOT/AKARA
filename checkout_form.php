@@ -17,7 +17,7 @@
         <div class="row g-5">
             <div class="col-lg-8">
                 <h3 class="summary-title">Customer Information</h3>
-                <form id="checkoutForm" action="confirm_payment.php" method="POST">
+                <form id="mainCheckoutForm" action="confirm_payment.php" method="POST" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-lg-6 mb-3">
                             <label for="name" class="form-label">First name</label>
@@ -52,14 +52,59 @@
                     ?>
 
                     <!-- ข้อมูลที่ซ่อนอยู่เพื่อส่งไปยัง confirm_payment.php -->
+                    <input type="hidden" name="room_id" value="<?php echo $_POST['room_id']; ?>">
                     <input type="hidden" id="roomName" name="roomName" value="<?php echo $roomName; ?>">
                     <input type="hidden" id="checkin" name="checkin" value="<?php echo $checkin; ?>">
                     <input type="hidden" id="checkout" name="checkout" value="<?php echo $checkout; ?>">
                     <input type="hidden" id="nights" name="nights" value="<?php echo $nights; ?>">
                     <input type="hidden" id="totalPrice" name="totalPrice" value="<?php echo $totalPrice; ?>">
 
-                    <button type="submit" class="btn btn-primary w-100">Confirm Booking</button>
+                    <!-- Payment Method Selection -->
+                    <h3 class="mt-4">Payment Method</h3>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="paymentMethod" id="paymentQR" value="qr" required>
+                        <label class="form-check-label" for="paymentQR">
+                            QR Code Payment
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="paymentMethod" id="paymentBank" value="bank_transfer">
+                        <label class="form-check-label" for="paymentBank">
+                            Bank Transfer
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100 mt-3" id="confirmBookingBtn">Confirm Booking</button>
                 </form>
+            </div>
+
+            <!-- QR Code Modal -->
+            <div class="modal fade" id="qrCodeModal" tabindex="-1" aria-labelledby="qrCodeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="qrCodeModalLabel">Scan the QR Code to Pay</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form id="modalReceiptForm" enctype="multipart/form-data">
+                            <div class="modal-body text-center">
+                                <img src="src/promtpay.jpg" alt="QR Code" style="width: 200px; height: 200px;">
+                                <p class="mt-3">Please scan the QR code using your mobile banking app to complete the payment.</p>
+
+                                <!-- File upload input for payment receipt -->
+                                <div class="mt-4">
+                                    <label for="paymentReceipt" class="form-label">Upload Payment Receipt:</label>
+                                    <input type="file" class="form-control" id="paymentReceipt" name="paymentReceipt" accept=".jpg, .jpeg, .png, .pdf" required>
+                                    <small class="text-muted">Accepted formats: JPG, PNG, PDF</small>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" id="submitReceiptBtn">Submit Payment</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
 
             <!-- ส่วนข้อมูลสรุปการจอง -->
@@ -100,5 +145,50 @@
 
     <?php require('inc/footer.php') ?>
 </body>
+<script>
+    const confirmBookingBtn = document.getElementById('confirmBookingBtn');
+    const mainCheckoutForm = document.getElementById('mainCheckoutForm');
+    const paymentQR = document.getElementById('paymentQR');
+    const qrCodeModal = new bootstrap.Modal(document.getElementById('qrCodeModal'));
+    const paymentReceipt = document.getElementById('paymentReceipt');
+    const submitReceiptBtn = document.getElementById('submitReceiptBtn');
+
+    mainCheckoutForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        if (paymentQR.checked) {
+            qrCodeModal.show();
+        } else {
+            mainCheckoutForm.submit();
+        }
+    });
+
+    submitReceiptBtn.addEventListener('click', function() {
+        if (paymentReceipt.files.length === 0) {
+            alert("Please upload a payment receipt before proceeding.");
+            return;
+        }
+
+        // คัดลอกค่าจากฟอร์มหลักไปยังฟอร์มใน Modal ก่อนส่งข้อมูล
+        const formData = new FormData(mainCheckoutForm);
+        formData.append('paymentReceipt', paymentReceipt.files[0]);
+
+        fetch('confirm_payment.php', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert('Payment receipt submitted successfully.');
+                qrCodeModal.hide();
+                // Optional: เปลี่ยนเส้นทางหลังจากสำเร็จ
+                window.location.href = 'booking_success.php';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('There was an error submitting your payment receipt. Please try again.');
+            });
+    });
+</script>
 
 </html>
