@@ -72,7 +72,7 @@ adminLogin();
                             </div>
 
                             <!-- shutdown -->
-                            <div class="card mb-4">
+                            <!-- <div class="card mb-4">
                                 <div class="card-body">
                                     <div class="d-flex align-items-center justify-content-between mb-3">
                                         <h5 class="card-title m-0">Shutdown Website</h5>
@@ -86,7 +86,7 @@ adminLogin();
                                         No customers will be allowed to book hotel room, when shutdown mode is turned on.
                                     </p>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <!-- Contacts settings -->
                             <div class="card mb-4">
@@ -138,7 +138,7 @@ adminLogin();
                                             </div>
                                             <div class="mb-4">
                                                 <h6 class="card-subtitle mb-1 fw-bold">iFrame</h6>
-                                                <iframe id="iframe" class=" border p-2 w-100" loading="lazy"></iframe>
+                                                <iframe id="iframe" class=" border p-2 w-100" style="height: 100%;" loading="lazy"></iframe>
                                             </div>
                                         </div>
                                     </div>

@@ -44,18 +44,21 @@
                     <div class="sb-nav-link-icon"><i class="bi bi-chat-square-dots"></i></div>
                     User Queries
                 </a>
-                <a class="nav-link" href="booking_management.php">
-                    <div class="sb-nav-link-icon"><i class="bi bi-chat-square-dots"></i></div>
-                    New Booking
+
+                <!-- BOOKINGS -->
+                <div class="sb-sidenav-menu-heading">BOOKING</div>
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePagesBooking" aria-expanded="false" aria-controls="collapsePagesBooking">
+                    <div class="sb-nav-link-icon"><i class="bi bi-house"></i></div>
+                    BOOKING
+                    <div class="sb-sidenav-collapse-arrow"><i class="bi bi-chevron-down"></i></div>
                 </a>
-                <a class="nav-link" href="refund_booking.php">
-                    <div class="sb-nav-link-icon"><i class="bi bi-chat-square-dots"></i></div>
-                    Refund Booking
-                </a>
-                <a class="nav-link" href="records_booking.php">
-                    <div class="sb-nav-link-icon"><i class="bi bi-chat-square-dots"></i></div>
-                    Records Booking
-                </a>
+                <div class="collapse" id="collapsePagesBooking" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link" href="booking_management.php">New Booking</a>
+                        <a class="nav-link" href="refund_booking.php">Refund Booking</a>
+                        <a class="nav-link" href="records_booking.php">Records Booking</a>
+                    </nav>
+                </div>
             </div>
         </div>
         <!-- <div class="sb-sidenav-footer">
