@@ -48,6 +48,7 @@ adminLogin();
                                                     <th scope="col">Time end</th>
                                                     <th scope="col">Date</th>
                                                     <th scope="col">Description</th>
+                                                    <th scope="col">Status</th>
                                                     <th scope="col">Action</th>
                                                 </tr>
                                             </thead>
@@ -324,6 +325,23 @@ adminLogin();
                 }
             };
             xhr.send(data);
+        }
+
+        function toggleEventStatus(id, currentStatus) {
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "ajax/events_crud.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhr.onload = function() {
+                if (this.responseText == 1) {
+                    alert("success", "Event status updated successfully!");
+                    get_event(); // Reload the event list
+                } else {
+                    alert("error", "Server down!");
+                }
+            };
+
+            xhr.send(`toggle_event_status=1&id=${id}&status=${currentStatus}`);
         }
 
 

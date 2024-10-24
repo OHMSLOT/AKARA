@@ -193,7 +193,7 @@ $result = $stmt->get_result();
 
         xhr.onload = function() {
             if (this.responseText == "not_logged_in") {
-                alert("Please login before booking a room.");
+                alert("error","Please login before booking a room.");
             } else if (this.responseText == "logged_in") {
                 window.location.href = 'confirm_booking.php?id=' + roomId;
             }

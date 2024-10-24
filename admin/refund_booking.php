@@ -1,14 +1,6 @@
 <?php
 require('inc/essentials.php');
-require('inc/db_config.php');
 adminLogin();
-
-// ดึงข้อมูลการจองที่สามารถคืนเงินได้จากฐานข้อมูล
-$sql = "SELECT bo.order_id, bo.order_number, bo.total_amount, bo.status, bd.firstname, bd.lastname, bd.room_name, bd.checkin, bd.checkout, bd.nights, bd.total_price
-        FROM booking_order bo
-        JOIN booking_detail bd ON bo.order_id = bd.order_id
-        WHERE bo.status = 'cancelled'"; // เงื่อนไขเพื่อแสดงเฉพาะการจองที่ถูกยกเลิกและคืนเงินได้
-$result = $con->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -32,61 +24,34 @@ $result = $con->query($sql);
                 <div class="container-fluid" id="main-content">
                     <div class="row">
                         <div class="col-lg-12 ms-auto p-4 overflow-hidden">
-                            <h1 class="mb-4">Refund Bookings</h1>
+                            <h3 class="mb-4">Refund Bookings</h3>
 
                             <div class="card border-0 shadow-sm mb-4">
                                 <div class="card-body">
-
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-hover">
+                                    <div class="text-end mb-3">
+                                        <input type="text" id="searchInput" class="form-control w-25 ms-auto" placeholder="Search bookings..." aria-label="Search">
+                                    </div>
+                                    <div class="table-responsive-md" style="height: 580px;">
+                                        <table class="table table-hover border">
                                             <thead class="table-dark">
                                                 <tr>
                                                     <th>Order Number</th>
                                                     <th>Customer Name</th>
                                                     <th>Room Name</th>
-                                                    <th>Bookings_details</th>
+                                                    <th>Bookings Details</th>
                                                     <th>Total Price (THB)</th>
                                                     <th>Status</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <?php if ($result->num_rows > 0) : ?>
-                                                    <?php while ($row = $result->fetch_assoc()) : ?>
-                                                        <tr>
-                                                            <td><span class="badge text-bg-primary"><?php echo $row['order_number']; ?></span></td>
-                                                            <td><?php echo $row['firstname'] . ' ' . $row['lastname']; ?></td>
-                                                            <td><?php echo $row['room_name']; ?></td>
-                                                            <td>
-                                                                <strong>Check-in:</strong> <?php echo $row['checkin']; ?><br>
-                                                                <strong>Check-out:</strong> <?php echo $row['checkout']; ?><br>
-                                                                <strong>Nights:</strong> <?php echo $row['nights']; ?>
-                                                            </td>
-                                                            <td><?php echo number_format($row['total_price'], 2); ?></td>
-                                                            <td>
-                                                                <span class="badge 
-                                                                <?php echo ($row['status'] == 'pending') ? 'bg-warning' : (($row['status'] == 'confirmed') ? 'bg-success' : 'bg-danger'); ?>">
-                                                                    <?php echo ucfirst($row['status']); ?>
-                                                                </span>
-                                                            </td>
-                                                            <td>
-                                                                <form action="process_refund.php" method="POST" style="display:inline-block;">
-                                                                    <input type="hidden" name="order_id" value="<?php echo $row['order_id']; ?>">
-                                                                    <button type="submit" class="btn btn-sm btn-primary" onclick="return confirm('Are you sure you want to refund this booking?');">
-                                                                        Refund
-                                                                    </button>
-                                                                </form>
-                                                            </td>
-                                                        </tr>
-                                                    <?php endwhile; ?>
-                                                <?php else : ?>
-                                                    <tr>
-                                                        <td colspan="9" class="text-center">No bookings available for refund</td>
-                                                    </tr>
-                                                <?php endif; ?>
+                                            <tbody id="refund-booking-data">
+                                                <!-- AJAX loaded content will appear here -->
                                             </tbody>
                                         </table>
                                     </div>
+                                    <nav aria-label="Page navigation" id="pagination-container">
+                                        <!-- Pagination will be loaded here dynamically -->
+                                    </nav>
                                 </div>
                             </div>
                         </div>
@@ -96,8 +61,54 @@ $result = $con->query($sql);
         </div>
     </div>
 
-
     <?php include 'inc/script.php'; ?>
+    <script>
+        let searchTimeout;
+
+        document.getElementById('searchInput').addEventListener('input', function() {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                getRefundBookings(this.value, 1);
+            }, 500); 
+        });
+
+        function getRefundBookings(query = '', page = 1) {
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "ajax/refund_booking.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhr.onload = function() {
+                const response = JSON.parse(this.responseText);
+                document.getElementById('refund-booking-data').innerHTML = response.data;
+                document.getElementById('pagination-container').innerHTML = response.pagination;
+            };
+
+            xhr.send(`query=${query}&page=${page}`);
+        }
+
+        function processRefund(orderId) {
+            if (confirm('Are you sure you want to refund this booking?')) {
+                let xhr = new XMLHttpRequest();
+                xhr.open("POST", "ajax/refund_booking.php", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+                xhr.onload = function() {
+                    if (this.responseText.trim() == 'success') {
+                        alert('Booking has been refunded successfully.');
+                        getRefundBookings(document.getElementById('searchInput').value);
+                    } else {
+                        alert('Failed to refund the booking. Please try again.');
+                    }
+                };
+
+                xhr.send(`refund_order=${orderId}`);
+            }
+        }
+
+        window.onload = function() {
+            getRefundBookings();
+        };
+    </script>
 </body>
 
 </html>

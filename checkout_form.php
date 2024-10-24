@@ -11,7 +11,7 @@
 <body>
     <?php require('inc/header.php') ?>
     <div class="container">
-        <h1 class="fw-semibold text-center my-5">CHECK-OUT</h1>
+        <h1 class="fw-semibold text-center my-5">PAYMENT</h1>
 
         <!-- ส่วนฟอร์มข้อมูลลูกค้า -->
         <div class="row g-5">
@@ -60,21 +60,14 @@
                     <input type="hidden" id="totalPrice" name="totalPrice" value="<?php echo $totalPrice; ?>">
 
                     <!-- Payment Method Selection -->
-                    <h3 class="mt-4">Payment Method</h3>
+                    <h3 class="my-4">Payment Method</h3>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="paymentMethod" id="paymentQR" value="qr" required>
                         <label class="form-check-label" for="paymentQR">
                             QR Code Payment
                         </label>
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="paymentMethod" id="paymentBank" value="bank_transfer">
-                        <label class="form-check-label" for="paymentBank">
-                            Bank Transfer
-                        </label>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary w-100 mt-3" id="confirmBookingBtn">Confirm Booking</button>
+                    <button type="submit" class="btn custom-bg text-white w-100 mt-3" id="confirmBookingBtn">Confirm Booking</button>
                 </form>
             </div>
 
@@ -99,8 +92,8 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" id="submitReceiptBtn">Submit Payment</button>
+                                <button type="button" class="btn btn-secondary shadow-none" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn custom-bg shadow-none" id="submitReceiptBtn">Submit Payment</button>
                             </div>
                         </form>
                     </div>

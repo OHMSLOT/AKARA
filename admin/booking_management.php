@@ -1,6 +1,6 @@
 <?php
-require('inc/essentials.php');
-require('inc/db_config.php');
+require_once('inc/essentials.php');
+require_once('inc/db_config.php');
 adminLogin();
 
 // ดึงข้อมูลการจองจากตาราง booking_order และ booking_detail ที่สถานะเป็น pending
@@ -75,16 +75,20 @@ $result = $con->query($sql);
                                                                     <i class="bi bi-image"></i>
                                                                 </button>
 
-                                                                <!-- ปุ่มเปิด Modal -->
-                                                                <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#roomModal" data-order-id="<?php echo $row['order_id']; ?>">
+                                                                <!-- ปุ่มยืนยันการจอง -->
+                                                                <button type="button" class="btn btn-sm btn-success" onclick="confirmBooking(<?php echo $row['order_id']; ?>)">
                                                                     <i class="bi bi-pencil-square"></i>
                                                                 </button>
 
-                                                                <form class="cancel-booking-form" data-order-id="<?php echo $row['order_id']; ?>" style="display:inline-block;">
-                                                                    <button type="button" class="btn btn-sm btn-danger cancel-booking-btn">
-                                                                        <i class="bi bi-x-lg"></i>
-                                                                    </button>
-                                                                </form>
+                                                                <!-- ปุ่มเปิด Modal -->
+                                                                <!-- <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#roomModal" data-order-id="">
+                                                                        <i class="bi bi-pencil-square"></i>
+                                                                    </button> -->
+
+                                                                <!-- ปุ่มยกเลิกการจอง -->
+                                                                <button type="button" class="btn btn-sm btn-danger" onclick="cancelBooking(<?php echo $row['order_id']; ?>)">
+                                                                    <i class="bi bi-x-lg"></i>
+                                                                </button>
 
                                                             </td>
                                                         </tr>
@@ -109,7 +113,7 @@ $result = $con->query($sql);
     </div>
 
     <!-- Modal สำหรับกรอกเลขห้อง -->
-    <div class="modal fade" id="roomModal" tabindex="-1" aria-labelledby="roomModalLabel" aria-hidden="true">
+    <!-- <div class="modal fade" id="roomModal" tabindex="-1" aria-labelledby="roomModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -132,7 +136,7 @@ $result = $con->query($sql);
                 </form>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- Modal สำหรับแสดงใบเสร็จ -->
     <div class="modal fade" id="slipImageModal" tabindex="-1" aria-labelledby="slipImageModalLabel" aria-hidden="true">
@@ -155,42 +159,55 @@ $result = $con->query($sql);
     <?php include 'inc/script.php'; ?>
 </body>
 <script>
+    function confirmBooking(orderId) {
+        if (confirm('Are you sure you want to confirm this booking?')) {
+            fetch('ajax/update_booking_status.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `order_id=${orderId}&status=confirmed`
+                })
+                .then(response => response.text())
+                .then(data => {
+                    if (data.trim() === 'success') {
+                        alert('success','Booking has been confirmed.');
+                        location.reload(); // Reload the page to update the booking list
+                    } else {
+                        alert('error','There was an error confirming the booking. Please try again.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('error','An error occurred while confirming the booking. Please try again.');
+                });
+        }
+    }
 
-    document.querySelectorAll('.cancel-booking-btn').forEach(button => {
-        button.addEventListener('click', function() {
-            const orderId = this.closest('.cancel-booking-form').getAttribute('data-order-id');
-
-            if (confirm('Are you sure you want to cancel this booking?')) {
-                fetch('update_booking_status.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded',
-                        },
-                        body: `order_id=${orderId}&status=cancelled`
-                    })
-                    .then(response => response.text())
-                    .then(data => {
-                        alert('Booking has been successfully cancelled.');
-                        location.reload(); // Reload the page to update the list
-                    })
-                    .catch(error => {
-                        alert('There was an error cancelling the booking. Please try again.');
-                        console.error('Error:', error);
-                    });
-            }
-        });
-    });
-
-    // ส่ง order_id ไปยัง Modal เมื่อกดปุ่ม "จัดการห้อง"
-    var roomModal = document.getElementById('roomModal');
-    roomModal.addEventListener('show.bs.modal', function(event) {
-        var button = event.relatedTarget; // ปุ่มที่ถูกกด
-        var orderId = button.getAttribute('data-order-id'); // ดึง order_id จากปุ่ม
-
-        // อัปเดตค่าในฟอร์มที่อยู่ใน Modal
-        var modalOrderIdInput = document.getElementById('modal_order_id');
-        modalOrderIdInput.value = orderId;
-    });
+    function cancelBooking(orderId) {
+        if (confirm('Are you sure you want to cancel this booking?')) {
+            fetch('ajax/update_booking_status.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `order_id=${orderId}&status=cancelled`
+                })
+                .then(response => response.text())
+                .then(data => {
+                    if (data.trim() === 'success') {
+                        alert('success','Booking has been cancelled.');
+                        location.reload(); // Reload the page to update the booking list
+                    } else {
+                        alert('error','There was an error cancelling the booking. Please try again.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('error','An error occurred while cancelling the booking. Please try again.');
+                });
+        }
+    }
 
     var slipImageModal = document.getElementById('slipImageModal');
     slipImageModal.addEventListener('show.bs.modal', function(event) {

@@ -40,6 +40,10 @@
 
         while($row = mysqli_fetch_assoc($res))
         {
+            $statusText = $row['status'] == 1 ? 'Active' : 'Inactive';
+            $statusClass = $row['status'] == 1 ? 'btn-dark' : 'btn-warning';
+            $toggleStatus = $row['status'] == 1 ? 0 : 1;
+
             echo <<<data
                 <tr class="align-middle">
                     <td>$i</td>
@@ -49,6 +53,11 @@
                     <td>$row[time_e]</td>
                     <td>$row[date]</td>
                     <td>$row[description]</td>
+                    <td>
+                        <button type="button" onclick="toggleEventStatus($row[id], $row[status])" class="btn $statusClass btn-sm shadow-none">
+                            $statusText
+                        </button>
+                    </td>
                     <td>
                         <button type="button" onclick="edit_info($row[id],'$row[name]','$row[time_s]','$row[time_e]','$row[date]','$row[description]')" class="btn btn-secondary btn-md shadow-none">
                             <i class="bi bi-pencil-square"></i>
@@ -100,6 +109,15 @@
             }
         }
     }
+
+    if (isset($_POST['toggle_event_status'])) {
+        $frm_data = filteration($_POST);
+        $new_status = $frm_data['status'] == 1 ? 0 : 1; // Toggle status between 1 and 0
+        $q = "UPDATE `events` SET `status`=? WHERE `id`=?";
+        $values = [$new_status, $frm_data['id']];
+        $res = update($q, $values, 'ii');
+        echo $res;
+    }    
 
     if(isset($_POST['rem_event']))
     {

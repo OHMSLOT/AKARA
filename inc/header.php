@@ -189,11 +189,11 @@ else{
                 </div>
                 <div class="modal-body">
                     <div class="form-floating mb-4 mt-3">
-                        <input type="email" class="form-control" id="loginEmail" name="login_email" placeholder="Enter your email" value="<?php echo $id ?>" required>
+                        <input type="email" class="form-control shadow-none" id="loginEmail" name="login_email" placeholder="Enter your email" value="<?php echo $id ?>" required>
                         <label for="floatingInput">Email address</label>
                     </div>
                     <div class="form-floating mb-4">
-                        <input type="password" class="form-control" id="loginPassword" name="login_password" placeholder="Enter your password" value="<?php echo $pass ?>" required>
+                        <input type="password" class="form-control shadow-none" id="loginPassword" name="login_password" placeholder="Enter your password" value="<?php echo $pass ?>" required>
                         <label for="floatingPassword">Password</label>
                     </div>
                     <div class="d-flex justify-content-between mt-4">

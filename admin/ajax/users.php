@@ -17,7 +17,7 @@
                 <tr>
                 <td>$i</td>
                 <td>
-                    <img src='$path$row[picture]' width='55px'>
+                    <img src='$path$row[picture]' width='55px' height='55px' style='object-fit: cover;'>
                     <br>
                     $row[name]
                 </td>

@@ -310,6 +310,20 @@
         const daysDifference = timeDifference / (1000 * 3600 * 24); // แปลงจาก millisecond เป็นวัน
         return daysDifference;
     }
+
+    window.onload = function() {
+        // Get today's date in the format YYYY-MM-DD
+        const today = new Date().toISOString().split('T')[0];
+
+        // Set the min attribute for the check-in and check-out inputs
+        document.getElementById('checkin').setAttribute('min', today);
+        document.getElementById('checkout').setAttribute('min', today);
+
+        // Update the checkout date when the check-in date changes
+        document.getElementById('checkin').addEventListener('change', function() {
+            document.getElementById('checkout').setAttribute('min', this.value);
+        });
+    };
 </script>
 
 

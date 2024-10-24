@@ -78,13 +78,12 @@
                             </div>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>
 
     </section>
-    <!-- history -->
+    <!-- Welcome -->
     <section>
         <div class="container pt-5">
             <div class="my-5 px-4 pt-5">
@@ -274,39 +273,33 @@
                     <h1 class="text-light text-center c-font fs-48">Upcoming Events</h1>
                 </div>
                 <div class="row pb-5">
-
                     <?php
-                    // เรียกใช้งานฟังก์ชัน selectAll()
-                    $event_res = selectAll('events');
+                    $event_res = select("SELECT * FROM `events` WHERE `status` = ?", [1], 'i');
 
-                    // ใช้ลูป while เพื่อแสดงข้อมูลในรูปแบบการ์ด
+                    if ($event_res->num_rows == 0) {
+                        echo '<p class="text-light text-center">No upcoming events available.</p>';
+                    }
+
                     while ($event = mysqli_fetch_assoc($event_res)) {
-                        // กำหนดเส้นทางรูปภาพที่ถูกต้อง (ตัวอย่างใช้โฟลเดอร์ uploads/facilities/)
                         $image_path = EVENTS_IMG_PATH . $event['image'];
-
-                        // ฟอร์แมตวันที่
                         $formatted_date = date("d F Y", strtotime($event['date']));
-
-                        // ฟอร์แมตเวลาเป็น 24 ชั่วโมง (สมมติว่า $event['time'] เป็นเวลาเริ่มต้น เช่น 12:00:00)
                         $formatted_time_s = date("H:i", strtotime($event['time_s']));
                         $formatted_time_e = date("H:i", strtotime($event['time_e']));
 
                         echo <<<data
-                        <div class="col-lg-4 col-md-6 mb-4">
-                            <div class="card text-start bg-dark border-dark text-light">
-                                <img src="{$image_path}" class="card-img-top rounded-0">
-                                <div class="card-body px-0">
-                                    <h2 class="mb-3 c-font">{$event['name']}</h2>
-                                    <p class="me-4 c-font fs-18"><i class="bi bi-clock me-1"></i> {$formatted_time_s} - {$formatted_time_e}</p>
-                                    <p class="c-font fs-18"><i class="bi bi-calendar-event me-1"></i> {$formatted_date}</p>
-                                    <a class="text-decoration-none text-light fs-5 c-font" href="#">SEE DETAIL</a>
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="card text-start bg-dark border-dark text-light">
+                                        <img src="{$image_path}" class="card-img-top rounded-0" style="height: 300px; object-fit: cover;">
+                                        <div class="card-body px-0">
+                                            <h2 class="mb-3 c-font">{$event['name']}</h2>
+                                            <p class="c-font fs-18"><i class="bi bi-calendar-event me-1"></i> {$formatted_date}</p>
+                                            <p class="me-4 c-font fs-18"><i class="bi bi-clock me-1"></i> {$formatted_time_s} - {$formatted_time_e}</p>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    data;
+                            data;
                     }
                     ?>
-
                 </div>
             </div>
         </div>
@@ -352,6 +345,20 @@
         },
     });
     swiperEl.initialize();
+
+    window.onload = function() {
+        // Get today's date in the format YYYY-MM-DD
+        const today = new Date().toISOString().split('T')[0];
+
+        // Set the min attribute for the check-in and check-out inputs
+        document.querySelector('input[name="checkin"]').setAttribute('min', today);
+        document.querySelector('input[name="checkout"]').setAttribute('min', today);
+
+        // Update the checkout date when check-in date changes
+        document.querySelector('input[name="checkin"]').addEventListener('change', function() {
+            document.querySelector('input[name="checkout"]').setAttribute('min', this.value);
+        });
+    };
 </script>
 
 </html>

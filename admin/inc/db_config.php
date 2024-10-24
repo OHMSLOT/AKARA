@@ -10,16 +10,36 @@
         die("Cannot Connect to Database" . mysqli_connect());
     }
 
+    // function filteration($data) {
+    //     foreach ($data as $key => $value) {
+    //         $value = trim($value);
+    //         $value = stripslashes($value);
+    //         $value = strip_tags($value);
+    //         $value = htmlspecialchars($value);
+    //         $data[$key] = $value;
+    //     }
+    //     return $data;
+    // }
+
     function filteration($data) {
-        foreach ($data as $key => $value) {
-            $value = trim($value);
-            $value = stripslashes($value);
-            $value = strip_tags($value);
-            $value = htmlspecialchars($value);
-            $data[$key] = $value;
+        if (is_array($data) || is_object($data)) {
+            foreach ($data as $key => $value) {
+                $value = trim($value);
+                $value = stripslashes($value);
+                $value = strip_tags($value);
+                $value = htmlspecialchars($value);
+                $data[$key] = $value;
+            }
+        } else {
+            // If $data is not an array or object, filter it directly.
+            $data = trim($data);
+            $data = stripslashes($data);
+            $data = strip_tags($data);
+            $data = htmlspecialchars($data);
         }
         return $data;
     }
+    
     
 
     function select($sql, $values, $datatypes)

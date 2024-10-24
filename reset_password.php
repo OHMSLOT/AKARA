@@ -72,39 +72,49 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php require('inc/links.php'); ?>
     <title>Reset Password</title>
+    <style>
+        .reset-password-container {
+            max-width: 450px;
+            margin: 50px auto;
+            background-color: #ffffff;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .reset-password-header {
+            margin-bottom: 30px;
+        }
+
+        .reset-password-header h1 {
+            font-size: 32px;
+            font-weight: bold;
+            color: #000000;
+            margin-bottom: 5px;
+        }
+
+        .reset-password-header p {
+            font-size: 16px;
+            color: #666;
+        }
+    </style>
 </head>
 
 <body>
     <?php require('inc/header.php'); ?>
-    <div class="my-5 px-4">
-        <h1 class="fw-semibold c-font text-center">RESER PASSWORD</h1>
-        <p class="text-center mt-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, mollitia porro! Illum est, <br>
-            at sit eius eveniet corporis accusantium, quae similique unde libero soluta quam aperiam neque facere, quia nam?
-        </p>
-    </div>
-    <div class="login">
+    <div class="reset-password-container">
+        <div class="reset-password-header">
+            <h1>Reset Password</h1>
+            <p>Enter a new password for your account</p>
+        </div>
         <form action="reset_password.php" method="POST">
-            <div class="login-header">
-                <header>Reset Password</header>
-                <p>Enter a new password for you</p>
-            </div>
             <input type="hidden" name="token" value="<?php echo htmlspecialchars($_GET['token'] ?? ''); ?>" required>
-            <div class="input-box">
-                <input type="password" class="input-field" name="password" placeholder="Enter new password" required>
-            </div>
-            <div class="input-box">
-                <input type="password" class="input-field" name="confirm_password" id="confirm_password" placeholder="Confirm new password" required>
-                <?php if (!empty($error_message)): ?>
-                    <small class="error-message"><?php echo $error_message; ?></small> <!-- แสดงข้อความข้อผิดพลาด -->
-                <?php endif; ?>
-            </div>
-            <div class="input-submit">
-                <button class="submit-btn" id="submit"></button>
-                <label for="submit">Reset Password</label>
-            </div>
+            <input type="password" class="form-control shadow-none mb-4" name="password" placeholder="Enter new password" required>
+            <input type="password" class="form-control shadow-none mb-4" name="confirm_password" placeholder="Confirm new password" required>
+            <button type="submit" class="btn custom-bg w-100 text-white shadow-none mb-4">Reset Password</button>
         </form>
     </div>
-
     <?php require('inc/footer.php'); ?>
 </body>
 
