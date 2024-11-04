@@ -77,7 +77,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="qrCodeModalLabel">Scan the QR Code to Pay</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                         </div>
                         <form id="modalReceiptForm" enctype="multipart/form-data">
                             <div class="modal-body text-center">
@@ -93,7 +93,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary shadow-none" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn custom-bg shadow-none" id="submitReceiptBtn">Submit Payment</button>
+                                <button type="button" class="btn custom-bg text-light shadow-none" id="submitReceiptBtn">Submit Payment</button>
                             </div>
                         </form>
                     </div>
@@ -172,14 +172,14 @@
             })
             .then(response => response.text())
             .then(data => {
-                alert('Payment receipt submitted successfully.');
+                alert('success','Payment receipt submitted successfully.');
                 qrCodeModal.hide();
                 // Optional: เปลี่ยนเส้นทางหลังจากสำเร็จ
                 window.location.href = 'booking_success.php';
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('There was an error submitting your payment receipt. Please try again.');
+                alert('error','There was an error submitting your payment receipt. Please try again.');
             });
     });
 </script>

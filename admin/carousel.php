@@ -56,8 +56,8 @@ adminLogin();
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" onclick="carousel_picture.value = ''" class="btn text-secondary shadow-none" data-bs-dismiss="modal">CANCEL</button>
-                                                <button type="submit" class="btn custom-bg shadow-none text-light">SAVE</button>
+                                                <button type="button" onclick="carousel_picture.value = ''" class="btn btn-secondary shadow-none" data-bs-dismiss="modal">CANCEL</button>
+                                                <button type="submit" class="btn btn-primary shadow-none text-light">SAVE</button>
                                             </div>
                                         </div>
                                     </form>

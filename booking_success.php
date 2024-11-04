@@ -14,7 +14,7 @@
         <h1 class="fw-semibold text-center my-5">Booking Success</h1>
         <p class="text-center mb-4">Thank you for your booking! Your payment has been received, and your reservation is confirmed.</p>
         <div class="text-center">
-            <a href="index.php" class="btn custom-bg shadow-none">Go to Homepage</a>
+            <a href="index.php" class="btn custom-bg text-light shadow-none">Go to Homepage</a>
         </div>
     </div>
     <?php require('inc/footer.php') ?>
